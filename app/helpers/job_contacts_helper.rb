@@ -1,0 +1,2 @@
+module JobContactsHelper
+end
