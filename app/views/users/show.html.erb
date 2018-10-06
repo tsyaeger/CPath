@@ -1,0 +1,189 @@
+
+
+<style>
+
+
+
+input[type=text], select {
+    width: 320px;
+    height: 35px;
+    padding: 12px 20px;
+    margin: 0 0 20px;
+    display: inline-block;
+    border: 1px solid #5b4f4f;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+
+
+</style>
+
+
+
+<div class="row">
+    
+    <div class='user-id' data-id="<%= @user.id %>"></div>
+
+    <div class="column">
+
+        <h1><%= link_to 'Contacts', new_user_contact_path(@user) %></h1>
+        <div id='contact-search'>
+            <div>
+                <input type='text' id='filter-contacts' class='dash-field' placeholder='filter contacts'>
+            </div>
+            <div id='contact-list' data-id="<%= @user.id %>"></div>
+        </div>
+    </div> <!-- close left-column -->
+
+
+
+    <div class="column">
+        <h1><%= link_to 'Positions', new_user_job_path(@user) %></h1>
+        <div id='job-search'>
+            <div>
+                <input type='text' id='filter-jobs' class='dash-field' placeholder='filter positions'>        
+            </div>            
+            <div id="job-list"></div>
+        </div>
+    </div><!-- close column -->
+
+
+
+    <div class="column">
+        <h1><%= link_to 'Tasks', new_user_task_path(@user) %></h1>
+        <div id='task-search'>
+            <div>
+                <input type='text' id='filter-tasks' class='dash-field' placeholder='filter tasks'>        
+            </div>
+            <div id="task-list"></div>
+        </div>
+    </div> <!-- close column -->
+
+
+
+    <div class="column">
+        <h1><%= link_to 'Documents', new_user_document_path(@user) %></h1>
+        <div id='document-search'>
+            <div>
+                <input type='text' id='filter-documents' class='dash-field' placeholder='filter documents'>        
+            </div>
+            <div id="document-list"></div>
+        </div>
+    </div> <!-- close column -->
+
+
+
+</div> <!-- close row -->
+
+
+
+
+
+
+
+<script type="text/javascript" charset="utf-8">
+
+
+
+$(function() {
+    id = $(".user-id").data("id")
+
+    $.get(`/users/${id}.json`, function(data) {
+        getContacts(data)
+        getJobs(data)
+        getTasks(data)
+        getDocuments(data)
+        filterJobs()
+        filterContacts()
+    });
+
+})
+
+
+
+const getContacts = function (data) {
+    jQuery(data['contacts']).each(function(i, contact){
+        let c = new Contact(contact, id)
+        $("#contact-list").append(c.formatIndex())
+    })
+}
+
+
+const getJobs = function (data) {
+    jQuery(data['jobs']).each(function(i, job){
+        let j = new Job(job, id)
+        $("#job-list").append(j.formatIndex())
+    })
+}
+
+
+const getTasks = function (data) {
+    jQuery(data['tasks']).each(function(i, task){
+        let t = new Task(task, id)
+        $("#task-list").append(t.formatIndex())
+    })
+}
+
+
+const getDocuments = function (data) {
+    jQuery(data['documents']).each(function(i, document){
+        let d = new Document(document, id)
+        $("#document-list").append(d.formatIndex())
+    })
+}
+
+
+
+
+
+
+
+var filters = {
+    job_search_term: '',
+    contact_search_term: '',
+    task_search_term: ''
+}
+
+const filterJobs = function (data) {
+    $('#filter-jobs').on('change', function () {
+        let substring = $(this).val()
+        console.log(substring)
+
+        $.get(`/jobs/filter?q=${substring}`, function(data) {
+            console.log(data.html)
+
+            $("#job-list").empty().html(data.html)
+
+        })
+    })
+}
+
+
+const filterContacts = function (data) {
+    $('#filter-contacts').on('change', function () {
+        let substring = $(this).val()
+        console.log(substring)
+
+        $.get(`/contacts/filter?q=${substring}`, function(data) {
+            console.log(data.html)
+
+            $("#contact-list").empty().html(data.html)
+
+        })
+    })
+}
+
+
+
+
+
+
+
+</script>
+
+
+
+
+

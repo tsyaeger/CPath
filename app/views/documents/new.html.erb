@@ -1,0 +1,88 @@
+
+
+
+
+<div id="small-fields">
+    <h1>Documents</h1><br>
+
+    <div id='document-list'>
+    <%= render partial: "document", collection: @documents || "No Documents"%>
+
+    	
+    </div>
+</div>
+
+
+
+
+<div id='large-fields'>
+	<h1>Add Document</h1>
+
+	<%= render 'form' %>
+</div>
+
+
+
+
+
+
+<script type="text/javascript" charset="utf-8">
+
+
+
+$("form").on('submit', function (e) {
+
+	e.preventDefault()
+	var $form = $(this)
+	var action = $form.attr('action')
+	var params = $form.serialize()
+
+	console.log('action:')
+	console.log(action)
+	console.log('params:')
+	console.log(params)
+  // debugger
+
+	$.ajax({
+		url: action,
+		data: params,
+		datatype: 'json',
+		method: 'POST', 
+	    success: function (data) {
+	    	console.log('data')
+	    	console.log(data)
+			alert('success') 
+			$("#document-list").append(data.html)},
+		error: function (data) {
+			alert('no success') }
+	})
+})
+
+
+
+var clicks = 0
+
+$(function () {
+
+  $("i").on('click', function() {
+    var id = this.id
+
+  	if (clicks % 2 == 0) {
+	    $('.'+id).css('display', 'block')
+    	clicks++
+	}
+	else {
+		$('.'+id).css('display', 'none')
+		clicks++
+	} 
+  });
+
+});
+
+
+
+
+
+
+
+</script>

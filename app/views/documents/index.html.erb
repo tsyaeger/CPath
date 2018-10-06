@@ -1,0 +1,25 @@
+<h1>Documents</h1>
+
+
+<table>
+  <tr>
+    <th>Type</th>
+    <th>Description</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+  <% @documents.each do |document| %>
+	  <tr>
+	  	
+	    <td><%= link_to document.description, user_document_path(document.user, document) %></td>
+	    <td>document</td>
+
+	    <td><%= link_to "Edit", edit_user_document_path(document.user, document) %></td>
+	    <td><%= link_to "Delete", user_document_path(document.user, document), :method => :delete %></td>
+	  </tr>
+  <% end %>
+
+</table>
+
+	

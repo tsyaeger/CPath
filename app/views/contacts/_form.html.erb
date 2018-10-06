@@ -1,0 +1,42 @@
+
+	
+<%= form_for [@contact.user, @contact] do |f| %>
+
+    <div class="field">
+        <%= f.label :first_name, "First Name" %><br>
+        <%= f.text_field :first_name, id: "first-name" %>
+    </div>
+
+    <div class="field">
+        <%= f.label :last_name, "Last Name" %><br>
+        <%= f.text_field :last_name, id: "last-name" %>
+    </div>
+
+    <div class="field">
+        <%= f.label :workplace %><br>
+        <%= f.text_field :workplace, id: "workplace" %>
+    </div>            
+
+    <div class="field">
+        <%= f.label :phone %><br>
+        <%= f.text_field :phone, id: "phone" %>
+    </div>
+
+    <div class="field">
+        <%= f.label :email %><br>
+        <%= f.text_field :email, id: "email" %>
+    </div>            
+
+    <div class="field">
+        <%= f.label :linkedin %><br>
+        <%= f.text_field :linkedin, id: "linkedin" %>
+    </div> 
+
+
+    <div class="actions">
+        <%= f.submit "SAVE" %>
+    </div>
+
+<% end %>
+
+   

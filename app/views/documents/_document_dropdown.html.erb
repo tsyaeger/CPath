@@ -1,0 +1,8 @@
+
+<%= form_for [@job.user, @job], :url => user_job_path(@job.user, @job), :html => {:method => :patch} do |f| %>
+
+	<p><%= f.collection_select :document_ids, @job.user.documents, :id, :description, {:include_blank => 'choose document'} %></p>	
+
+	<%= f.submit "Add Document" %>
+
+<% end %>

@@ -1,0 +1,32 @@
+
+
+<h1>tasks</h1>
+
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Date Posted</th>
+    <th>Completed</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+  <% @tasks.each do |task| %>
+   
+
+	  <tr>
+	    <td><%= link_to task.title, user_task_path(task.user, task) %></td>
+	    <td><%= task.description %></td>
+	    <td><%= convert_date(task.due_date) %></td>
+	    <td>Completed</td>
+	    <td><%= link_to "Edit", edit_user_task_path(task.user, task) %></td>
+	    <td><%= link_to "Delete", user_task_path(task.user, task), :method => :delete %></td>
+	  </tr>
+  <% end %>
+
+</table>
+
+
+

@@ -1,0 +1,5 @@
+
+
+<% filtered_contacts.each do |contact| %>
+	<%= link_to contact.last_name, user_contact_path(contact.user, contact)%>
+<% end %>

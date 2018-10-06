@@ -1,0 +1,172 @@
+
+
+
+<div class='user-id' data-id="<%= @job.user.id %>"></div>
+<div class='job-id' data-id="<%= @job.id %>"></div>
+
+
+<div id='top'>
+	<div id='show-title'></div>
+	<div id='job-link'></div>
+	<div id='job-date-posted'></div>
+</div>
+
+
+
+
+<div id='mid'>
+    
+    <div id='Docs' class='links-col'>
+    	<%= render 'documents/document_dropdown' %>
+    	<h3>Docs</h3>
+    	<div id='document-list'></div>
+    </div>    
+
+
+    <div id='contacts' class='links-col'>
+		 <%= render 'contacts/contact_dropdown' %>
+    	<h3>Linked Contacts</h3>
+    	<div id='contact-list'></div>
+    	<%= render partial: "contacts/contact", collection: @job.contacts || "No Contacts"%>
+    </div>    
+
+
+    <div id='Tasks' class='links-col'>
+    	
+    	<h3>Tasks</h3>
+    	<div id='task-list'></div>
+    </div>  
+
+
+</div>
+
+
+
+
+<div class='bottom'>
+
+	<h3 class='links-col-50'> View Job Description </h3>
+
+	<h3 class='links-col-50'> View Company Description </h3>
+
+</div>
+
+
+
+
+
+
+
+<script>
+
+
+
+$(document).ready(function () {
+	user_id = $(".user-id").data("id")
+	job_id = $(".job-id").data("id")
+
+	$.get(`/users/${user_id}/jobs/${job_id}.json`, function(data) {
+		console.log(data)
+	    addJobDetails(data)
+	    // getContacts(data)
+	    getdocument(data)
+	    nextButton()
+	    previousButton()
+
+	linkContact()
+	unlinkContact()
+	});
+	
+})
+
+
+
+
+
+
+
+const linkContact = function() {
+	let contactId = $('#job-contact-ids')
+	$('#btn-add-contact').on('click', function(e) {
+		e.preventDefault()
+		var form = $('#add-contact')
+		var action = form.attr('action')
+		var c_id = form.serialize()
+		console.log(c_id)
+		console.log('here')
+
+		$.ajax({url: `/users/${user_id}/jobs/${job_id}/add_contact`, data: c_id, type: "PATCH"})
+	})
+}
+
+
+
+
+
+const unlinkContact = function() {
+	$('span#' +  4 + '.remove').on('click', function(e) {
+	    console.log(e)
+		// let x = $(this).data('id')
+		// console.log('x', x)
+
+
+		// $.ajax({url: `/users/${user_id}/jobs/${job_id}/remove_contact`, data: c_id, type: "PATCH"})
+
+
+	})
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var clicks = 0
+
+$(function () {
+
+  $("i").on('click', function() {
+    var id = this.id
+
+    let spanId = $('span')
+    console.log(spanId.attributes)
+
+  	if (clicks % 2 == 0) {
+	    $('.'+id).css('display', 'block')
+    	clicks++
+	}
+	else {
+		$('.'+id).css('display', 'none')
+		clicks++
+	} 
+  });
+
+});
+
+
+
+
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+

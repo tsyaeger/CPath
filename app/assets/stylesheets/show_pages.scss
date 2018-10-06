@@ -1,0 +1,64 @@
+#top {
+	border-bottom: solid 1px;
+	text-align: center;
+	margin: 35px 5px 25px;
+	margin-bottom: 50px;
+}
+
+#mid{
+	text-align: center;
+	margin: 35px 5px 25px;
+}
+
+
+
+
+.bottom{
+	display: inline-block;
+	text-align: center;
+	padding: 30px;
+	margin: 35px 5px 25px;
+	border-top: solid 1px;
+	width: 100%;
+}
+
+h1 {
+	text-transform: uppercase;
+}
+
+.links-col {
+	width: 33.333%;
+	/*border: solid;*/
+	margin: 0 auto 100px;
+	float: left;
+}
+
+
+.links-col-50 {
+	width: 50%;
+	/*border: solid;*/
+	margin: 0 auto 100px;
+	float: left;
+}
+
+
+
+.pg-btn {
+	border: solid 1px;
+    text-decoration: none;
+    display: inline-block;
+    padding: 8px 16px;
+}
+
+#job-company-position{
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+}
+
+
+.headline {
+    display: inline-block;
+    vertical-align: top;
+}
+

@@ -52,10 +52,10 @@ ActiveRecord::Schema.define(version: 2018_10_06_035410) do
   end
 
   create_table "jobs", force: :cascade do |t|
-    t.string "company", null: false
+    t.string "company"
     t.string "position"
     t.string "url"
-    t.datetime "date_posted"
+    t.datetime "date_posted", default: "2018-10-06 20:04:24", null: false
     t.string "job_desc"
     t.string "co_desc"
     t.boolean "applied", default: false
@@ -66,9 +66,9 @@ ActiveRecord::Schema.define(version: 2018_10_06_035410) do
   end
 
   create_table "tasks", force: :cascade do |t|
-    t.string "title"
+    t.string "title", null: false
     t.string "description"
-    t.datetime "due_date"
+    t.datetime "due_date", null: false
     t.boolean "completed", default: false
     t.integer "contact_id"
     t.integer "document_id"
@@ -80,9 +80,9 @@ ActiveRecord::Schema.define(version: 2018_10_06_035410) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "username"
-    t.string "password_digest"
-    t.string "email"
+    t.string "username", null: false
+    t.string "password_digest", null: false
+    t.string "email", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

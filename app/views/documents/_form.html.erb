@@ -1,0 +1,33 @@
+
+
+
+<%= form_for [@document.user, @document] do |f| %>
+
+	<div class='field'>
+		<%= f.label :description, "Description" %><br>
+		<%= f.text_field :description, id: 'description' %>
+	</div>
+
+
+	<div class='field'>
+		<%= f.label :doctype, "Doctype" %><br>
+		<%= f.text_field :doctype, id: 'doctype' %>
+	</div>
+
+
+	<div class='field'>
+		<%= f.label :url, "Link" %><br>
+		<%= f.text_field :url, id: 'url' %>
+	</div>
+
+
+
+	<div class='actions'><br>
+		<%= f.submit "SAVE" %>
+	</div>
+
+<% end %>
+
+
+
+
