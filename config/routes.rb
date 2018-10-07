@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-	# patch '/users/:id/jobs/:id/add_contact', to: 'jobs#add_contact', as: 'add_job_contact'
+	patch '/users/:id/jobs/:id/add_contact', to: 'jobs#add_contact', as: 'add_job_contact'
 	# patch '/users/:id/jobs/:id/remove_contact' => 'jobs#remove_contact', as: 'remove_job_contact'
 
 	# get '/users/:id/jobs/:id/add_resume', to: 'jobs#add_resume', as: 'add_job_resume'

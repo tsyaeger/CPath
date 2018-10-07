@@ -1,6 +1,6 @@
 
 class JobsController < ApplicationController
-	before_action :set_job, only: [:show, :edit, :update, :destroy, :next, :previous]
+	before_action :set_job, only: [:show, :edit, :update, :destroy, :next, :previous, :add_contact]
 
 
 	def index 
@@ -43,16 +43,14 @@ class JobsController < ApplicationController
 
 
 
+	def add_contact
+		# binding.pry
+		c_id = params[:job][:contact_ids]
+		contact = Contact.find(c_id)
+		@job.contacts << contact
+		# binding.pry
 
-
-
-
-	# def add_contact
-	# 	contact = Contact.find_or_create_by(params[:job][:contact_ids])
-	# 	@job.contacts << contact
-	# 	# binding.pry
-
-	# end	
+	end	
 
 
 	# def remove_contact

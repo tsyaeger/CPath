@@ -18,8 +18,9 @@
     
     <div id='Docs' class='links-col'>
     	<%= render 'documents/document_dropdown' %>
-    	<h3>Docs</h3>
+    	<h3>Linked Documents</h3>
     	<div id='document-list'></div>
+    	<%= render partial: "documents/document", collection: @job.documents || "No Linked Documents"%>
     </div>    
 
 
@@ -27,7 +28,7 @@
 		 <%= render 'contacts/contact_dropdown' %>
     	<h3>Linked Contacts</h3>
     	<div id='contact-list'></div>
-    	<%= render partial: "contacts/contact", collection: @job.contacts || "No Contacts"%>
+    	<%= render partial: "contacts/contact", collection: @job.contacts || "No Linked Contacts"%>
     </div>    
 
 
@@ -60,7 +61,6 @@
 <script>
 
 
-
 $(document).ready(function () {
 	user_id = $(".user-id").data("id")
 	job_id = $(".job-id").data("id")
@@ -69,20 +69,15 @@ $(document).ready(function () {
 		console.log(data)
 	    addJobDetails(data)
 	    // getContacts(data)
-	    getdocument(data)
+	    getDocument(data)
 	    nextButton()
 	    previousButton()
 
 	linkContact()
-	unlinkContact()
+	// unlinkContact()
 	});
 	
 })
-
-
-
-
-
 
 
 const linkContact = function() {
@@ -92,12 +87,87 @@ const linkContact = function() {
 		var form = $('#add-contact')
 		var action = form.attr('action')
 		var c_id = form.serialize()
+		console.log('form',form)
+		console.log('action',action)
 		console.log(c_id)
 		console.log('here')
 
 		$.ajax({url: `/users/${user_id}/jobs/${job_id}/add_contact`, data: c_id, type: "PATCH"})
 	})
 }
+
+
+
+
+
+
+
+const addJobDetails = function (data) {
+	// debugger
+	job = new Job(data, user_id)
+	$('#show-title').append(job.jobTitle())
+	$('#job-date-posted').append(job.datePosted())
+	$('#job-link').append(job.jobLink())
+}
+
+
+const nextButton = function() {
+	$('.btn-next').on('click', function() {
+		let nextPg = `${job_id}/next`
+		window.location.href = nextPg;
+	})
+}
+
+const previousButton = function() {
+	$('.btn-previous').on('click', function() {
+		let previousPg = `${job_id}/previous`
+		window.location.href = previousPg;
+	})
+}
+
+
+
+
+
+const appendDocument = function (document) {
+	var descriptionText = "<p>" + document['title'] + "</p>"
+    $("#document-list").append(descriptionText);
+}
+
+
+const getDocument = function (data) {
+    jQuery(data['documents']).each(function(i, document){
+        appendDocument(document)
+    })
+}
+
+
+
+const linkDocument = function() {
+	let documentId = $('#job-document-ids')
+	$('#btn-add-document').on('click', function(e) {
+		e.preventDefault()
+		var form = $('#add-document')
+		var action = form.attr('action')
+		var c_id = form.serialize()
+		console.log(c_id)
+		console.log('here')
+
+		 // $.ajax({url: `/users/${user_id}/jobs/${job_id}`,
+		 //  data: { 'state': state },
+		 //  type: "PATCH"})
+	})
+}
+
+
+
+
+
+
+
+
+
+
 
 
 

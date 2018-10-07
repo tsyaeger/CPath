@@ -13,11 +13,12 @@
 
 
 <div id='top'>
-	<h1><%= @document.description %> - Type</h1>
+	<h1><%= @document.title %> - <%= @document.doctype %></h1>
+    <h3><%= @document.description %></h3>
 
 	<h3>Go to Document <a href='#{@document.url}'></a></h3>
-	<h3>Last Update: <%= convert_date(@document.updated_at) %></h3>
-	<h3>Created At: <%= convert_date(@document.created_at) %></h3>
+	<h3>Last Update: <%= @document.updated_at %></h3>
+	<h3>Created At: <%= @document.created_at %></h3>
 
 </div>
 
