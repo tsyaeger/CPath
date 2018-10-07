@@ -9,7 +9,9 @@ Rails.application.routes.draw do
 	get '/users/:id/jobs/:id/previous', to: 'jobs#previous', as: 'user_job_previous'
 
 	get '/jobs/filter', to: 'jobs#filter', as: 'jobs_filter'
-	get '/contacts/filter', to: 'contacts#filter', as: 'contacts_filter'
+	get '/contacts/filter', to: 'contacts#filter', as: 'contacts_filter'	
+	get '/tasks/filter', to: 'tasks#filter', as: 'tasks_filter'
+	get '/documents/filter', to: 'documents#filter', as: 'documents_filter'
 
 	get '/signin' => 'sessions#new'
 	post '/signin' => 'sessions#create'

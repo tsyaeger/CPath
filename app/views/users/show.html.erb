@@ -96,7 +96,9 @@ $(function() {
         getTasks(data)
         getDocuments(data)
         filterJobs()
-        filterContacts()
+        filterContacts()        
+        filterDocuments()
+        filterTasks()
     });
 
 })
@@ -155,7 +157,6 @@ const filterJobs = function (data) {
             console.log(data.html)
 
             $("#job-list").empty().html(data.html)
-
         })
     })
 }
@@ -170,15 +171,37 @@ const filterContacts = function (data) {
             console.log(data.html)
 
             $("#contact-list").empty().html(data.html)
-
         })
     })
 }
 
 
+const filterTasks = function (data) {
+    $('#filter-tasks').on('change', function () {
+        let substring = $(this).val()
+        console.log(substring)
+
+        $.get(`/tasks/filter?q=${substring}`, function(data) {
+            console.log(data.html)
+
+            $("#task-list").empty().html(data.html)
+        })
+    })
+}
 
 
+const filterDocuments = function (data) {
+    $('#filter-documents').on('change', function () {
+        let substring = $(this).val()
+        console.log(substring)
 
+        $.get(`/documents/filter?q=${substring}`, function(data) {
+            console.log(data.html)
+
+            $("#document-list").empty().html(data.html)
+        })
+    })
+}
 
 
 </script>

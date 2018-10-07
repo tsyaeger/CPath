@@ -10,6 +10,17 @@ class DocumentsController < ApplicationController
 		end
 	end
 
+
+
+	def filter
+		@filtered_documents = current_user.documents.filtered_document(params[:q])
+		# binding.pry
+		respond_to do |format|
+			format.json { render json: { html: render_to_string("documents/_filtered_documents.html.erb", layout: false, locals: { filtered_documents: @filtered_documents })} }
+		end
+	end
+
+
 	def new 
 		@document = Document.new(user: current_user)
 		@documents = current_user.documents
@@ -25,6 +36,7 @@ class DocumentsController < ApplicationController
 	end
 
 	def show
+		@document = Document.find_by(:id => params[:id], :user_id => current_user.id)
 		respond_to do |format|
 			format.html { render :show }
 			format.json { render json: @document, status: 200 }
