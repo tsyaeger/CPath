@@ -1,6 +1,6 @@
 
 class JobsController < ApplicationController
-	before_action :set_job, only: [:show, :edit, :update, :destroy, :next, :previous, :add_contact]
+	before_action :set_job, only: [:show, :edit, :update, :destroy, :next, :previous, :add_contact, :add_document]
 
 
 	def index 
@@ -51,6 +51,18 @@ class JobsController < ApplicationController
 		# binding.pry
 
 	end	
+
+
+	def add_document
+		# binding.pry
+		d_id = params[:job][:document_ids]
+		document = Document.find(d_id)
+		@job.documents << document
+		# binding.pry
+
+	end	
+
+
 
 
 	# def remove_contact

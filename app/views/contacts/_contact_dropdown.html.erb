@@ -4,7 +4,7 @@
 
 	<p><%= f.collection_select :contact_ids, @job.user.contacts, :id, :last_name, {:include_blank => 'choose contact'} %></p>	
 
-	<%= f.submit "Add Contact", {id: 'btn-add-contact'} %>
+	<%= f.submit "Link Contact", {id: 'btn-add-contact'} %>
 
 <% end %>
 

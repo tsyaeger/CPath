@@ -1,14 +1,13 @@
 
-
+<% d_id = document.id %>
 <% doctype = document.doctype %> 
-<% desc = document.description %>
+<% title = document.title %>
 
 <h3 class="w3-large">
-	<i class="material-icons w3-large" id='<%= document.id %>'>keyboard_arrow_down</i>
+	<i class="material-icons w3-large" id='<%= document.id %>' data-id='<%=d_id %>'>keyboard_arrow_down</i>
 	
-<%= link_to "#{doctype} - #{desc}", user_document_path(document.user, document) %></h3>
+<%= link_to "#{title} - #{doctype}", user_document_path(document.user, document) %></h3>
 
 
-<span id='<%= document.id %>' class='<%= document.id %>' style="display: none;" >Link to Job</span>
-<span id='<%= document.id %>' class='<%= document.id %>' style="display: none;" >Link to Task</span>
+<span id='<%= document.id %>' class='<%= document.id %>' style="display: none;" >Remove</span>
 

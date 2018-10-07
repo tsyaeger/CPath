@@ -16,7 +16,7 @@
 
 <div id='mid'>
     
-    <div id='Docs' class='links-col'>
+    <div id='docs' class='links-col'>
     	<%= render 'documents/document_dropdown' %>
     	<h3>Linked Documents</h3>
     	<div id='document-list'></div>
@@ -66,14 +66,15 @@ $(document).ready(function () {
 	job_id = $(".job-id").data("id")
 
 	$.get(`/users/${user_id}/jobs/${job_id}.json`, function(data) {
-		console.log(data)
+		console.log('data', data)
 	    addJobDetails(data)
 	    // getContacts(data)
-	    getDocument(data)
+	    // getDocument(data)
 	    nextButton()
 	    previousButton()
 
 	linkContact()
+	linkDocument()
 	// unlinkContact()
 	});
 	
@@ -87,12 +88,33 @@ const linkContact = function() {
 		var form = $('#add-contact')
 		var action = form.attr('action')
 		var c_id = form.serialize()
+		console.log('contact')
 		console.log('form',form)
 		console.log('action',action)
-		console.log(c_id)
-		console.log('here')
+		console.log('c', c_id)
 
-		$.ajax({url: `/users/${user_id}/jobs/${job_id}/add_contact`, data: c_id, type: "PATCH"})
+		$.ajax({url: `/users/${user_id}/jobs/${job_id}/add_contact`, 
+			data: c_id, 
+			type: "PATCH"})
+	})
+}
+
+
+const linkDocument = function() {
+	let documentId = $('#job-document-ids')
+	$('#btn-add-document').on('click', function(e) {
+		e.preventDefault()
+		var form = $('#add-document')
+		var action = form.attr('action')
+		var d_id = form.serialize()
+		console.log('document')
+		console.log('form',form)
+		console.log('action',action)
+		console.log('d', d_id)
+
+		$.ajax({url: `/users/${user_id}/jobs/${job_id}/add_document`,
+		data: d_id,
+		type: "PATCH"})
 	})
 }
 
@@ -143,21 +165,7 @@ const getDocument = function (data) {
 
 
 
-const linkDocument = function() {
-	let documentId = $('#job-document-ids')
-	$('#btn-add-document').on('click', function(e) {
-		e.preventDefault()
-		var form = $('#add-document')
-		var action = form.attr('action')
-		var c_id = form.serialize()
-		console.log(c_id)
-		console.log('here')
 
-		 // $.ajax({url: `/users/${user_id}/jobs/${job_id}`,
-		 //  data: { 'state': state },
-		 //  type: "PATCH"})
-	})
-}
 
 
 
