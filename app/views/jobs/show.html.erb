@@ -36,6 +36,8 @@
     	
     	<h3>Tasks</h3>
     	<div id='task-list'></div>
+    	<%= render partial: "tasks/task", collection: @job.tasks || "No Linked Tasks"%>
+
     </div>  
 
 

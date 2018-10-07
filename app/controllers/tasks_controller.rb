@@ -22,6 +22,21 @@ class TasksController < ApplicationController
 
 
 
+	def add_contact
+		# binding.pry
+		c_id = params[:task][:contact_ids]
+		contact = Contact.find(c_id)
+		@task.contacts << contact
+		# binding.pry
+
+	end	
+
+
+
+
+
+
+
 	def new 
 		@task = Task.new(user: current_user)
 		@tasks = current_user.tasks

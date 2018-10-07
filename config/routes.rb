@@ -5,8 +5,18 @@ Rails.application.routes.draw do
 	# patch '/users/:id/jobs/:id/remove_contact' => 'jobs#remove_contact', as: 'remove_job_contact'
 
 
+
+	patch '/users/:id/tasks/:id/add_contact', to: 'tasks#add_contact', as: 'add_task_contact'
+	patch '/users/:id/tasks/:id/add_document', to: 'tasks#add_document', as: 'add_task_document'
+	patch '/users/:id/tasks/:id/add_job', to: 'tasks#add_job', as: 'add_task_job'
+
+
+
+
 	get '/users/:id/jobs/:id/next', to: 'jobs#next', as: 'user_job_next'
 	get '/users/:id/jobs/:id/previous', to: 'jobs#previous', as: 'user_job_previous'
+
+
 
 	get '/jobs/filter', to: 'jobs#filter', as: 'jobs_filter'
 	get '/contacts/filter', to: 'contacts#filter', as: 'contacts_filter'	

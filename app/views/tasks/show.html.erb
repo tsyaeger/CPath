@@ -10,24 +10,28 @@
 
 <div id='mid'>
     
+    <div id='docs' class='links-col'>
+        <%= render 'documents/document_task_dropdown' %>
+        <h3>Linked Documents</h3>
+        <div id='document-list'></div>
+    </div>    
+
 
     <div id='contacts' class='links-col'>
-    	<h3>Contacts</h3>
-    	<input type='button' value='Link To A Contact' class='add-button' id='add-task-btn'>
-    	<p>a;sldkfjal</p>
+         <%= render 'contacts/contact_task_dropdown' %>
+        <h3>Linked Contacts</h3>
+        <div id='contact-list'></div>
+        
     </div>    
 
-    <div id='jobs' class='links-col'>
-    	<h3>Jobs</h3>
-    	<input type='button' value='Link To A Job' class='add-button' id='add-task-btn'>
-    	<p>;asdkfj</p>
-    	<p>sdjkjkdfjkdjf</p>
-    	<p>jjjjjeeee</p>
-    </div>    
 
-    <div id='documents' class='links-col'>
-    	<h3>Documents</h3>
-    	<input type='button' value='Link To A Document' class='add-button' id='add-document-btn'>
-    </div>
+    <div id='Jobs' class='links-col'>
+        <%= render 'jobs/job_task_dropdown' %>
+        <h3>Linked Jobs</h3>
+        <div id='job-list'></div>
+
+
+    </div>  
+
 
 </div>
