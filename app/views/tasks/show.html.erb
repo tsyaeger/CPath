@@ -16,21 +16,21 @@
 
 
     <% if @task.document != nil %>   
-        <h3>Linked Document: <%= @task.document %></h3>
+        <h3>LINKED DOCUMENT: <%= @task.document.title %></h3>
     <% else %>
         <h3>No linked Document</h3>
     <% end %>
 
 
     <% if @task.contact != nil %>   
-        <h3>Linked Contact: <%= @task.contact.last_name %></h3>
+        <h3>LINKED CONTACT: <%= @task.contact.last_name %></h3>
     <% else %>
         <h3>No linked contact</h3>
     <% end %>
 
 
     <% if @task.job != nil %>   
-        <h3>Linked Job: <%= @task.job.company %></h3>
+        <h3>LINKED JOB: <%= @task.job.company %></h3>
     <% else %>
         <h3>No linked job</h3>
     <% end %>
@@ -70,6 +70,8 @@ $(document).ready(function () {
         console.log('data', data)
 
         linkTaskContact()
+        linkTaskDocument()
+        linkTaskJob()
         // linkDocument()
         // unlinkContact()
     });
@@ -94,6 +96,47 @@ const linkTaskContact = function() {
             type: "PATCH"})
     })
 }
+
+
+
+const linkTaskDocument = function() {
+    let documentId = $('#task-document-ids')
+    $('#btn-add-document').on('click', function(e) {
+        e.preventDefault()
+        var form = $('#add-document')
+        var action = form.attr('action')
+        var d_id = form.serialize()
+        console.log('document')
+        console.log('form',form)
+        console.log('action',action)
+        console.log('c', d_id)
+
+        $.ajax({url: `/users/${user_id}/tasks/${task_id}/add_document`, 
+            data: d_id, 
+            type: "PATCH"})
+    })
+}
+
+
+
+const linkTaskJob = function() {
+    let jobId = $('#task-job-ids')
+    $('#btn-add-job').on('click', function(e) {
+        e.preventDefault()
+        var form = $('#add-job')
+        var action = form.attr('action')
+        var j_id = form.serialize()
+        console.log('job')
+        console.log('form',form)
+        console.log('action',action)
+        console.log('c', j_id)
+
+        $.ajax({url: `/users/${user_id}/tasks/${task_id}/add_job`, 
+            data: j_id, 
+            type: "PATCH"})
+    })
+}
+
 
 
 </script>

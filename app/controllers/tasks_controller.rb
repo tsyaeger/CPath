@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-	before_action :set_task, only: [:show, :edit, :update, :destroy, :add_contact]
+	before_action :set_task, only: [:show, :edit, :update, :destroy, :add_contact, :add_document, :add_job]
 
 
 	def index 
@@ -14,7 +14,6 @@ class TasksController < ApplicationController
 
 	def filter
 		@filtered_tasks = current_user.tasks.filtered_task(params[:q])
-		# binding.pry
 		respond_to do |format|
 			format.json { render json: { html: render_to_string("tasks/_filtered_tasks.html.erb", layout: false, locals: { filtered_tasks: @filtered_tasks })} }
 		end
@@ -25,13 +24,26 @@ class TasksController < ApplicationController
 
 
 	def add_contact
-		# binding.pry
 		c_id = params[:task][:contact_id]
 		contact = Contact.find(c_id)
 		contact.tasks << @task
 		contact.save
-		# binding.pry
+	end	
 
+	def add_document
+		d_id = params[:task][:document_id]
+		document = Document.find(d_id)
+		document.tasks << @task
+		document.save
+	end	
+
+
+	def add_job
+		# binding.pry
+		j_id = params[:task][:job_id]
+		job = Job.find(j_id)
+		job.tasks << @task
+		job.save
 	end	
 
 
