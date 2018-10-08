@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-	before_action :set_task, only: [:show, :edit, :update, :destroy]
+	before_action :set_task, only: [:show, :edit, :update, :destroy, :add_contact]
 
 
 	def index 
@@ -22,11 +22,14 @@ class TasksController < ApplicationController
 
 
 
+
+
 	def add_contact
 		# binding.pry
-		c_id = params[:task][:contact_ids]
+		c_id = params[:task][:contact_id]
 		contact = Contact.find(c_id)
-		@task.contacts << contact
+		contact.tasks << @task
+		contact.save
 		# binding.pry
 
 	end	
@@ -53,6 +56,7 @@ class TasksController < ApplicationController
 	end
 
 	def show
+		# binding.pry
 		@task = Task.find_by(:id => params[:id], :user_id => current_user.id)
 
 		respond_to do |format|

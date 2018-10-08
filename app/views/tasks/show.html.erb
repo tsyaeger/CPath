@@ -1,5 +1,9 @@
 
 
+<div class='user-id' data-id="<%= @task.user.id %>"></div>
+<div class='task-id' data-id="<%= @task.id %>"></div>
+
+
 <div id='top'>
 
 	<h1><%= @task.title %></h1>
@@ -9,29 +13,87 @@
 </div>
 
 <div id='mid'>
+
+
+    <% if @task.document != nil %>   
+        <h3>Linked Document: <%= @task.document %></h3>
+    <% else %>
+        <h3>No linked Document</h3>
+    <% end %>
+
+
+    <% if @task.contact != nil %>   
+        <h3>Linked Contact: <%= @task.contact.last_name %></h3>
+    <% else %>
+        <h3>No linked contact</h3>
+    <% end %>
+
+
+    <% if @task.job != nil %>   
+        <h3>Linked Job: <%= @task.job.company %></h3>
+    <% else %>
+        <h3>No linked job</h3>
+    <% end %>
+    
+
     
     <div id='docs' class='links-col'>
         <%= render 'documents/document_task_dropdown' %>
-        <h3>Linked Documents</h3>
-        <div id='document-list'></div>
     </div>    
 
 
     <div id='contacts' class='links-col'>
          <%= render 'contacts/contact_task_dropdown' %>
-        <h3>Linked Contacts</h3>
-        <div id='contact-list'></div>
         
     </div>    
 
 
     <div id='Jobs' class='links-col'>
         <%= render 'jobs/job_task_dropdown' %>
-        <h3>Linked Jobs</h3>
-        <div id='job-list'></div>
 
 
     </div>  
 
 
 </div>
+
+
+
+<script>
+
+
+$(document).ready(function () {
+    user_id = $(".user-id").data("id")
+    task_id = $(".task-id").data("id")
+
+    $.get(`/users/${user_id}/tasks/${task_id}.json`, function(data) {
+        console.log('data', data)
+
+        linkTaskContact()
+        // linkDocument()
+        // unlinkContact()
+    });
+    
+})
+
+
+const linkTaskContact = function() {
+    let contactId = $('#task-contact-ids')
+    $('#btn-add-contact').on('click', function(e) {
+        e.preventDefault()
+        var form = $('#add-contact')
+        var action = form.attr('action')
+        var c_id = form.serialize()
+        console.log('contact')
+        console.log('form',form)
+        console.log('action',action)
+        console.log('c', c_id)
+
+        $.ajax({url: `/users/${user_id}/tasks/${task_id}/add_contact`, 
+            data: c_id, 
+            type: "PATCH"})
+    })
+}
+
+
+</script>
