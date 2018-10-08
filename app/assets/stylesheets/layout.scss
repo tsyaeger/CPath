@@ -61,10 +61,9 @@ li a:hover:not(.active) {
 
 
 
-/* Create three equal columns that floats next to each other */
+/* Create three equal columns that float beside each other */
 .column {
     border-left: solid;
-
     border-width: 1px;
     border-color: #2d2c2c;
     text-align: left;
@@ -73,6 +72,8 @@ li a:hover:not(.active) {
     padding: 35px;
     height: 1200px; 
 }
+
+
 
 .left-column {
   margin: auto;

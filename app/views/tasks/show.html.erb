@@ -50,8 +50,6 @@
 
     <div id='Jobs' class='links-col'>
         <%= render 'jobs/job_task_dropdown' %>
-
-
     </div>  
 
 
@@ -67,16 +65,29 @@ $(document).ready(function () {
     task_id = $(".task-id").data("id")
 
     $.get(`/users/${user_id}/tasks/${task_id}.json`, function(data) {
-        console.log('data', data)
-
         linkTaskContact()
         linkTaskDocument()
         linkTaskJob()
-        // linkDocument()
+
         // unlinkContact()
     });
     
 })
+
+
+
+// const unlinkContact = function(){
+//     let contactId = $('#task-contact-ids')
+//     $('.remove-1').on('click', function(e) {
+//         // e.preventDefault()
+//         console.log(this)
+//         var c_id = form.serialize()
+
+//         // $.ajax({url: `/users/${user_id}/tasks/${task_id}/unlink_contact`, 
+//         //     data: c_id, 
+//         //     type: "PATCH"})
+//     })
+// }
 
 
 const linkTaskContact = function() {
@@ -86,10 +97,6 @@ const linkTaskContact = function() {
         var form = $('#add-contact')
         var action = form.attr('action')
         var c_id = form.serialize()
-        console.log('contact')
-        console.log('form',form)
-        console.log('action',action)
-        console.log('c', c_id)
 
         $.ajax({url: `/users/${user_id}/tasks/${task_id}/add_contact`, 
             data: c_id, 
@@ -100,16 +107,12 @@ const linkTaskContact = function() {
 
 
 const linkTaskDocument = function() {
-    let documentId = $('#task-document-ids')
+    let documentId = $('#task-document-ids') //NECESSARY?
     $('#btn-add-document').on('click', function(e) {
         e.preventDefault()
         var form = $('#add-document')
-        var action = form.attr('action')
+        var action = form.attr('action') //necessary?
         var d_id = form.serialize()
-        console.log('document')
-        console.log('form',form)
-        console.log('action',action)
-        console.log('c', d_id)
 
         $.ajax({url: `/users/${user_id}/tasks/${task_id}/add_document`, 
             data: d_id, 
@@ -126,10 +129,6 @@ const linkTaskJob = function() {
         var form = $('#add-job')
         var action = form.attr('action')
         var j_id = form.serialize()
-        console.log('job')
-        console.log('form',form)
-        console.log('action',action)
-        console.log('c', j_id)
 
         $.ajax({url: `/users/${user_id}/tasks/${task_id}/add_job`, 
             data: j_id, 

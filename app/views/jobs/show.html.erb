@@ -18,26 +18,25 @@
     
     <div id='docs' class='links-col'>
     	<%= render 'documents/document_dropdown' %>
-    	<h3>Linked Documents</h3>
+    	<h3>LINKED DOCUMENTS</h3>
     	<div id='document-list'></div>
-    	<%= render partial: "documents/document", collection: @job.documents || "No Linked Documents"%>
+    	<%= render partial: "documents/document", collection: @job.documents || "No Linked Documents" %>
     </div>    
 
 
     <div id='contacts' class='links-col'>
 		 <%= render 'contacts/contact_dropdown' %>
-    	<h3>Linked Contacts</h3>
+    	<h3>LINKED CONTACTS</h3>
     	<div id='contact-list'></div>
-    	<%= render partial: "contacts/contact", collection: @job.contacts || "No Linked Contacts"%>
+    	<%= render partial: "contacts/contact", collection: @job.contacts || "No Linked Contacts" %>
     </div>    
 
 
     <div id='Tasks' class='links-col'>
-    	
-    	<h3>Tasks</h3>
-    	<h3>Linked Contacts</h3>
+
+    	<h3>LINKED TASKS</h3>
     	<div id='task-list'></div>
-    	<%= render partial: "tasks/task", collection: @job.tasks || "No Linked Tasks"%>
+    	<%= render partial: "tasks/task", collection: @job.tasks || "No Linked Tasks" %>
 
     </div>  
 
@@ -71,13 +70,12 @@ $(document).ready(function () {
 	$.get(`/users/${user_id}/jobs/${job_id}.json`, function(data) {
 		console.log('data', data)
 	    addJobDetails(data)
-	    // getContacts(data)
-	    // getDocument(data)
+
 	    nextButton()
 	    previousButton()
 
-	linkContact()
-	linkDocument()
+		linkContact()
+		linkDocument()
 	// unlinkContact()
 	});
 	
@@ -91,10 +89,6 @@ const linkContact = function() {
 		var form = $('#add-contact')
 		var action = form.attr('action')
 		var c_id = form.serialize()
-		console.log('contact')
-		console.log('form',form)
-		console.log('action',action)
-		console.log('c', c_id)
 
 		$.ajax({url: `/users/${user_id}/jobs/${job_id}/add_contact`, 
 			data: c_id, 
@@ -110,10 +104,6 @@ const linkDocument = function() {
 		var form = $('#add-document')
 		var action = form.attr('action')
 		var d_id = form.serialize()
-		console.log('document')
-		console.log('form',form)
-		console.log('action',action)
-		console.log('d', d_id)
 
 		$.ajax({url: `/users/${user_id}/jobs/${job_id}/add_document`,
 		data: d_id,
@@ -144,8 +134,7 @@ const nextButton = function() {
 }
 
 const previousButton = function() {
-	$('.btn-previous').on('click', function() {
-		let previousPg = `${job_id}/previous`
+	$('.btn-previous').on('click', function() {		let previousPg = `${job_id}/previous`
 		window.location.href = previousPg;
 	})
 }
@@ -173,17 +162,6 @@ const getDocument = function (data) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 const unlinkContact = function() {
 	$('span#' +  4 + '.remove').on('click', function(e) {
 	    console.log(e)
@@ -200,32 +178,20 @@ const unlinkContact = function() {
 
 
 
-
-
-
-
-
-
-
-
-
-
 var clicks = 0
 
 $(function () {
 
-  $("i").on('click', function() {
+  $("i.doc").on('click', function() {
     var id = this.id
-
-    let spanId = $('span')
-    console.log(spanId.attributes)
+    console.log('doc')
 
   	if (clicks % 2 == 0) {
-	    $('.'+id).css('display', 'block')
+	    $('.document.'+id).css('display', 'block')
     	clicks++
 	}
 	else {
-		$('.'+id).css('display', 'none')
+		$('.document.'+id).css('display', 'none')
 		clicks++
 	} 
   });
@@ -234,8 +200,46 @@ $(function () {
 
 
 
+var clicks = 0
+
+$(function () {
+
+  $("i.contact").on('click', function() {
+    var id = this.id
+    console.log('contact')
+
+  	if (clicks % 2 == 0) {
+	    $('.contact.'+id).css('display', 'block')
+    	clicks++
+	}
+	else {
+		$('.contact.'+id).css('display', 'none')
+		clicks++
+	} 
+  });
+
+});
 
 
+var clicks = 0
+
+$(function () {
+
+  $("i.task").on('click', function() {
+    var id = this.id
+    console.log('task')
+
+  	if (clicks % 2 == 0) {
+	    $('.task.'+id).css('display', 'block')
+    	clicks++
+	}
+	else {
+		$('.task.'+id).css('display', 'none')
+		clicks++
+	} 
+  });
+
+});
 
 
 

@@ -4,10 +4,10 @@
 <% title = document.title %>
 
 <h3 class="w3-large">
-	<i class="material-icons w3-large" id='<%= document.id %>' data-id='<%=d_id %>'>keyboard_arrow_down</i>
+	<i class="material-icons w3-large doc" id='<%= document.id %>' data-id='<%=d_id %>'>keyboard_arrow_down</i>
 	
 <%= link_to "#{title} - #{doctype}", user_document_path(document.user, document) %></h3>
 
 
-<span id='<%= document.id %>' class='<%= document.id %>' style="display: none;" >Remove</span>
+<span id='<%= document.id %>' class='document <%= document.id %>' style="display: none;" >Remove</span>
 

@@ -65,11 +65,11 @@ class JobsController < ApplicationController
 
 
 
-	# def remove_contact
-	# 	binding.pry
-	# 	contact = Contact.find(params[contact_id])
-	# 	@job.contacts.delete(contact)
-	# end
+	def unlink_contact
+		binding.pry
+		contact = Contact.find(params[contact_id])
+		@job.contacts.delete(contact)
+	end
 
 
 

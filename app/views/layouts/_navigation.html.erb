@@ -10,8 +10,10 @@
     <li style="float:right"><a href="<%= user_path(current_user) %>"/>hi, <%= current_user.username %></a></li>
   </ul>
 <% else %> 
-  <a class="navbar-brand" href="<%= new_user_url %>"/>Sign Up</a>
-  <a class="navbar-brand" href="/signin">Log in</a>
+  <ul>
+    <li><a class="navbar-brand" href="<%= new_user_url %>"/>Sign Up</a></li>
+    <li><a class="navbar-brand" href="/signin">Log in</a></li>
+</ul>
 <% end -%>
 
 

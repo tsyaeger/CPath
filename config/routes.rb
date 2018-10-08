@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
 	patch '/users/:id/jobs/:id/add_contact', to: 'jobs#add_contact', as: 'add_job_contact'
 	patch '/users/:id/jobs/:id/add_document', to: 'jobs#add_document', as: 'add_job_document'
-	# patch '/users/:id/jobs/:id/remove_contact' => 'jobs#remove_contact', as: 'remove_job_contact'
+	patch '/users/:id/jobs/:id/unlink_contact' => 'jobs#unlink_contact', as: 'unlink_job_contact'
 
 
 

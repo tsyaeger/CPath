@@ -4,11 +4,7 @@
 
 <div id="small-fields">
     <h1>Contacts</h1><br>
-
-    <div id='contact-list'>
     <%= render partial: "contact", collection: @contacts || "No Contacts"%>
-
-    	
     </div>
 </div>
 
@@ -16,7 +12,6 @@
 
 <div id="large-fields">
 	<h1>Add Contact</h1>
-
 	<%= render 'form' %>
 </div>
 
@@ -57,11 +52,11 @@ $(function () {
     var id = this.id
 
   	if (clicks % 2 == 0) {
-	    $('.'+id).css('display', 'block')
+	    $('.contact.'+id).css('display', 'block')
     	clicks++
 	}
 	else {
-		$('.'+id).css('display', 'none')
+		$('.contact.'+id).css('display', 'none')
 		clicks++
 	} 
   });
