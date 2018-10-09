@@ -9,6 +9,8 @@
 	<div id='show-title'></div>
 	<div id='job-link'></div>
 	<div id='job-date-posted'></div>
+	<h3>Applied: <%= @job.applied %></h3>
+	<button id='add-applied' data-val="<%= !@job.applied %>" data-id="<%= @job.id %>">Mark as applied to</button><br><br>
 </div>
 
 
@@ -77,6 +79,8 @@ $(document).ready(function () {
 
 		linkContact()
 		linkDocument()
+
+		// setApplied()
 	// unlinkContact()
 	});
 	
@@ -157,6 +161,18 @@ const getDocument = function (data) {
     })
 }
 
+
+
+user_id = $(".user-id").data("id")
+job_id = $(".job-id").data("id")
+
+$('#add-applied').on('click', function() {
+	console.log(this)
+	console.log($(this).val())
+    $.get(`/users/${user_id}/jobs/${job_id}/applied?q=${'true'}`, function(data) {
+
+    })
+})
 
 
 

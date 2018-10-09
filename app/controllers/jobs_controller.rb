@@ -1,6 +1,6 @@
 
 class JobsController < ApplicationController
-	before_action :set_job, only: [:show, :edit, :update, :destroy, :next, :previous, :add_contact, :add_document]
+	before_action :set_job, only: [:show, :edit, :update, :destroy, :next, :previous, :add_contact, :add_document, :applied]
 
 
 	def index 
@@ -40,6 +40,19 @@ class JobsController < ApplicationController
 		end
 	end
 
+
+
+	def applied
+		# binding.pry
+		appStr= (params[:q])
+		appBool = appStr.to_s == "true"
+		@job.applied = appBool
+		@job.save
+		respond_to do |format|
+	      format.html { render :index }
+	      format.json { render json: @job, status: 200 }
+	    end
+	end
 
 
 

@@ -5,7 +5,7 @@
 
 
 <h3 class="w3-large">
-	<i id='task' class="material-icons w3-large task" id='<%= task.id %>'>keyboard_arrow_down</i>
+	<i id='<%= task.id %>' class="material-icons w3-large task" id='<%= task.id %>'>keyboard_arrow_down</i>
 	
 <%= link_to "#{title} - #{due_date}", user_task_path(task.user, task) %></h3>
 

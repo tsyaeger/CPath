@@ -12,7 +12,6 @@ class ContactsController < ApplicationController
 
 	def filter
 		@filtered_contacts = current_user.contacts.filtered_contact(params[:q])
-		# binding.pry
 		respond_to do |format|
 			format.json { render json: { html: render_to_string("contacts/_filtered_contacts.html.erb", layout: false, locals: { filtered_contacts: @filtered_contacts })} }
 		end
@@ -20,7 +19,6 @@ class ContactsController < ApplicationController
 
 
 	def add_reference
-		# binding.pry
 		refStr= (params[:q])
 		refBool = refStr.to_s == "true"
 		@contact.reference = refBool
@@ -29,7 +27,6 @@ class ContactsController < ApplicationController
 	      format.html { render :index }
 	      format.json { render json: @contact, status: 200 }
 	    end
-		# binding.pry
 	end
 
 

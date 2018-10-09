@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
 
 	get '/users/:id/contacts/:id/add_reference', to: 'contacts#add_reference', as: 'add_reference'
+	get '/users/:id/jobs/:id/applied', to: 'jobs#applied', as: 'applied'
 
 
 

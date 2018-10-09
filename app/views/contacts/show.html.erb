@@ -50,7 +50,7 @@ contact_id = $(".contact-id").data("id")
 $('#add-reference').on('click', function() {
 	console.log($(this).val())
     $.get(`/users/${user_id}/contacts/${contact_id}/add_reference?q=${'true'}`, function(data) {
-    	$('#reference').append(`<h3>Yep</h3>`)
+    	
     })
 })
 
