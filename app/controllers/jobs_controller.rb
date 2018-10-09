@@ -17,6 +17,7 @@ class JobsController < ApplicationController
 
 	def next
 		@next_job = @job.next
+		# binding.pry           
 		respond_to do |format|
 			format.html { redirect_to(user_job_path(@next_job.user, @next_job)) }
 			format.json { render json: @next_job }
@@ -97,7 +98,6 @@ class JobsController < ApplicationController
 
 	def create
 		# must fix null posted_date issue
-		# change applied default in db
 		@job = Job.create(job_params)
 		@job.user = current_user
 		@job.save 
