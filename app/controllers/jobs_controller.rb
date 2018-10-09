@@ -1,7 +1,6 @@
 
 class JobsController < ApplicationController
-	before_action :set_job, only: [:show, :edit, :update, :destroy, :next, :previous, :add_contact, :add_document, :applied]
-
+	before_action :set_job, except: [:index, :filter, :new, :create]
 
 	def index 
 		@jobs = current_user.jobs
@@ -12,12 +11,8 @@ class JobsController < ApplicationController
 	end
 
 
-
-
-
 	def next
 		@next_job = @job.next
-		# binding.pry           
 		respond_to do |format|
 			format.html { redirect_to(user_job_path(@next_job.user, @next_job)) }
 			format.json { render json: @next_job }
@@ -42,9 +37,7 @@ class JobsController < ApplicationController
 	end
 
 
-
 	def applied
-		# binding.pry
 		appStr= (params[:q])
 		appBool = appStr.to_s == "true"
 		@job.applied = appBool
@@ -56,27 +49,19 @@ class JobsController < ApplicationController
 	end
 
 
-
 	def add_contact
-		# binding.pry
 		c_id = params[:job][:contact_ids]
 		contact = Contact.find(c_id)
 		@job.contacts << contact
-		# binding.pry
 
 	end	
 
 
 	def add_document
-		# binding.pry
 		d_id = params[:job][:document_ids]
 		document = Document.find(d_id)
 		@job.documents << document
-		# binding.pry
-
 	end	
-
-
 
 
 	def unlink_contact
@@ -86,15 +71,11 @@ class JobsController < ApplicationController
 	end
 
 
-
-
-
-
-
 	def new 
 		@job = Job.new(user: current_user)
 		@user = current_user
 	end
+
 
 	def create
 		# must fix null posted_date issue
@@ -106,26 +87,27 @@ class JobsController < ApplicationController
 
 
 	def show
-		@job = Job.find_by(:id => params[:id], :user_id => current_user.id) #user neccessary?
 		respond_to do |format|
 	      format.html { render :show }
 	      format.json { render json: @job, status: 200 }
 	    end
 	end
 
+
 	def edit
 	end
+
 
 	def update
 	    @job.update(job_params)
 	    redirect_to user_jobs_path(@job.user)
 	end
 
+
 	def destroy
 		@job.destroy
-	    redirect_to user_jobs_path(@job.user, @job)
+	    redirect_to user_jobs_path(current_user)
 	end
-
 
 
 
@@ -135,6 +117,7 @@ class JobsController < ApplicationController
 	def job_params
 		params.require(:job).permit(:company, :position, :date_posted, :job_desc, :co_desc, :url, :applied)
 	end
+
 
 	def set_job
 		@job = Job.find(params[:id])

@@ -11,10 +11,8 @@ class DocumentsController < ApplicationController
 	end
 
 
-
 	def filter
 		@filtered_documents = current_user.documents.filtered_document(params[:q])
-		# binding.pry
 		respond_to do |format|
 			format.json { render json: { html: render_to_string("documents/_filtered_documents.html.erb", layout: false, locals: { filtered_documents: @filtered_documents })} }
 		end
@@ -26,6 +24,7 @@ class DocumentsController < ApplicationController
 		@documents = current_user.documents
 	end
 
+
 	def create
 		@document = Document.create(document_params)
 		@document.user = current_user
@@ -35,6 +34,7 @@ class DocumentsController < ApplicationController
 		end
 	end
 
+
 	def show
 		@document = Document.find_by(:id => params[:id], :user_id => current_user.id)
 		respond_to do |format|
@@ -43,19 +43,21 @@ class DocumentsController < ApplicationController
 		end
 	end
 
+
 	def edit
 	end
+
 
 	def update
 	    @document.update(document_params)
 	    redirect_to user_document_path(@document.user, @document)
 	end
 
+
 	def destroy
 		@document.destroy
 		redirect_to new_user_document_path(@document.user)
 	end
-
 
 
 

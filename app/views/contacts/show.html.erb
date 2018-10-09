@@ -5,10 +5,10 @@
 <div id='top'>
 	<h1><%= @contact.first_name %> <%= @contact.last_name %></h1>
 
-	<h3><%= @contact.workplace %></h3>
-	<h3><%= @contact.email %></h3>
-	<h3><%= @contact.phone %></h3>
-	<h3><%= @contact.linkedin %></h3>
+	<h3>WORKPLACE: <%= @contact.workplace %></h3>
+	<h3>EMAIL: <%= @contact.email %></h3>
+	<h3>PHONE: <%= @contact.phone %></h3>
+	<h3>LINKEDIN: <%= @contact.linkedin %></h3>
 	<h3>Is Reference: <%= @contact.reference %></h3>
 
 
@@ -32,6 +32,11 @@
 	<%= link_to "Create Task", new_user_task_path(@contact.user), class: 'button' %>
 	<div id='task-list'></div>
 	<%= render partial: "tasks/task", collection: @contact.tasks || "No Linked Tasks" %>
+
+
+
+
+	
 
 </div>
 

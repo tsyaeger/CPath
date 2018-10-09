@@ -1,5 +1,5 @@
 
 
 <% filtered_jobs.each do |job| %>
-	<%= link_to job.company, user_job_path(job.user, job)%>
+	<h3><%= link_to job.position, user_job_path(job.user, job)%></h3>
 <% end %>

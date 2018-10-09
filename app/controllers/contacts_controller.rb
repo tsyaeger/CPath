@@ -30,11 +30,11 @@ class ContactsController < ApplicationController
 	end
 
 
-
 	def new 
 		@contact = Contact.new(user: current_user)
 		@contacts = current_user.contacts
 	end
+
 
 	def create
 		@contact = Contact.create(contact_params)
@@ -46,6 +46,7 @@ class ContactsController < ApplicationController
 		end
 	end
 
+
 	def show
 		@contact = Contact.find_by(:id => params[:id], :user_id => current_user.id)
 		respond_to do |format|
@@ -54,19 +55,21 @@ class ContactsController < ApplicationController
 	    end
 	end
 
+
 	def edit
 	end
+
 
 	def update
 	    @contact.update(contact_params)
 	    redirect_to user_contact_path(@contact.user, @contact)
 	end
 
+
 	def destroy
 		@contact.destroy
-		redirect_to user_contacts_path
+		redirect_to new_user_contact_path(current_user)
 	end
-
 
 
 
@@ -76,6 +79,7 @@ class ContactsController < ApplicationController
 	def contact_params
 		params.require(:contact).permit(:first_name, :last_name, :workplace, :linkedin, :phone, :email)
 	end
+
 
 	def set_contact
 		@contact = Contact.find(params[:id])

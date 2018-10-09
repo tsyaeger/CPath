@@ -1,5 +1,5 @@
 
 
 <% filtered_tasks.each do |task| %>
-	<%= link_to task.title, user_task_path(task.user, task)%>
+	<h3><%= link_to task.title, user_task_path(task.user, task)%></h3>
 <% end %>

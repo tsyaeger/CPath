@@ -11,7 +11,6 @@ class TasksController < ApplicationController
 	end
 
 
-
 	def filter
 		@filtered_tasks = current_user.tasks.filtered_task(params[:q])
 		respond_to do |format|
@@ -20,15 +19,13 @@ class TasksController < ApplicationController
 	end
 
 
-
-
-
 	def add_contact
 		c_id = params[:task][:contact_id]
 		contact = Contact.find(c_id)
 		contact.tasks << @task
 		contact.save
 	end	
+
 
 	def add_document
 		d_id = params[:task][:document_id]
@@ -39,7 +36,6 @@ class TasksController < ApplicationController
 
 
 	def add_job
-		# binding.pry
 		j_id = params[:task][:job_id]
 		job = Job.find(j_id)
 		job.tasks << @task
@@ -47,28 +43,23 @@ class TasksController < ApplicationController
 	end	
 
 
-
-
-
-
-
 	def new 
 		@task = Task.new(user: current_user)
 		@tasks = current_user.tasks
 	end
 
+
 	def create
 		@task = Task.create(task_params)
 		@task.user = current_user
 		@task.save 
-		# binding.pry
 		respond_to do |format|
 			format.json { render json: { html: render_to_string("tasks/_task.html.erb", layout: false, locals: { task: @task })} }
 		end
 	end
 
+
 	def show
-		# binding.pry
 		@task = Task.find_by(:id => params[:id], :user_id => current_user.id)
 
 		respond_to do |format|
@@ -77,17 +68,20 @@ class TasksController < ApplicationController
 	    end
 	end
 
+
 	def edit
 	end
+
 
 	def update
 	    @task.update(task_params)
 	    redirect_to user_task_path(@task.user, @task)
 	end
 
+
 	def destroy
 		@task.destroy
-	    redirect_to new_user_task_path(@task.user)
+	    redirect_to new_user_task_path(current_user)
 	end
 
 
@@ -99,6 +93,7 @@ class TasksController < ApplicationController
 	def task_params
 		params.require(:task).permit(:title, :description, :doctype, :due_date)
 	end
+
 
 	def set_task
 		@task = Task.find(params[:id])
