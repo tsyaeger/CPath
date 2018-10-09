@@ -1,4 +1,5 @@
-
+<div class='user-id' data-id="<%= @contact.user.id %>"></div>
+<div class='contact-id' data-id="<%= @contact.id %>"></div>
 
 
 <div id='top'>
@@ -8,6 +9,71 @@
 	<h3><%= @contact.email %></h3>
 	<h3><%= @contact.phone %></h3>
 	<h3><%= @contact.linkedin %></h3>
-	<button>Mark as reference</button>
+	<h3>Is Reference: <%= @contact.reference %></h3>
+
+
+	<button id='add-reference' data-val="<%= !@contact.reference %>" data-id="<%= @contact.id %>">Mark as reference</button><br><br>
+
+   <td><%= link_to "Edit", edit_user_contact_path(@contact.user, @contact) %></td>
+    <td><%= link_to "Delete", user_contact_path(@contact.user, @contact), :method => :delete %></td>
 </div>
+
+
+<div id='mid'>
+
+
+    <div id='jobs' class='links-col'>
+        <h3>LINKED JOBS</h3>
+        <div id='job-list'></div>
+        <%= render partial: "jobs/job", collection: @contact.jobs || "No Linked Jobs" %>
+    </div>
+
+	<h3>LINKED TASKS</h3>
+	<%= link_to "Create Task", new_user_task_path(@contact.user), class: 'button' %>
+	<div id='task-list'></div>
+	<%= render partial: "tasks/task", collection: @contact.tasks || "No Linked Tasks" %>
+
+</div>
+
+
+
+
+
+<script>
+
+
+
+
+user_id = $(".user-id").data("id")
+contact_id = $(".contact-id").data("id")
+
+$('#add-reference').on('click', function() {
+	console.log($(this).val())
+    $.get(`/users/${user_id}/contacts/${contact_id}/add_reference?q=${'true'}`, function(data) {
+    	$('#reference').append(`<h3>Yep</h3>`)
+    })
+})
+
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

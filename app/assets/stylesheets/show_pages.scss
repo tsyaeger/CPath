@@ -1,8 +1,9 @@
 #top {
 	border-bottom: solid 1px;
 	text-align: center;
-	margin: 35px 5px 25px;
+	padding: 25px 5px 25px;
 	margin-bottom: 50px;
+	background-color: lightgray;
 }
 
 #mid{
@@ -62,3 +63,7 @@ h1 {
     vertical-align: top;
 }
 
+
+.link {
+    text-decoration: underline;
+}

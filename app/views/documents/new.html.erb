@@ -33,6 +33,7 @@
 $("form").on('submit', function (e) {
 
 	e.preventDefault()
+	debugger
 	var $form = $(this)
 	var action = $form.attr('action')
 	var params = $form.serialize()

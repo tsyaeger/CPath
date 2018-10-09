@@ -7,13 +7,22 @@
 <div id='top'>
 
 	<h1><%= @task.title %></h1>
-	<h3>DUE DATE: <%= @task.due_date %></h3>
 	<h3><%= @task.description %></h3>
+    <h3>DUE DATE: <%= @task.due_date %></h3>
+    <h3>Completed?</h3>
+      <td><%= link_to "Edit", edit_user_task_path(@task.user, @task) %></td>
+    <td><%= link_to "Delete", user_task_path(@task.user, @task), :method => :delete %></td>
+
 
 </div>
 
 <div id='mid'>
 
+    <% if @task.job != nil %>   
+        <h3>LINKED JOB: <%= @task.job.company %></h3>
+    <% else %>
+        <h3>No linked job</h3>
+    <% end %>
 
     <% if @task.document != nil %>   
         <h3>LINKED DOCUMENT: <%= @task.document.title %></h3>
@@ -29,11 +38,6 @@
     <% end %>
 
 
-    <% if @task.job != nil %>   
-        <h3>LINKED JOB: <%= @task.job.company %></h3>
-    <% else %>
-        <h3>No linked job</h3>
-    <% end %>
     
 
     

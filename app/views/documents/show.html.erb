@@ -8,6 +8,9 @@
 	float: left;
 }
 
+
+
+
 </style>
 
 
@@ -16,32 +19,27 @@
 	<h1><%= @document.title %> - <%= @document.doctype %></h1>
     <h3><%= @document.description %></h3>
 
-	<h3>Go to Document <a href='#{@document.url}'></a></h3>
+	<h3 class='link'><%= link_to 'Go to Document', @document.url %></a></h3>
 	<h3>Last Update: <%= @document.updated_at %></h3>
 	<h3>Created At: <%= @document.created_at %></h3>
+    <td><%= link_to "Edit", edit_user_document_path(@document.user, @document) %></td>
+    <td><%= link_to "Delete", user_document_path(@document.user, @document), :method => :delete %></td>
 
 </div>
 
 <div id='mid'>
-    
+      
+    <div id='jobs' class='links-col'>
+        <h3>LINKED JOBS</h3>
+        <div id='job-list'></div>
+        <%= render partial: "jobs/job", collection: @document.jobs || "No Linked Jobs" %>
+    </div>
 
-    <div id='contacts' class='links-col'>
-    	<h3>Contacts</h3>
-    	<input type='button' value='Link To A Contact' class='add-button' id='add-task-btn'>
-    	<p>a;sldkfjal</p>
-    </div>    
-
-    <div id='Jobs' class='links-col'>
-    	<h3>Jobs</h3>
-    	<input type='button' value='Link To A Job' class='add-button' id='add-task-btn'>
-    	<p>;asdkfj</p>
-    	<p>sdjkjkdfjkdjf</p>
-    	<p>jjjjjeeee</p>
-    </div>    
 
     <div id='tasks' class='links-col'>
-    	<h3>Tasks</h3>
-    	<input type='button' value='Link To A Task' class='add-button' id='add-task-btn'>
+        <h3>LINKED TASKS</h3
+        <%= render partial: "tasks/task", collection: @document.tasks || "No Linked Tasks" %>
     </div>
 
 </div>
+

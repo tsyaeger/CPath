@@ -1,5 +1,5 @@
 class ContactsController < ApplicationController
-	before_action :set_contact, only: [:show, :edit, :update, :destroy]
+	before_action :set_contact, only: [:show, :edit, :update, :destroy, :add_reference]
 
 	def index 
 		@contacts = current_user.contacts
@@ -16,6 +16,20 @@ class ContactsController < ApplicationController
 		respond_to do |format|
 			format.json { render json: { html: render_to_string("contacts/_filtered_contacts.html.erb", layout: false, locals: { filtered_contacts: @filtered_contacts })} }
 		end
+	end
+
+
+	def add_reference
+		# binding.pry
+		refStr= (params[:q])
+		refBool = refStr.to_s == "true"
+		@contact.reference = refBool
+		@contact.save
+		respond_to do |format|
+	      format.html { render :index }
+	      format.json { render json: @contact, status: 200 }
+	    end
+		# binding.pry
 	end
 
 

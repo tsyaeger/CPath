@@ -33,7 +33,7 @@ Job.prototype.datePosted = function() {
 }
 
 Job.prototype.jobLink = function() {
-    return `<h3>JOB LINK: ${this.url}</h3>`
+    return `<h3 class='link'><a href="${this.url}">Link to Posting</a></h3>`
 }
 
 Job.prototype.jobTitle = function() {

@@ -11,6 +11,8 @@ Rails.application.routes.draw do
 	patch '/users/:id/tasks/:id/add_job', to: 'tasks#add_job', as: 'add_task_job'
 
 
+	get '/users/:id/contacts/:id/add_reference', to: 'contacts#add_reference', as: 'add_reference'
+
 
 
 	get '/users/:id/jobs/:id/next', to: 'jobs#next', as: 'user_job_next'

@@ -53,7 +53,7 @@ class DocumentsController < ApplicationController
 
 	def destroy
 		@document.destroy
-		redirect_to user_document_path
+		redirect_to new_user_document_path(@document.user)
 	end
 
 
@@ -63,7 +63,7 @@ class DocumentsController < ApplicationController
 
 
 	def document_params
-		params.require(:document).permit(:url, :description, :doctype)
+		params.require(:document).permit(:title, :url, :description, :doctype)
 	end
 
 

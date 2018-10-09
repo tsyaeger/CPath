@@ -26,7 +26,7 @@
 	    <td><%= job.date_posted %></td>
       <td><%= job.created_at %></td>
       <td><%= job.applied.to_s == 'true' %></td>
-      <td>2 upcoming</td>
+      <td><%= job.tasks.length %> upcoming</td>
 	    <td><%= link_to "Edit", edit_user_job_path(job.user, job) %></td>
 	    <td><%= link_to "Delete", user_job_path(job.user, job), :method => :delete %></td>
 	  </tr>

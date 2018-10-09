@@ -35,6 +35,7 @@
     <div id='Tasks' class='links-col'>
 
     	<h3>LINKED TASKS</h3>
+    	<%= link_to "Create Task", new_user_task_path(@job.user), class: 'button' %>
     	<div id='task-list'></div>
     	<%= render partial: "tasks/task", collection: @job.tasks || "No Linked Tasks" %>
 
@@ -134,7 +135,8 @@ const nextButton = function() {
 }
 
 const previousButton = function() {
-	$('.btn-previous').on('click', function() {		let previousPg = `${job_id}/previous`
+	$('.btn-previous').on('click', function() {		
+		let previousPg = `${job_id}/previous`
 		window.location.href = previousPg;
 	})
 }

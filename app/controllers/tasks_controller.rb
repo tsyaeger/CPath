@@ -82,12 +82,12 @@ class TasksController < ApplicationController
 
 	def update
 	    @task.update(task_params)
-	    redirect_to user_tasks_path(@task.user, @task)
+	    redirect_to user_task_path(@task.user, @task)
 	end
 
 	def destroy
 		@task.destroy
-	    redirect_to user_tasks_path(@task.user, @task)
+	    redirect_to new_user_task_path(@task.user)
 	end
 
 
