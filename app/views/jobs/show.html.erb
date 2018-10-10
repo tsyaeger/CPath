@@ -9,7 +9,9 @@
 	<div id='show-title'></div>
 	<div id='job-link'></div>
 	<div id='job-date-posted'></div>
-	<h3>Applied: <%= @job.applied %></h3>
+	<div id='job-applied'></div>
+	<div id='applied-btn'></div>
+
 	<button id='add-applied' data-val="<%= !@job.applied %>" data-id="<%= @job.id %>">Mark as applied to</button><br><br>
 </div>
 
@@ -87,6 +89,36 @@ $(document).ready(function () {
 })
 
 
+const addJobDetails = function (data) {
+	job = new Job(data, user_id)
+	$('#show-title').append(job.jobTitle())
+	$('#job-date-posted').append(job.datePosted())
+	$('#job-link').append(job.jobLink())
+	$('#job-applied').append(job.appliedString())
+	$('#applied-btn').append(job.appliedButton())
+}
+
+
+
+
+const nextButton = function() {
+	$('.btn-next').on('click', function() {
+		let nextPg = `${job_id}/next`
+		window.location.href = nextPg;
+	})
+}
+
+const previousButton = function() {
+	$('.btn-previous').on('click', function() {		
+		let previousPg = `${job_id}/previous`
+		window.location.href = previousPg;
+	})
+}
+
+
+
+
+
 const linkContact = function() {
 	let contactId = $('#job-contact-ids')
 	$('#btn-add-contact').on('click', function(e) {
@@ -122,35 +154,6 @@ const linkDocument = function() {
 
 
 
-const addJobDetails = function (data) {
-	// debugger
-	job = new Job(data, user_id)
-	$('#show-title').append(job.jobTitle())
-	$('#job-date-posted').append(job.datePosted())
-	$('#job-link').append(job.jobLink())
-}
-
-
-
-
-
-const nextButton = function() {
-	$('.btn-next').on('click', function() {
-		let nextPg = `${job_id}/next`
-		window.location.href = nextPg;
-	})
-}
-
-const previousButton = function() {
-	$('.btn-previous').on('click', function() {		
-		let previousPg = `${job_id}/previous`
-		window.location.href = previousPg;
-	})
-}
-
-
-
-
 
 const appendDocument = function (document) {
 	var descriptionText = "<p>" + document['title'] + "</p>"
@@ -170,31 +173,30 @@ user_id = $(".user-id").data("id")
 job_id = $(".job-id").data("id")
 
 $('#add-applied').on('click', function() {
-	console.log(this)
-	console.log($(this).val())
+
     $.get(`/users/${user_id}/jobs/${job_id}/applied?q=${'true'}`, function(data) {
 
     })
 })
 
 
+// USE JS APPLIED BUTTON TO CHANGE BOOL TO T AND F
+// $('#applied-btn').on('click', function(e) {
+// 	debugger
+// 	console.log('this',this)
+// 	let bool = $(this).data('data-bool')
+//     var elem = $( this );
+//     console.log('test', elem.attr( "button" ))
+//     $.get(`/users/${user_id}/jobs/${job_id}/applied?q=${bool}`, function(data) {
+//     	// console.log(data)
+//     })
+// })
 
 
 
 
 
-const unlinkContact = function() {
-	$('span#' +  4 + '.remove').on('click', function(e) {
-	    console.log(e)
-		// let x = $(this).data('id')
-		// console.log('x', x)
 
-
-		// $.ajax({url: `/users/${user_id}/jobs/${job_id}/remove_contact`, data: c_id, type: "PATCH"})
-
-
-	})
-}
 
 
 

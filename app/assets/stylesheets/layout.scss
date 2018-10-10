@@ -68,6 +68,7 @@ span {
 
 
 /* Create three equal columns that float beside each other */
+
 .column {
     border-left: solid;
     border-width: 1px;
@@ -75,6 +76,19 @@ span {
     text-align: left;
     float: left;
     width: 25%;
+    padding: 35px;
+    height: 1200px; 
+}
+
+
+
+.column-3 {
+    border-left: solid;
+    border-width: 1px;
+    border-color: #2d2c2c;
+    text-align: left;
+    float: left;
+    width: 33.333%;
     padding: 35px;
     height: 1200px; 
 }

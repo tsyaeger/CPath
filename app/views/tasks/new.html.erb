@@ -1,25 +1,51 @@
 
+<style>
+
+
+.column-3 {
+    border-left: solid;
+    border-width: 1px;
+    border-color: #2d2c2c;
+    text-align: left;
+    float: left;
+    width: 33.333%;
+    padding: 35px;
+    height: 1200px; 
+}
+
+</style>
+
+
+<div class='column-3'>
+	<h1>COMPLETED TASKS</h1><br>
+	<div id='completed-tasks-list'></div>
+    	<%= render partial: "task", collection: @tasks.completed_true || "No Tasks"%>
+    </div>
 
 
 
-<div id="small-fields">
-    <h1>Tasks</h1><br>
+</div>
+
+
+<div class='column-3'>
+    <h1>UPCOMING TASKS</h1><br>
 
     <div id='task-list'>
-    <%= render partial: "task", collection: @tasks || "No Tasks"%>
-
-    	
+    <%= render partial: "task", collection: @tasks.completed_false || "No Tasks"%>
     </div>
+
 </div>
 
 
 
 
-<div id='large-fields'>
+<div class='column-3'>
 	<h1>Add Task</h1>
 
 	<%= render 'form' %>
 </div>
+
+
 
 
 

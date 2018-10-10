@@ -38,12 +38,13 @@ class JobsController < ApplicationController
 
 
 	def applied
+		# binding.pry
 		appStr= (params[:q])
 		appBool = appStr.to_s == "true"
 		@job.applied = appBool
 		@job.save
 		respond_to do |format|
-	      format.html { render :index }
+	      format.html { render :show }
 	      format.json { render json: @job, status: 200 }
 	    end
 	end

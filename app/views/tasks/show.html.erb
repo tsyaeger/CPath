@@ -9,7 +9,11 @@
 	<h1><%= @task.title %></h1>
 	<h3><%= @task.description %></h3>
     <h3>DUE DATE: <%= @task.due_date %></h3>
-    <h3>Completed?</h3>
+    <h3>Completed: <%= @task.completed %></h3>
+
+    <button id='task-completed' data-val="<%= !@task.completed %>" data-id="<%= @task.id %>">Mark completed</button><br><br>
+
+
       <td><%= link_to "Edit", edit_user_task_path(@task.user, @task) %></td>
     <td><%= link_to "Delete", user_task_path(@task.user, @task), :method => :delete %></td>
 
@@ -139,6 +143,17 @@ const linkTaskJob = function() {
             type: "PATCH"})
     })
 }
+
+
+
+user_id = $(".user-id").data("id")
+task_id = $(".task-id").data("id")
+
+$('#task-completed').on('click', function() {
+
+    $.get(`/users/${user_id}/tasks/${task_id}/completed?q=${'true'}`, function(data) {
+    })
+})
 
 
 

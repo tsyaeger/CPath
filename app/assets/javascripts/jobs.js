@@ -18,10 +18,21 @@ Job.prototype.formatIndex = function() {
     return `<h3><a href='/users/${this.user_id}/jobs/${this.id}'>${this.company} - ${this.position}</a></h3>`
 }
 
+
 Job.prototype.appliedString = function() {
     let appString = this.applied.toString()
-    return `<h3>${appString}</h3>`
+    return `<h3>APPLIED: ${appString}</h3>`
 }
+
+Job.prototype.appliedButton = function() {
+    if (this.applied == true) {
+        return `<button id='add-applied' data-bool="${this.applied}">Mark as not applied to</button><br><br>`
+    }
+    else {
+        return `<button id='add-applied' data-bool="${this.applied}">Mark as applied to</button><br><br>`
+    }
+}
+
 
 Job.prototype.datePosted = function() {
     let dateString = 'no date entered'

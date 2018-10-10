@@ -7,4 +7,9 @@ class Document < ApplicationRecord
 	scope :filtered_document, -> (substring) { where("title LIKE ? ", "%#{substring}%")}
 
 
+
+
+
+
+
 end
