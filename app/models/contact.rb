@@ -7,6 +7,7 @@ class Contact < ApplicationRecord
 
 	scope :filtered_contact, -> (substring) { where("last_name LIKE ? ", "%#{substring}%")}
 
+	scope :is_reference, -> { where('reference = ?',true) }
 
 
 end

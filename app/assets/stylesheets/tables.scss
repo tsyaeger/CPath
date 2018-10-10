@@ -1,0 +1,27 @@
+
+
+#job-index-wrapper {
+    margin: auto;
+    width: 90%;
+}
+
+table {
+    margin: auto;
+    width: 100%;
+    border: solid 1px;
+    border-color: #cecece;
+}
+
+th {
+  text-transform: uppercase;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}

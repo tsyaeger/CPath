@@ -8,16 +8,16 @@
         <%= f.text_field :title, id: "title" %>
     </div>
 
-    <div class="field">
-        <%= f.label :description, "Description" %><br>
-        <%= f.text_area :description, id: "description", cols: 68, rows: 10 %>
-    </div>
 
     <div class="field">
         <%= f.label :due_date %><br>
         <%= f.date_field :due_date, id: "due-date" %>
     </div>            
 
+    <div class="field">
+        <%= f.label :description, "Description" %><br>
+        <%= f.text_area :description, id: "description", cols: 54, rows: 10 %>
+    </div>
 
     <div class="actions">
         <%= f.submit "SAVE" %>

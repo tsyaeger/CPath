@@ -95,6 +95,7 @@ span {
 
 
 
+
 .left-column {
   margin: auto;
   text-align: left;
@@ -154,9 +155,9 @@ span {
 
 
 table {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
+    border: solid 1px;
+    border-color: black;
+    width: 90%;
 }
 
 td, th {

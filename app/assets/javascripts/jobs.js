@@ -38,7 +38,7 @@ Job.prototype.datePosted = function() {
     let dateString = 'no date entered'
     if (this.date_posted) {
         let date = new Date(this.date_posted)
-        dateString = date.toDateString()
+        dateString = date.toLocaleDateString()
     }
     return `<h3>POSTED DATE: ${dateString}</h3>`
 }

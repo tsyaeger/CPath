@@ -1,40 +1,44 @@
 
 
 
-<h1>POSITIONS</h1>
-<button><%= link_to "Add New Position", new_user_job_path %></button><br><br>
+<div id='job-index-wrapper'>
+
+  <h1>POSITIONS</h1>
+  <button><%= link_to "Add New Position", new_user_job_path %></button><br><br>
 
 
-<table>
-  <tr>
-    <th>Company</th>
-    <th>Position</th>
-    <th>Date Posted</th>
-    <th>Date Saved</th>
-    <th>Applied</th>
-    <th>Upcoming Tasks</th>
-    <th></th>
-    <th></th>
-  </tr>
+  <table>
+    <tr>
+      <th>Company</th>
+      <th>Position</th>
+      <th>Date Posted</th>
+      <th>Date Saved</th>
+      <th>Applied</th>
+      <th>Upcoming Tasks</th>
+      <th>Linked Contacts</th>
+      <th></th>
+      <th></th>
+    </tr>
 
-  <% @jobs.each do |job| %>
-   
+    <% @jobs.each do |job| %>
+     
 
-	  <tr>
-	    <td><%= link_to job.company, user_job_path(job.user, job) %></td>
-	    <td><%= link_to job.position, user_job_path(job.user, job) %></td>
-	    <td><%= job.date_posted %></td>
-      <td><%= job.created_at %></td>
-      <td><%= job.applied.to_s == 'true' %></td>
-      <td><%= job.tasks.length %> upcoming</td>
-	    <td><%= link_to "Edit", edit_user_job_path(job.user, job) %></td>
-	    <td><%= link_to "Delete", user_job_path(job.user, job), :method => :delete %></td>
-	  </tr>
-  <% end %>
+  	  <tr>
+  	    <td><%= link_to job.company, user_job_path(job.user, job) %></td>
+  	    <td><%= link_to job.position, user_job_path(job.user, job) %></td>
+  	    <td><%= job.date_posted %></td>
+        <td><%= job.created_at %></td>
+        <td><%= job.applied.to_s == 'true' %></td>
+        <td><%= job.tasks.length %> upcoming</td>
+        <td><%= job.contacts.length %> contacts</td>
+  	    <td><%= link_to "Edit", edit_user_job_path(job.user, job) %></td>
+  	    <td><%= link_to "Delete", user_job_path(job.user, job), :method => :delete %></td>
+  	  </tr>
+    <% end %>
 
-</table>
+  </table>
 
-
+</div>
 
 
 

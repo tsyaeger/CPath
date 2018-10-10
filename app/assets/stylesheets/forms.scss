@@ -1,7 +1,7 @@
 
 
 input[type=date], select {
-    width: 400px;
+    width: 320px;
     height: 35px;
     padding: 12px 20px;
     margin: 0 0 15px;
@@ -12,20 +12,27 @@ input[type=date], select {
     font-size: 16px;
     /*resize: vertical;*/
 }
+
+
+
+
 
 
 input[type=text], select {
-    width: 400px;
+    width: 320px;
     height: 35px;
     padding: 12px 20px;
-    margin: 0 0 15px;
+    margin: 0 0 20px;
     display: inline-block;
     border: 1px solid #5b4f4f;
     border-radius: 4px;
     box-sizing: border-box;
     font-size: 16px;
-    /*resize: vertical;*/
 }
+
+
+
+
 
 input[type=text]:focus {
     background-color: #f9fcfc;
@@ -39,7 +46,7 @@ label {
 }
 
 input[type=submit] {
-    width: 400px;
+    width: 320px;
     background-color: #00B746;
     color: white;
     padding: 12px 20px;

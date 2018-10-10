@@ -1,16 +1,22 @@
 
 
 
+<div class="column-3">
+	<h1>References</h1>
+	<%= render partial: "contact", collection: @contacts.is_reference || "No Contacts"%>
+</div>
 
-<div id="small-fields">
-    <h1>Contacts</h1><br>
+
+
+<div class="column-3">
+    <h1>Contacts</h1>
     <%= render partial: "contact", collection: @contacts || "No Contacts"%>
     </div>
 </div>
 
 
 
-<div id="large-fields">
+<div class="column-3">
 	<h1>Add Contact</h1>
 	<%= render 'form' %>
 </div>

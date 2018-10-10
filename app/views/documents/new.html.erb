@@ -1,21 +1,5 @@
 
 
-<style>
-
-
-.column-3 {
-    border-left: solid;
-    border-width: 1px;
-    border-color: #2d2c2c;
-    text-align: left;
-    float: left;
-    width: 33.333%;
-    padding: 35px;
-    height: 1200px; 
-}
-
-</style>
-
 
 <div class='column-3'>
 	<h1>documents by type</h1>
@@ -31,7 +15,7 @@
 
 
 <div class='column-3'>
-    <h1>Documents</h1><br>
+    <h1>Documents</h1>
 
     <div id='document-list'>
     <%= render partial: "document", collection: @documents || "No Documents"%>

@@ -12,8 +12,7 @@ function Document(document, user_id) {
 }
 
 Document.prototype.formatIndex = function() {
-    let documentHTML = `<h3><a href="/users/${this.user_id}/documents/${this.id}">${this.title} - ${this.type}</a></h3>`
-    // let documentHTML = '<p>test</p>'
+    let documentHTML = `<h3><a href="/users/${this.user_id}/documents/${this.id}">${this.title}</a></h3>`
     return documentHTML
 }
 

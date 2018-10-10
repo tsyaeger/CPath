@@ -13,13 +13,14 @@ function Task(task, user_id) {
 
 
 Task.prototype.formatIndex = function() {
-    let taskHTML = `<h3><a href="/users/${this.user_id}/tasks/${this.id}">${this.title} - ${this.due}</a></h3>`
-    // let taskHTML = `<h3>testing</h3>`
+    let taskHTML = `<h3><a href="/users/${this.user_id}/tasks/${this.id}">${this.title} - ${this.formatDate()}</a></h3>`
     return taskHTML
 }
 
 Task.prototype.formatDate = function() {
-	return 'date'
+    let date = new Date(this.due)
+    dateString = date.toLocaleDateString()
+    return dateString
 }    
 
 
