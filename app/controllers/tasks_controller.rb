@@ -22,7 +22,7 @@ class TasksController < ApplicationController
 
 	def completed
 		# binding.pry
-		completedStr= (params[:q])
+		completedStr = (params[:q])
 		completedBool = completedStr.to_s == "true"
 		@task.completed = completedBool
 		@task.save
@@ -75,8 +75,6 @@ class TasksController < ApplicationController
 
 
 	def show
-		@task = Task.find_by(:id => params[:id], :user_id => current_user.id)
-
 		respond_to do |format|
 	      format.html { render :show }
 	      format.json { render json: @task, status: 200 }
@@ -106,7 +104,7 @@ class TasksController < ApplicationController
 
 
 	def task_params
-		params.require(:task).permit(:title, :description, :doctype, :due_date)
+		params.require(:task).permit(:title, :description, :doctype, :due_date, :completed)
 	end
 
 

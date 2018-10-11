@@ -25,4 +25,33 @@ Task.prototype.formatDate = function() {
 }    
 
 
+Task.prototype.dateDueString = function() {
+    let dateString = 'no date entered'
+    if (this.due) {
+        let date = new Date(this.due)
+        dateString = date.toLocaleDateString()
+    }
+    return `<h3>DUE DATE: ${dateString}</h3>`
+}
+
+
+Task.prototype.completedString = function() {
+    let compString = this.completed.toString()
+    return `<h3>COMPLETED: ${compString}</h3>`
+}
+
+
+
+Task.prototype.completedButton = function() {
+    let text = this.completed ? 'Mark as not completed' : 'Mark as completed'
+    return `<button id='add-completed' data-bool="${this.completed}">${text}</button><br><br>`
+}
+
+
+
+
+
+
+
+
 

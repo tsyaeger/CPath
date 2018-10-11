@@ -8,13 +8,15 @@
 
 	<h1><%= @task.title %></h1>
 	<h3><%= @task.description %></h3>
-    <h3>DUE DATE: <%= @task.due_date %></h3>
-    <h3>Completed: <%= @task.completed %></h3>
 
-    <button id='task-completed' data-val="<%= !@task.completed %>" data-id="<%= @task.id %>">Mark completed</button><br><br>
+    <div id='task-due-date'></div>
+    <div id='task-completed-string'></div>
+
+    <div id='add-completed'></div>
+    <div id='completed-btn'></div>
 
 
-      <td><%= link_to "Edit", edit_user_task_path(@task.user, @task) %></td>
+    <td><%= link_to "Edit", edit_user_task_path(@task.user, @task) %></td>
     <td><%= link_to "Delete", user_task_path(@task.user, @task), :method => :delete %></td>
 
 
@@ -73,9 +75,14 @@ $(document).ready(function () {
     task_id = $(".task-id").data("id")
 
     $.get(`/users/${user_id}/tasks/${task_id}.json`, function(data) {
+        task = new Task(data, user_id)
+        console.log(task)
+        displayTaskDetails(task)
         linkTaskContact()
         linkTaskDocument()
         linkTaskJob()
+        buttonFunc(task)
+
 
         // unlinkContact()
     });
@@ -83,19 +90,29 @@ $(document).ready(function () {
 })
 
 
+const buttonFunc = function (task) {
+    $('#completed-btn').on('click', function() {
+        console.log(!task.completed)
 
-// const unlinkContact = function(){
-//     let contactId = $('#task-contact-ids')
-//     $('.remove-1').on('click', function(e) {
-//         // e.preventDefault()
-//         console.log(this)
-//         var c_id = form.serialize()
+        $.get(`/users/${user_id}/tasks/${task_id}/completed?q=${!task.completed}`, function(data) {
+        })
+    })
+}
 
-//         // $.ajax({url: `/users/${user_id}/tasks/${task_id}/unlink_contact`, 
-//         //     data: c_id, 
-//         //     type: "PATCH"})
-//     })
-// }
+const displayTaskDetails = function(task) {
+    $('#task-due-date').append(task.dateDueString())
+    $('#task-completed-string').append(task.completedString())
+    $('#completed-btn').append(task.completedButton())
+}
+
+
+
+
+
+
+
+
+
 
 
 const linkTaskContact = function() {

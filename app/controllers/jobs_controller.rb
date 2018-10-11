@@ -39,7 +39,7 @@ class JobsController < ApplicationController
 
 	def applied
 		# binding.pry
-		appStr= (params[:q])
+		appStr = (params[:q])
 		appBool = appStr.to_s == "true"
 		@job.applied = appBool
 		@job.save
