@@ -4,15 +4,16 @@
 
 <div id='top'>
 	<h1><%= @contact.first_name %> <%= @contact.last_name %></h1>
-
 	<h3>WORKPLACE: <%= @contact.workplace %></h3>
 	<h3>EMAIL: <%= @contact.email %></h3>
 	<h3>PHONE: <%= @contact.phone %></h3>
-	<h3>LINKEDIN: <%= @contact.linkedin %></h3>
-	<h3>Is Reference: <%= @contact.reference %></h3>
 
 
-	<button id='add-reference' data-val="<%= !@contact.reference %>" data-id="<%= @contact.id %>">Mark as reference</button><br><br>
+
+	<div id='contact_reference'></div>
+	<div id='reference-btn'></div>
+
+
 
    <td><%= link_to "Edit", edit_user_contact_path(@contact.user, @contact) %></td>
     <td><%= link_to "Delete", user_contact_path(@contact.user, @contact), :method => :delete %></td>
@@ -20,7 +21,6 @@
 
 
 <div id='mid'>
-
 
     <div id='jobs' class='links-col'>
         <h3>LINKED JOBS</h3>
@@ -33,11 +33,6 @@
 	<div id='task-list'></div>
 	<%= render partial: "tasks/task", collection: @contact.tasks || "No Linked Tasks" %>
 
-
-
-
-	
-
 </div>
 
 
@@ -48,16 +43,38 @@
 
 
 
+$(document).ready(function () {
+	user_id = $(".user-id").data("id")
+	contact_id = $(".contact-id").data("id")
 
-user_id = $(".user-id").data("id")
-contact_id = $(".contact-id").data("id")
+	$.get(`/users/${user_id}/contacts/${contact_id}.json`, function(data) {
+		contact = new Contact(data, user_id)
 
-$('#add-reference').on('click', function() {
-	console.log($(this).val())
-    $.get(`/users/${user_id}/contacts/${contact_id}/add_reference?q=${'true'}`, function(data) {
-    	
-    })
+	    displayRefDetails(contact)
+		buttonRefFunc(contact)
+
+	});
 })
+
+
+
+
+const buttonRefFunc = function(contact) {
+	$('#add-reference').on('click', function() {
+		console.log('clicked')
+	    $.get(`/users/${user_id}/contacts/${contact_id}/add_reference?q=${!contact.reference}`, function(data) {
+	    	console.log(data)
+	    })
+	})
+}
+
+
+
+const displayRefDetails = function (contact) {
+	$('#contact_reference').append(contact.referenceString())
+	$('#reference-btn').append(contact.referenceButton())
+}
+
 
 
 

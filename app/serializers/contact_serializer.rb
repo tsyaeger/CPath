@@ -1,5 +1,5 @@
 class ContactSerializer < ActiveModel::Serializer
-	attributes :id, :first_name, :last_name, :workplace, :linkedin, :phone, :email
+	attributes :id, :first_name, :last_name, :workplace, :linkedin, :phone, :email, :reference
 	belongs_to :user
 
 	has_many :job_contacts

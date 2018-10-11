@@ -35,6 +35,8 @@ Task.prototype.dateDueString = function() {
 }
 
 
+
+
 Task.prototype.completedString = function() {
     let compString = this.completed.toString()
     return `<h3>COMPLETED: ${compString}</h3>`

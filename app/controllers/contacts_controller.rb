@@ -19,12 +19,13 @@ class ContactsController < ApplicationController
 
 
 	def add_reference
+		# binding.pry
 		refStr= (params[:q])
 		refBool = refStr.to_s == "true"
 		@contact.reference = refBool
 		@contact.save
 		respond_to do |format|
-	      format.html { render :index }
+	      format.html { render :show }
 	      format.json { render json: @contact, status: 200 }
 	    end
 	end
@@ -48,7 +49,6 @@ class ContactsController < ApplicationController
 
 
 	def show
-		@contact = Contact.find_by(:id => params[:id], :user_id => current_user.id)
 		respond_to do |format|
 	      format.html { render :show }
 	      format.json { render json: @contact, status: 200 }
@@ -77,7 +77,7 @@ class ContactsController < ApplicationController
 
 
 	def contact_params
-		params.require(:contact).permit(:first_name, :last_name, :workplace, :linkedin, :phone, :email)
+		params.require(:contact).permit(:first_name, :last_name, :workplace, :linkedin, :phone, :email, :reference)
 	end
 
 
