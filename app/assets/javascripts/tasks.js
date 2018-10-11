@@ -5,6 +5,7 @@ function Task(task, user_id) {
     this.title = task.title
     this.desc = task.description
     this.due = task.due_date
+    this.completed = task.completed
     this.document = task.document
     this.job = task.job
     this.contact = task.contact

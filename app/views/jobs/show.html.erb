@@ -12,10 +12,13 @@
 	<div id='job-applied'></div>
 	<div id='applied-btn'></div>
 
-	<button id='add-applied' data-val="<%= !@job.applied %>" data-id="<%= @job.id %>">Mark as applied to</button><br><br>
+
+
+
+	<td><%= link_to "Edit", edit_user_job_path(@job.user, @job) %></td>
+    <td><%= link_to "Delete", user_job_path(@job.user, @job), :method => :delete %></td>
+
 </div>
-
-
 
 
 <div id='mid'>
@@ -73,8 +76,9 @@ $(document).ready(function () {
 	job_id = $(".job-id").data("id")
 
 	$.get(`/users/${user_id}/jobs/${job_id}.json`, function(data) {
-		console.log('data', data)
-	    addJobDetails(data)
+		job = new Job(data, user_id)
+
+	    displayJobDetails(job)
 
 	    nextButton()
 	    previousButton()
@@ -82,21 +86,42 @@ $(document).ready(function () {
 		linkContact()
 		linkDocument()
 
-		// setApplied()
-	// unlinkContact()
+		buttonFunc(job)
+
+
 	});
-	
 })
 
 
-const addJobDetails = function (data) {
-	job = new Job(data, user_id)
+
+
+
+
+const buttonFunc = function (job) {
+	$('#add-applied').on('click', function() {
+		console.log(!job.applied)
+
+	    $.get(`/users/${user_id}/jobs/${job_id}/applied?q=${!job.applied}`, function(data) {
+	    })
+	})
+}
+
+
+
+
+const displayJobDetails = function (job) {
 	$('#show-title').append(job.jobTitle())
 	$('#job-date-posted').append(job.datePosted())
 	$('#job-link').append(job.jobLink())
 	$('#job-applied').append(job.appliedString())
+
 	$('#applied-btn').append(job.appliedButton())
 }
+
+
+
+
+
 
 
 

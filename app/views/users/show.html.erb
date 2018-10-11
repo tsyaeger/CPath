@@ -96,7 +96,7 @@ const getContacts = function (data) {
 const getJobs = function (data) {
     jQuery(data['jobs']).each(function(i, job){
         let j = new Job(job, id)
-        $("#job-list").append(j.formatIndex())
+        $("#job-list").append(j.formatJobIndex())
     })
 }
 
