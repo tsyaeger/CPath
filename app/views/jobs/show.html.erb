@@ -42,7 +42,7 @@
     <div id='Tasks' class='links-col'>
 
 		<div id='task-list'></div>
-    	<h3>LINKED TASKS</h3>
+    	<h3>TASKS</h3>
     	
     	<%= render partial: "tasks/task", collection: @job.tasks || "No Linked Tasks" %>
 
@@ -56,12 +56,16 @@
 
 <div class='bottom'>
 
-	<h3 class='links-col-50'> View Job Description </h3>
-	<p><% @job.job_desc %></p>
+	<% if !!@job.job_desc%>
+		<h3 class='links-col-50'> View Job Description </h3>
+		<p><% @job.job_desc %></p>
+	<% end %>
 
-
-	<h3 class='links-col-50'> View Company Description </h3>
-	<p><% @job.co_desc %></p>
+	
+	<% if !!@job.co_desc %>
+		<h3 class='links-col-50'> View Company Description </h3>
+		<p><% @job.co_desc %></p>
+	<% end %>
 
 </div>
 

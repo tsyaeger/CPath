@@ -46,6 +46,23 @@ span {
 }
 
 
+button {
+    background-color: white;
+    color: black;
+    border: 1px solid #545353;
+    padding: 10px 12px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    box-shadow: 0 2px 3px 0 rgba(0,0,0,0.18), 0 1px 3px 0 rgba(0,0,0,0.17);
+}
+
+.button:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
 
 * {
     box-sizing: border-box;
@@ -106,6 +123,7 @@ span {
     content: "";
     display: table;
     clear: both;
+    text-shadow: 2px 2px #f4f2f2;
 }
 
 #small-fields {

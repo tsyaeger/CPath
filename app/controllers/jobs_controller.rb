@@ -30,6 +30,7 @@ class JobsController < ApplicationController
 
 
 	def filter
+		# binding.pry
 		@filtered_jobs = current_user.jobs.filtered_job(params[:q])
 		respond_to do |format|
 			format.json { render json: { html: render_to_string("jobs/_filtered_jobs.html.erb", layout: false, locals: { filtered_jobs: @filtered_jobs })} }
@@ -53,7 +54,9 @@ class JobsController < ApplicationController
 	def add_contact
 		c_id = params[:job][:contact_ids]
 		contact = Contact.find(c_id)
-		@job.contacts << contact
+		if !@job.contacts.include?(contact)
+			@job.contacts << contact
+		end
 
 	end	
 
@@ -61,7 +64,9 @@ class JobsController < ApplicationController
 	def add_document
 		d_id = params[:job][:document_ids]
 		document = Document.find(d_id)
-		@job.documents << document
+		if !@job.documents.include?(document)
+			@job.documents << document
+		end
 	end	
 
 

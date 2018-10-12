@@ -35,26 +35,44 @@ class TasksController < ApplicationController
 
 
 	def add_contact
+		# binding.pry
+
+
+
 		c_id = params[:task][:contact_id]
+
+		
 		contact = Contact.find(c_id)
-		contact.tasks << @task
-		contact.save
+
+
+		# if task.contact_id != contact_id
+		# change task.contact_id 
+
+		if !contact.tasks.include?(@task)
+			contact.tasks << @task
+			contact.save
+		end
 	end	
 
 
 	def add_document
 		d_id = params[:task][:document_id]
 		document = Document.find(d_id)
-		document.tasks << @task
-		document.save
+		if !document.tasks.include?(@task)
+			document.tasks << @task
+			document.save
+		end
 	end	
 
 
 	def add_job
+		# binding.pry
 		j_id = params[:task][:job_id]
 		job = Job.find(j_id)
-		job.tasks << @task
-		job.save
+		if !job.tasks.include?(@task)
+			job.tasks << @task
+			job.save
+		end
 	end	
 
 

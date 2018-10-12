@@ -7,7 +7,7 @@
 <div id='top'>
 
 	<h1><%= @task.title %></h1>
-	<h3>DESCRIPTION: <%= @task.description %></h3>
+	<h3><%= @task.description %></h3>
 
     <div id='task-due-date'></div>
     <div id='task-completed-string'></div>
@@ -24,41 +24,38 @@
 
 <div id='mid'>
 
-    <% if @task.job != nil %>   
-        <h3>LINKED JOB: <%= @task.job.company %></h3>
-    <% else %>
-        <h3>No linked job</h3>
-    <% end %>
-
-    <% if @task.document != nil %>   
-        <h3>LINKED DOCUMENT: <%= @task.document.title %></h3>
-    <% else %>
-        <h3>No linked Document</h3>
-    <% end %>
 
 
-    <% if @task.contact != nil %>   
-        <h3>LINKED CONTACT: <%= @task.contact.last_name %></h3>
-    <% else %>
-        <h3>No linked contact</h3>
-    <% end %>
-
-
-    
 
     
     <div id='docs' class='links-col'>
+        <% if @task.document != nil %>   
+            <h3>LINKED DOCUMENT: <%= @task.document.title %></h3>
+        <% else %>
+            <h3>No linked Document</h3>
+        <% end %>
         <%= render 'documents/document_task_dropdown' %>
     </div>    
 
 
     <div id='contacts' class='links-col'>
-         <%= render 'contacts/contact_task_dropdown' %>
+
+        <% if @task.contact != nil %>   
+            <h3>LINKED CONTACT: <%= @task.contact.last_name %></h3>
+        <% else %>
+            <h3>No linked contact</h3>
+        <% end %>
+        <%= render 'contacts/contact_task_dropdown' %>
         
     </div>    
 
 
     <div id='Jobs' class='links-col'>
+        <% if @task.job != nil %>   
+            <h3>LINKED JOB: <%= @task.job.company %></h3>
+        <% else %>
+            <h3>No linked job</h3>
+        <% end %>
         <%= render 'jobs/job_task_dropdown' %>
     </div>  
 

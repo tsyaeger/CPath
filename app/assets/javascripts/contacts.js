@@ -25,6 +25,6 @@ Contact.prototype.referenceString = function() {
 }
 
 Contact.prototype.referenceButton = function() {
-    let text = this.reference ? 'Mark as not reference' : 'Mark as reference'
+    let text = this.reference ? 'Remove From References' : 'Mark As Reference'
     return `<button id='add-reference' data-bool="${this.reference}">${text}</button><br><br>`
 }

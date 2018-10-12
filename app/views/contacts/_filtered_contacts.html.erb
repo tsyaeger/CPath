@@ -1,5 +1,5 @@
 
 
 <% filtered_contacts.each do |contact| %>
-	<h3><%= link_to contact.last_name, user_contact_path(contact.user, contact)%></h3>
+	<h3><%= link_to "#{formatted_name(contact)}", user_contact_path(contact.user, contact)%></h3>
 <% end %>

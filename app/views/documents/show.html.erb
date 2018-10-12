@@ -39,7 +39,7 @@
 
 
     <div id='tasks' class='col-2'>
-        <h3>LINKED TASKS</h3>
+        <h3>TASKS</h3>
         <% if @document.tasks.length > 0 %>
             <%= render partial: "tasks/task", collection: @document.tasks || "No Linked Tasks" %>
         <% else %>
