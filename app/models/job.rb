@@ -9,7 +9,7 @@ class Job < ApplicationRecord
 
 
 
-	scope :filtered_job, -> (substring) { where("company LIKE ? ", "%#{substring}%") }
+	scope :filtered_job, -> (substring) { where("company LIKE ? OR position LIKE ?", "%#{substring}%", "%#{substring}%") }
 
 	# scope :applied, -> { where("applied = ? ", true) }
 

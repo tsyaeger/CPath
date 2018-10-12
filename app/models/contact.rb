@@ -5,7 +5,7 @@ class Contact < ApplicationRecord
 	has_many :tasks
 
 
-	scope :filtered_contact, -> (substring) { where("last_name LIKE ? ", "%#{substring}%")}
+	scope :filtered_contact, -> (substring) { where("last_name LIKE ? OR first_name LIKE ?", "%#{substring}%", "%#{substring}%")}
 
 	scope :is_reference, -> { where('reference = ?',true) }
 

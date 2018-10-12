@@ -19,7 +19,7 @@
 	<h1><%= @document.title %></h1>
     <h3><%= @document.description %></h3>
 	<h3 class='link'><%= link_to 'Go to Document', @document.url %></a></h3>
-	<h3>Last Update: <%= @document.updated_at %></h3>
+	<h3>Last update: <%= format_date(@document.updated_at) %></h3>
     <td><%= link_to "Edit", edit_user_document_path(@document.user, @document) %></td>
     <td><%= link_to "Delete", user_document_path(@document.user, @document), :method => :delete %></td>
 

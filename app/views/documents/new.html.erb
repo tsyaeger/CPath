@@ -1,17 +1,12 @@
 <style>
 
-#contact-bullet {
-	list-style-type: circle;
-}
+
 
 .document-item{
 	color: black;
 	list-style-type: circle;
 }
 
-h2.doctype-grp {
-	text-decoration: uppercase;
-}
 
 </style>
 
@@ -20,13 +15,11 @@ h2.doctype-grp {
 
 
 	<% Document.groupDoctype.each do |d| %>
-
 		<h1 class='doctype-grp'><%= d[0].pluralize(2) %></h1>
 
 		<% d[1].each do |doc| %>
 			<h3><%= link_to "<li>#{doc.title}</li><br>".html_safe, user_document_path(doc.user, doc), :class => "document-item" %></h3>
 		<% end %> 
-
 	<% end %>
 
 

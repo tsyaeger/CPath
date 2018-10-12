@@ -11,6 +11,7 @@ class ContactsController < ApplicationController
 
 
 	def filter
+		# binding.pry
 		@filtered_contacts = current_user.contacts.filtered_contact(params[:q])
 		respond_to do |format|
 			format.json { render json: { html: render_to_string("contacts/_filtered_contacts.html.erb", layout: false, locals: { filtered_contacts: @filtered_contacts })} }
