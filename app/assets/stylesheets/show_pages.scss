@@ -12,6 +12,14 @@
 }
 
 
+.col-2 {
+	width: 50%;
+	/*border: solid;*/
+	margin: 0 auto 100px;
+	float: left;
+}
+
+
 
 
 .bottom{
@@ -45,12 +53,7 @@ h1, h2 {
 
 
 
-.pg-btn {
-	border: solid 1px;
-    text-decoration: none;
-    display: inline-block;
-    padding: 8px 16px;
-}
+
 
 #job-company-position{
     margin: auto;

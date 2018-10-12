@@ -29,7 +29,7 @@ Job.prototype.appliedString = function() {
 }
 
 Job.prototype.appliedButton = function() {
-    let text = this.applied ? 'Mark as not applied to' : 'Mark as applied to'
+    let text = this.applied ? 'Mark Not Applied' : 'Mark Applied'
     // return $('<button>', {id: 'add-applied', data: {bool: applied}, text: text, className: 'foo'})
     return `<button id='add-applied' data-bool="${this.applied}">${text}</button><br><br>`
 }
@@ -51,9 +51,9 @@ Job.prototype.jobLink = function() {
 }
 
 Job.prototype.jobTitle = function() {
-    return `<span class="headline pg-btn btn-previous">Previous</span>
+    return `<span class="headline pg-btn btn-previous"><button>Previous</button></span>
     <h1 id='job-company-position' class='headline'>${this.company} - ${this.position}</h1>
-    <span class="headline pg-btn btn-next">Next</span>`
+    <span class="headline pg-btn btn-next"><button>Next</button></span>`
 }
 
 

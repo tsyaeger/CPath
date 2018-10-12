@@ -1,19 +1,4 @@
 
-<style>
-
-.col-2 {
-	width: 50%;
-	/*border: solid;*/
-	margin: 0 auto 100px;
-	float: left;
-}
-
-
-
-
-</style>
-
-
 
 <div id='top'>
 	<h1><%= @document.title %></h1>
@@ -28,7 +13,7 @@
 <div id='mid'>
       
     <div id='jobs' class='col-2'>
-        <h3>LINKED JOBS</h3>
+        <h2>LINKED JOBS</h2>
         <div id='job-list'></div>
         <% if @document.jobs.length > 0 %>
             <%= render partial: "jobs/job", collection: @document.jobs || "No Linked Jobs" %>
@@ -39,7 +24,7 @@
 
 
     <div id='tasks' class='col-2'>
-        <h3>TASKS</h3>
+        <h2>TASKS</h2>
         <% if @document.tasks.length > 0 %>
             <%= render partial: "tasks/task", collection: @document.tasks || "No Linked Tasks" %>
         <% else %>

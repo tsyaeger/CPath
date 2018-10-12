@@ -25,7 +25,7 @@
     
     <div id='docs' class='links-col'>
     	<%= render 'documents/document_dropdown' %>
-    	<h3>LINKED DOCUMENTS</h3>
+    	<h2>LINKED DOCUMENTS</h2>
     	<div id='document-list'></div>
     	<%= render partial: "documents/document", collection: @job.documents || "No Linked Documents" %>
     </div>    
@@ -33,7 +33,7 @@
 
     <div id='contacts' class='links-col'>
 		 <%= render 'contacts/contact_dropdown' %>
-    	<h3>LINKED CONTACTS</h3>
+    	<h2>LINKED CONTACTS</h2>
     	<div id='contact-list'></div>
     	<%= render partial: "contacts/contact", collection: @job.contacts || "No Linked Contacts" %>
     </div>    
@@ -42,7 +42,7 @@
     <div id='Tasks' class='links-col'>
 
 		<div id='task-list'></div>
-    	<h3>TASKS</h3>
+    	<h2>TASKS</h2>
     	
     	<%= render partial: "tasks/task", collection: @job.tasks || "No Linked Tasks" %>
 

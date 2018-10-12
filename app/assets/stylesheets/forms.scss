@@ -46,6 +46,11 @@ input[type=text], select {
 }
 
 
+textarea, select {
+    border-radius: 4px;
+}
+
+
 
 input[type=email], select {
     width: 320px;
