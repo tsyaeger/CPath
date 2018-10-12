@@ -23,8 +23,8 @@ h2.doctype-grp {
 
 		<h1 class='doctype-grp'><%= d[0].pluralize(2) %></h1>
 
-		<% d[1].each do |attr| %>
-			<h3><li><%= attr.title %></li></h3><br>
+		<% d[1].each do |doc| %>
+			<h3><%= link_to "<li>#{doc.title}</li><br>".html_safe, user_document_path(doc.user, doc), :class => "document-item" %></h3>
 		<% end %> 
 
 	<% end %>
@@ -67,7 +67,6 @@ h2.doctype-grp {
 $("form").on('submit', function (e) {
 
 	e.preventDefault()
-	debugger
 	var $form = $(this)
 	var action = $form.attr('action')
 	var params = $form.serialize()
@@ -93,36 +92,6 @@ $("form").on('submit', function (e) {
 	})
 })
 
-
-
-
-
-
-
-
-
-
-
-
-
-var clicks = 0
-
-$(function () {
-
-  $("i").on('click', function() {
-    var id = this.id
-
-  	if (clicks % 2 == 0) {
-	    $('.document.'+id).css('display', 'block')
-    	clicks++
-	}
-	else {
-		$('.document.'+id).css('display', 'none')
-		clicks++
-	} 
-  });
-
-});
 
 
 
