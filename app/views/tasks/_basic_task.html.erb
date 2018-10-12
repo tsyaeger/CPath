@@ -1,4 +1,11 @@
 
 
-<h3><%= link_to "<li>#{task.title}</li><br>".html_safe, user_task_path(task.user, task), :class => "task-item" %></h3>
+
+
+
+<h1><%= @contact.last_name %></h1>
+<p><%= @task %></p>
+
+
+<h3><%= link_to @task.title, user_task_path(@task.user, @task), :class => "task-item" %></h3>
 
