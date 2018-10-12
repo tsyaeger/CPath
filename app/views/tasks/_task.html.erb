@@ -1,13 +1,14 @@
 
-<% title = task.title %>
-<% description = task.description %>
-<% due_date = task.due_date %>
 
 
 <h3 class="w3-large">
-	<i id='<%= task.id %>' class="material-icons w3-large task" id='<%= task.id %>'>keyboard_arrow_down</i>
+	<i id='<%= task.id %>' class="material-icons w3-large task" id='<%= task.id %>'>keyboard_arrow_down</i>	
+	<%= link_to "#{task.title} - #{format_date(task.due_date)}", user_task_path(task.user, task) %>
+</h3>
+
+<% if task.completed %>
+	<span id='<%= task.id %>' class='task <%= task.id %>' style="display: none;" >Mark Not Completed</span>
 	
-<%= link_to "#{title} - #{due_date}", user_task_path(task.user, task) %></h3>
-
-<span id='<%= task.id %>' class='task <%= task.id %>' style="display: none;" >Mark Completed</span>
-
+<% else %>
+	<span id='<%= task.id %>' class='task <%= task.id %>' style="display: none;" >Mark Completed</span>
+<% end %>

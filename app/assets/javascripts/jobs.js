@@ -22,10 +22,6 @@ Job.prototype.formatJobIndex = function() {
 
 
 
-
-
-
-
 //Used in job show page
 Job.prototype.appliedString = function() {
     let appString = this.applied.toString()
@@ -37,6 +33,9 @@ Job.prototype.appliedButton = function() {
     // return $('<button>', {id: 'add-applied', data: {bool: applied}, text: text, className: 'foo'})
     return `<button id='add-applied' data-bool="${this.applied}">${text}</button><br><br>`
 }
+
+
+
 
 Job.prototype.datePosted = function() {
     let dateString = 'no date entered'

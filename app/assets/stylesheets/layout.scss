@@ -1,5 +1,4 @@
 
-
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
 
@@ -150,25 +149,3 @@ span {
     text-align: left;
     height: 386px;
 }
-
-
-
-
-table {
-    border: solid 1px;
-    border-color: black;
-    width: 90%;
-}
-
-td, th {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
-}
-
-tr:nth-child(even) {
-    background-color: #dddddd;
-}
-
-
-

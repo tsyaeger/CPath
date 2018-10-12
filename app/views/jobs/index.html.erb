@@ -26,8 +26,8 @@
   	  <tr>
   	    <td><%= link_to job.company, user_job_path(job.user, job) %></td>
   	    <td><%= link_to job.position, user_job_path(job.user, job) %></td>
-  	    <td><%= job.date_posted %></td>
-        <td><%= job.created_at %></td>
+  	    <td><%= format_date(job.date_posted) %></td>
+        <td><%= format_date(job.created_at) %></td>
         <td><%= job.applied.to_s == 'true' %></td>
         <td><%= job.tasks.length %> upcoming</td>
         <td><%= job.contacts.length %> contacts</td>

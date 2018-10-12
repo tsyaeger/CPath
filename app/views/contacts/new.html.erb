@@ -1,4 +1,16 @@
 
+<style>
+
+#contact-bullet {
+	list-style-type: circle;
+}
+
+.contact-item{
+	color: black;
+	list-style-type: circle;
+}
+
+</style>
 
 
 <div class="column-3">
@@ -10,7 +22,9 @@
 
 <div class="column-3">
     <h1>Contacts</h1>
-    <%= render partial: "contact", collection: @contacts || "No Contacts"%>
+
+	    <%= render partial: "contact", collection: @contacts || "No Contacts"%>
+
     </div>
 </div>
 
@@ -48,26 +62,6 @@ $("form").on('submit', function (e) {
 	})
 })
 
-
-
-var clicks = 0
-
-$(function () {
-
-  $("i").on('click', function() {
-    var id = this.id
-
-  	if (clicks % 2 == 0) {
-	    $('.contact.'+id).css('display', 'block')
-    	clicks++
-	}
-	else {
-		$('.contact.'+id).css('display', 'none')
-		clicks++
-	} 
-  });
-
-});
 
 
 

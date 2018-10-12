@@ -14,7 +14,7 @@
     <h1>UPCOMING TASKS</h1>
 
     <div id='task-list'>
-    <%= render partial: "task", collection: @tasks.completed_false || "No Tasks"%>
+    	<%= render partial: "task", collection: @tasks.completed_false.order('due_date ASC') || "No Tasks"%>
     </div>
 
 </div>

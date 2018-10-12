@@ -19,4 +19,3 @@ Document.prototype.formatIndex = function() {
 
 
 
-

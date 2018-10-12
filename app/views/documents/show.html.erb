@@ -1,8 +1,8 @@
 
 <style>
 
-.links-col {
-	width: 33.333%;
+.col-2 {
+	width: 50%;
 	/*border: solid;*/
 	margin: 0 auto 100px;
 	float: left;
@@ -16,12 +16,10 @@
 
 
 <div id='top'>
-	<h1><%= @document.title %> - <%= @document.doctype %></h1>
+	<h1><%= @document.title %></h1>
     <h3><%= @document.description %></h3>
-
 	<h3 class='link'><%= link_to 'Go to Document', @document.url %></a></h3>
 	<h3>Last Update: <%= @document.updated_at %></h3>
-	<h3>Created At: <%= @document.created_at %></h3>
     <td><%= link_to "Edit", edit_user_document_path(@document.user, @document) %></td>
     <td><%= link_to "Delete", user_document_path(@document.user, @document), :method => :delete %></td>
 
@@ -29,16 +27,24 @@
 
 <div id='mid'>
       
-    <div id='jobs' class='links-col'>
+    <div id='jobs' class='col-2'>
         <h3>LINKED JOBS</h3>
         <div id='job-list'></div>
-        <%= render partial: "jobs/job", collection: @document.jobs || "No Linked Jobs" %>
+        <% if @document.jobs.length > 0 %>
+            <%= render partial: "jobs/job", collection: @document.jobs || "No Linked Jobs" %>
+        <% else %>
+            <h3>No linked jobs</h3>
+        <% end %>
     </div>
 
 
-    <div id='tasks' class='links-col'>
-        <h3>LINKED TASKS</h3
-        <%= render partial: "tasks/task", collection: @document.tasks || "No Linked Tasks" %>
+    <div id='tasks' class='col-2'>
+        <h3>LINKED TASKS</h3>
+        <% if @document.tasks.length > 0 %>
+            <%= render partial: "tasks/task", collection: @document.tasks || "No Linked Tasks" %>
+        <% else %>
+            <h3>No linked tasks</h3>
+        <% end %>
     </div>
 
 </div>

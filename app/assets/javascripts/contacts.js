@@ -11,19 +11,17 @@ function Contact(contact, user_id) {
 }
 
 Contact.prototype.concatName = function() {
-    let concatName = `${this.first} ${this.last}` 
-    return concatName
+    return `${this.first} ${this.last}` 
 }
 
 Contact.prototype.formatIndex = function() {
-    let contactHTML = `<h3><a href='/users/${this.user_id}/contacts/${this.id}'>${this.first} ${this.last}</a></h3>`
-    return contactHTML
+    return `<h3><a href='/users/${this.user_id}/contacts/${this.id}'>${this.first} ${this.last}</a></h3>`
 }
 
 
 Contact.prototype.referenceString = function() {
     let refString = this.reference.toString()
-    return `<h3>reference: ${refString}</h3>`
+    return `<h3>REFERENCE: ${refString}</h3>`
 }
 
 Contact.prototype.referenceButton = function() {

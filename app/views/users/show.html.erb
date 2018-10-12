@@ -104,6 +104,7 @@ const getJobs = function (data) {
 const getTasks = function (data) {
     jQuery(data['tasks']).each(function(i, task){
         let t = new Task(task, id)
+        // chron order here?
         $("#task-list").append(t.formatIndex())
     })
 }

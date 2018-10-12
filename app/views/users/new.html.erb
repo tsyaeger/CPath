@@ -1,11 +1,3 @@
-<style>
-
-.log-label {
-	width: 350px;
-}
-
-</style>
-
 
 
 
@@ -15,13 +7,13 @@
 	<%= f.label :username %>
 	<%= f.text_field :username, class: "form-control log-label", required: true %><br>
 
-	<%= f.label :password_digest %>
+	<%= f.label :password %>
 	<%= f.password_field :password_digest, class: "form-control log-label", required: true %><br>
 
 	<%= f.label :email %>
 	<%= f.email_field :email, class: "form-control log-label", required: true %><br>
 
-	<%= f.submit "Create User", class: "btn btn-primary" %>
+	<%= f.submit "Create Account", class: "btn btn-primary" %>
 	
 <% end %>
 

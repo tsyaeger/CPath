@@ -1,13 +1,6 @@
 
-<% d_id = document.id %>
-<% doctype = document.doctype %> 
-<% title = document.title %>
-
-<h3 class="w3-large">
-	<i class="material-icons w3-large doc" id='<%= document.id %>' data-id='<%=d_id %>'>keyboard_arrow_down</i>
-	
-<%= link_to "#{title}", user_document_path(document.user, document) %></h3>
 
 
-<span id='<%= document.id %>' class='document <%= document.id %>' style="display: none;" >Remove</span>
+
+<h3><%= link_to "<li>#{document.title}</li><br>".html_safe, user_document_path(document.user, document), :class => "document-item" %></h3>
 

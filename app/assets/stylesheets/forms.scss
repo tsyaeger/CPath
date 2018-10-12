@@ -16,6 +16,21 @@ input[type=date], select {
 
 
 
+input[type=password], select {
+    width: 320px;
+    height: 35px;
+    padding: 12px 20px;
+    margin: 0 0 20px;
+    display: inline-block;
+    border: 1px solid #5b4f4f;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+
+
+
 
 
 input[type=text], select {
@@ -32,6 +47,18 @@ input[type=text], select {
 
 
 
+input[type=email], select {
+    width: 320px;
+    height: 35px;
+    padding: 12px 20px;
+    margin: 0 0 20px;
+    display: inline-block;
+    border: 1px solid #5b4f4f;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
 
 
 input[type=text]:focus {
@@ -47,7 +74,7 @@ label {
 
 input[type=submit] {
     width: 320px;
-    background-color: #00B746;
+    background-color: black;
     color: white;
     padding: 12px 20px;
     margin-top: 35px;
@@ -60,6 +87,6 @@ input[type=submit] {
 }
 
 input[type=submit]:hover {
-    background-color: #45a049;
+
 }
 

@@ -22,8 +22,5 @@ class ApplicationController < ActionController::Base
 		end 
 	end
 
-	def welcome
-	end
-
 
 end

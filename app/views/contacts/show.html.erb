@@ -1,3 +1,5 @@
+
+
 <div class='user-id' data-id="<%= @contact.user.id %>"></div>
 <div class='contact-id' data-id="<%= @contact.id %>"></div>
 
@@ -10,8 +12,10 @@
 
 
 
-	<div id='contact_reference'></div>
-	<div id='reference-btn'></div>
+
+
+		<div id='contact_reference'></div>
+		<div id='reference-btn'></div>
 
 
 
@@ -29,7 +33,6 @@
     </div>
 
 	<h3>LINKED TASKS</h3>
-	<%= link_to "Create Task", new_user_task_path(@contact.user), class: 'button' %>
 	<div id='task-list'></div>
 	<%= render partial: "tasks/task", collection: @contact.tasks || "No Linked Tasks" %>
 

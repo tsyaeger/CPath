@@ -1,13 +1,35 @@
+<style>
 
+#contact-bullet {
+	list-style-type: circle;
+}
+
+.document-item{
+	color: black;
+	list-style-type: circle;
+}
+
+h2.doctype-grp {
+	text-decoration: uppercase;
+}
+
+</style>
 
 
 <div class='column-3'>
-	<h1>documents by type</h1>
 
-	<% @documents.each do |doc| %>
-		<h3><%= doc.doctype %></h3> 
-		<p><%= doc.title %></p>
+
+	<% Document.groupDoctype.each do |d| %>
+
+		<h1 class='doctype-grp'><%= d[0].pluralize(2) %></h1>
+
+		<% d[1].each do |attr| %>
+			<h3><li><%= attr.title %></li></h3><br>
+		<% end %> 
+
 	<% end %>
+
+
 
 </div>
 
@@ -15,7 +37,7 @@
 
 
 <div class='column-3'>
-    <h1>Documents</h1>
+    <h1>All Documents</h1>
 
     <div id='document-list'>
     <%= render partial: "document", collection: @documents || "No Documents"%>
@@ -70,6 +92,16 @@ $("form").on('submit', function (e) {
 			alert('no success') }
 	})
 })
+
+
+
+
+
+
+
+
+
+
 
 
 
