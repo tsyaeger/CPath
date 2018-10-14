@@ -8,6 +8,9 @@ class Job < ApplicationRecord
 	has_many :tasks
 
 
+	validates_associated :user
+
+
 
 	scope :filtered_job, -> (substring) { where("company LIKE ? OR position LIKE ?", "%#{substring}%", "%#{substring}%") }
 

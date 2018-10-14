@@ -1,0 +1,16 @@
+
+<div class='wrapper'>
+
+	<% if target %>
+		<% if target.errors.any? %> 
+			<div id="error_explanation">
+				<h2 id='error-title'><%= pluralize(target.errors.count, "error") %> prohibited this action</h2>
+					<% target.errors.full_messages.each do |msg| %>
+						<p>* <%= msg %></p>
+					<% end %>
+			</div>
+		<% end %>
+	<% end %>
+
+</div>
+

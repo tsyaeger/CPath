@@ -4,6 +4,10 @@ class Task < ApplicationRecord
 	belongs_to :job, optional: true
 	belongs_to :document, optional: true
 
+
+	validates_associated :user
+	
+
 	scope :filtered_task, -> (substring) { where("title LIKE ? ", "%#{substring}%")}
 
 
