@@ -79,6 +79,49 @@ const displayRefDetails = function (contact) {
 
 
 
+var clicks = 0
+
+$(function () {
+
+  $("i.task").on('click', function() {
+    var id = this.id
+    console.log('task')
+
+  	if (clicks % 2 == 0) {
+	    $('.task.'+id).css('display', 'block')
+    	clicks++
+	}
+	else {
+		$('.task.'+id).css('display', 'none')
+		clicks++
+	} 
+  });
+
+});
+
+
+
+var clicks = 0
+
+$(function () {
+
+  $("i.job").on('click', function() {
+    var id = this.id
+    console.log('job')
+
+  	if (clicks % 2 == 0) {
+	    $('.job.'+id).css('display', 'block')
+    	clicks++
+	}
+	else {
+		$('.job.'+id).css('display', 'none')
+		clicks++
+	} 
+  });
+
+});
+
+
 
 
 

@@ -24,6 +24,7 @@ class ContactsController < ApplicationController
 		refStr= (params[:q])
 		refBool = refStr.to_s == "true"
 		@contact.reference = refBool
+		flash[:notice] = "Reference status has changed"
 		@contact.save
 		respond_to do |format|
 	      format.html { render :show }
@@ -50,6 +51,7 @@ class ContactsController < ApplicationController
 
 
 	def show
+		# flash[:notice] = "Reference changed"
 		respond_to do |format|
 	      format.html { render :show }
 	      format.json { render json: @contact, status: 200 }
@@ -62,12 +64,14 @@ class ContactsController < ApplicationController
 
 
 	def update
+		flash[:notice] = "Contact updated"
 	    @contact.update(contact_params)
 	    redirect_to user_contact_path(@contact.user, @contact)
 	end
 
 
 	def destroy
+		flash[:notice] = "Contact destroyed"
 		@contact.destroy
 		redirect_to new_user_contact_path(current_user)
 	end

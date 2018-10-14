@@ -49,12 +49,14 @@ class DocumentsController < ApplicationController
 
 
 	def update
+		flash[:notice] = "Document updated"
 	    @document.update(document_params)
 	    redirect_to user_document_path(@document.user, @document)
 	end
 
 
 	def destroy
+		flash[:notice] = "Document destroyed"
 		@document.destroy
 		redirect_to new_user_document_path(@document.user)
 	end

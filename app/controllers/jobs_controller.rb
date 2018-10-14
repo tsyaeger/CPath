@@ -43,6 +43,7 @@ class JobsController < ApplicationController
 		appStr = (params[:q])
 		appBool = appStr.to_s == "true"
 		@job.applied = appBool
+		flash[:notice] = "Applied status changed"
 		@job.save
 		respond_to do |format|
 	      format.html { render :show }
@@ -71,9 +72,15 @@ class JobsController < ApplicationController
 
 
 	def unlink_contact
-		binding.pry
+		# binding.pry
 		contact = Contact.find(params[contact_id])
 		@job.contacts.delete(contact)
+	end	
+
+	def unlink_document
+		# binding.pry
+		document = Document.find(params[document_id])
+		@job.documents.delete(document)
 	end
 
 
@@ -106,12 +113,14 @@ class JobsController < ApplicationController
 
 	def update
 	    @job.update(job_params)
+	    flash[:notice] = "Job updated"
 	    redirect_to user_jobs_path(@job.user)
 	end
 
 
 	def destroy
 		@job.destroy
+		flash[:notice] = "Job destroyed"
 	    redirect_to user_jobs_path(current_user)
 	end
 

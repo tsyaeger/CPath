@@ -5,11 +5,9 @@
 <% po = job.position %>
 <% id = job.id %>
 <h3 class="w3-large">
-	<i class="material-icons w3-large" id='<%= id %>'>keyboard_arrow_down</i>
+	<i class="material-icons w3-large job" id='<%= job.id %>'>keyboard_arrow_down</i>
 	
 <%= link_to "#{co} - #{po}", user_job_path(job.user, job)%>
 </h3>
-<span id='<%= id %>' class='job <%= id %>' style="display: none;" ><%= po %></span>
-
-
+<span id='<%= job.id %>' class='job <%= job.id %>' style="display: none;" >Remove</span>
 

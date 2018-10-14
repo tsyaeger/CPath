@@ -26,6 +26,7 @@ class TasksController < ApplicationController
 		completedBool = completedStr.to_s == "true"
 		@task.completed = completedBool
 		@task.save
+		flash[:notice] = "Task status changed"
 		respond_to do |format|
 	      format.html { render :show }
 	      format.json { render json: @task, status: 200 }
@@ -36,14 +37,8 @@ class TasksController < ApplicationController
 
 	def add_contact
 		# binding.pry
-
-
-
-		c_id = params[:task][:contact_id]
-
-		
+		c_id = params[:task][:contact_id]		
 		contact = Contact.find(c_id)
-
 
 		# if task.contact_id != contact_id
 		# change task.contact_id 
@@ -106,12 +101,14 @@ class TasksController < ApplicationController
 
 	def update
 	    @task.update(task_params)
+	    flash[:notice] = "Task updated"
 	    redirect_to user_task_path(@task.user, @task)
 	end
 
 
 	def destroy
 		@task.destroy
+		flash[:notice] = "Task destroyed"
 	    redirect_to new_user_task_path(current_user)
 	end
 

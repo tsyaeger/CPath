@@ -1,6 +1,13 @@
 
 
-	<h3><%= link_to "<li>#{contact.first_name} #{contact.last_name} - #{contact.workplace}</li><br>".html_safe, user_contact_path(contact.user, contact), :class => "contact-item" %></h3>
 
+<% c_id = contact.id %>
+
+<h3 class="w3-large">
+	<i class="material-icons w3-large contact" id='<%= contact.id %>' data-id='<%= c_id %>'>keyboard_arrow_down</i>
+	<%= link_to "#{contact.first_name} #{contact.last_name} - #{contact.workplace}", user_contact_path(contact.user, contact) %>
+</h3>
+
+<span id='<%= contact.id %>' class='contact <%= contact.id %>' style="display: none;" >Remove</span>
 
 

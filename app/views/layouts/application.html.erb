@@ -18,7 +18,17 @@
     <header>
     </header>
 
-    <%= yield %>
+    <div class="container"  role="main">
+      
+      <div id="flash">
+        <% flash.each do |key,value| %>
+          <div class="flash-alert <%= alert_class(key) %>"><%= value %></div>
+        <% end %>
+      </div>
+
+      <%= yield %>  
+
+    </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   </body>
