@@ -1,10 +1,7 @@
 class ApplicationController < ActionController::Base
 	helper_method :current_user, :logged_in?
-
-	# before_action :authentication_required
-	# skip_before_action :authentication_required, only: [:welcome]
-	# protect_from_forgery with: :exception
-	# helper_method :current_user, :logged_in?, :contact_to_relationship, :error_msg
+	before_action :authentication_required
+	protect_from_forgery with: :exception
 
 
 

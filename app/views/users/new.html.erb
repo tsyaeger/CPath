@@ -1,21 +1,27 @@
 
-<div class='wrapper'>
+
+
+<div id='new-user-container'>
 
 	<%= render "shared/errors", :target => @user %>
 
-	<%= form_for @user do |f| %>
+	<div id='user-form'>
 
-		<%= f.label :username %>
-		<%= f.text_field :username, class: "form-control log-label", required: true %><br>
+		<%= form_for @user do |f| %>
 
-		<%= f.label :password %>
-		<%= f.password_field :password_digest, class: "form-control log-label", required: true %><br>
+			<%= f.label :username %><br>
+			<%= f.text_field :username, required: true %><br>
 
-		<%= f.label :email %>
-		<%= f.email_field :email, class: "form-control log-label", required: true %><br>
+			<%= f.label :password %><br>
+			<%= f.password_field :password_digest, required: true %><br>
 
-		<%= f.submit "Create Account", class: "btn btn-primary" %>
-		
-	<% end %>
+			<%= f.label :email %><br>
+			<%= f.email_field :email, required: true %><br>
+
+			<%= f.submit "Create Account", class: "btn btn-primary" %>
+			
+		<% end %>
+
+	</div>
 
 </div>
