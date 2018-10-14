@@ -21,7 +21,6 @@ class TasksController < ApplicationController
 
 
 	def completed
-		# binding.pry
 		completedStr = (params[:q])
 		completedBool = completedStr.to_s == "true"
 		@task.completed = completedBool

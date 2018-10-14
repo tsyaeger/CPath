@@ -26,7 +26,6 @@
     <div id='docs' class='links-col'>
     	<%= render 'documents/document_dropdown' %>
     	<h2>LINKED DOCUMENTS</h2>
-    	<div id='document-list'></div>
     	<%= render partial: "documents/document", collection: @job.documents || "No Linked Documents" %>
     </div>    
 
@@ -34,7 +33,6 @@
     <div id='contacts' class='links-col'>
 		 <%= render 'contacts/contact_dropdown' %>
     	<h2>LINKED CONTACTS</h2>
-    	<div id='contact-list'></div>
     	<%= render partial: "contacts/contact", collection: @job.contacts || "No Linked Contacts" %>
     </div>    
 
@@ -161,7 +159,14 @@ const linkContact = function() {
 
 		$.ajax({url: `/users/${user_id}/jobs/${job_id}/add_contact`, 
 			data: c_id, 
-			type: "PATCH"})
+			type: "PATCH", 
+            success: function (data) {
+                console.log('data')
+                console.log(data)
+                alert('success') },
+            error: function (data) {
+                alert('no success') }
+        })
 	})
 }
 
@@ -176,7 +181,14 @@ const linkDocument = function() {
 
 		$.ajax({url: `/users/${user_id}/jobs/${job_id}/add_document`,
 		data: d_id,
-		type: "PATCH"})
+		type: "PATCH", 
+        success: function (data) {
+            console.log('data')
+            console.log(data)
+            alert('success') },
+        error: function (data) {
+            alert('no success') }
+        })
 	})
 }
 

@@ -18,6 +18,7 @@ Task.prototype.formatIndex = function() {
     return taskHTML
 }
 
+
 Task.prototype.formatDate = function() {
     let date = new Date(this.due)
     dateString = date.toLocaleDateString()
@@ -35,13 +36,10 @@ Task.prototype.dateDueString = function() {
 }
 
 
-
-
 Task.prototype.completedString = function() {
     let compString = this.completed.toString()
     return `<h3>COMPLETED: ${compString}</h3>`
 }
-
 
 
 Task.prototype.completedButton = function() {
