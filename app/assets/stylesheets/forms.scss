@@ -55,6 +55,8 @@ input[type=text], select {
 
 textarea, select {
     border-radius: 4px;
+
+    margin: 0 0 20px;
 }
 
 
@@ -89,7 +91,7 @@ input[type=submit] {
     background-color: black;
     color: white;
     padding: 12px 20px;
-    margin-top: 35px;
+    margin-top: 20px;
     /*border: 2px solid;*/
     /*border-color: darkgray;*/
     border-radius: 4px;
@@ -102,3 +104,23 @@ input[type=submit]:hover {
 
 }
 
+
+
+
+#small-fields {
+    text-align: center;
+    float: left;
+    width: 40%;
+    padding-top: 35px;
+    border: solid 1px;
+    height: 1200px; /* Should be removed. Only for demonstration */
+}
+
+#large-fields {
+    text-align: center;
+    border: solid 1px;
+    float: left;
+    width: 60%;
+    padding: 35px 30px 0 0;
+    height: 1200px; /* Should be removed. Only for demonstration */
+}

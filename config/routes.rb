@@ -14,6 +14,11 @@ Rails.application.routes.draw do
 	patch '/users/:id/tasks/:id/add_job', to: 'tasks#add_job', as: 'add_task_job'
 
 
+	get '/users/:id/tasks/:id/unlink_contact', to: 'tasks#unlink_contact', as: 'unlink_task_contact'
+	get '/users/:id/tasks/:id/unlink_document', to: 'tasks#unlink_document', as: 'unlink_task_document'
+	get '/users/:id/tasks/:id/unlink_job', to: 'tasks#unlink_job', as: 'unlink_task_job'
+
+
 	get '/users/:id/contacts/:id/add_reference', to: 'contacts#add_reference', as: 'add_reference'
 	get '/users/:id/jobs/:id/applied', to: 'jobs#applied', as: 'applied'
 	get '/users/:id/tasks/:id/completed', to: 'tasks#completed', as: 'completed'

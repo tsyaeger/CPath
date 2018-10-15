@@ -17,3 +17,18 @@ button {
 button:hover {
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
 }
+
+
+.unlink-button {
+    width: 320px;
+    background-color: white;
+    color: black;
+    border: solid black 1px;
+    padding: 12px 20px;
+    margin-top: 20px;
+    /*border: 2px solid;*/
+    /*border-color: darkgray;*/
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 20px;
+}

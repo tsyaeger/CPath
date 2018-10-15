@@ -1,13 +1,4 @@
 
-<style>
-
-
-
-
-
-</style>
-
-
 
 
 
@@ -44,33 +35,39 @@
     
     <div id='docs' class='links-col'>
         <% if @task.document != nil %>   
-            <h3>LINKED DOCUMENT: <%= @task.document.title %></h3>
+            <h2>LINKED DOCUMENT</h2>
+            <h3><%= @task.document.title %></h3><br>
+            <button class='unlink-button' id='unlink-document'>Unlink Document</button>
         <% else %>
             <h3>No linked Document</h3>
+            <%= render 'documents/document_task_dropdown' %>
         <% end %>
-        <%= render 'documents/document_task_dropdown' %>
     </div>    
 
 
     <div id='contacts' class='links-col'>
 
         <% if @task.contact != nil %>   
-            <h3>LINKED CONTACT: <%= @task.contact.last_name %></h3>
+            <h2>LINKED CONTACT </h2>
+            <h3><%= formatted_name(@task.contact) %></h3><br>
+            <button class='unlink-button' id='unlink-contact'>Unlink Contact</button>
         <% else %>
             <h3>No linked contact</h3>
+            <%= render 'contacts/contact_task_dropdown' %>
         <% end %>
-        <%= render 'contacts/contact_task_dropdown' %>
         
     </div>    
 
 
     <div id='Jobs' class='links-col'>
         <% if @task.job != nil %>   
-            <h3>LINKED JOB: <%= @task.job.company %></h3>
+            <h2>LINKED JOB</h2>
+            <h3><%= @task.job.company %></h3><br>
+            <button class='unlink-button' id='unlink-job'>Unlink Job</button>
         <% else %>
             <h3>No linked job</h3>
+            <%= render 'jobs/job_task_dropdown' %>
         <% end %>
-        <%= render 'jobs/job_task_dropdown' %>
     </div>  
 
 
@@ -92,10 +89,41 @@ $(document).ready(function () {
         linkTaskDocument()
         linkTaskJob()
         buttonCompleted(task)
+        unlinkContact()
+        unlinkDocument()
+        unlinkJob()
 
     });
     
 })
+
+
+
+const unlinkContact = function (task) {
+    $('#unlink-contact').on('click', function() {
+        $.get(`/users/${user_id}/tasks/${task_id}/unlink_contact`, function(data) {
+            console.log(data)
+        })
+    })
+}
+
+
+const unlinkDocument = function (task) {
+    $('#unlink-document').on('click', function() {
+        $.get(`/users/${user_id}/tasks/${task_id}/unlink_document`, function(data) {
+            console.log(data)
+        })
+    })
+}
+
+const unlinkJob = function (task) {
+    $('#unlink-job').on('click', function() {
+        $.get(`/users/${user_id}/tasks/${task_id}/unlink_job`, function(data) {
+            console.log(data)
+        })
+    })
+}
+
 
 
 const buttonCompleted = function (task) {

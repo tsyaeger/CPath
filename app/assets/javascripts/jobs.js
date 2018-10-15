@@ -1,6 +1,5 @@
 
 
-// user_id=null
 function Job(job, user_id) {
     this.user_id = user_id
     this.id = job.id
@@ -32,11 +31,13 @@ Job.prototype.appliedButton = function() {
 }
 
 
+
+//Used in other show pages
 Job.prototype.formatSpan = function() {
     let spanItem = `<h3 class="w3-large">
         <i class="material-icons w3-large job" id=${this.id} data-id='${this.id}'>keyboard_arrow_down</i>
         <a href="/users/${this.user_id}/jobs/${this.id}">${this.company} - ${this.position}</a>
-        </h3><span id='${this.id}' class='job remove-job ${this.id}' data-id='${this.id}' style="display: none;" >Remove</span>`
+        </h3><span id='${this.id}' class='job remove-job ${this.id}' data-id='${this.id}' style="display: none;" >Remove</span><br>`
     return spanItem
 }
 

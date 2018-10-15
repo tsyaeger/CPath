@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
-	before_action :set_task, only: [:show, :edit, :update, :destroy, :add_contact, :add_document, :add_job, :completed]
-
+	# before_action :set_task, only: [:show, :edit, :update, :destroy, :add_contact, :add_document, :add_job, :completed, :unlink_contact]
+	before_action :set_task, except: [:index, :filter, :new, :create]
 
 	def index 
 		@tasks = current_user.tasks
@@ -35,13 +35,8 @@ class TasksController < ApplicationController
 
 
 	def add_contact
-		# binding.pry
 		c_id = params[:task][:contact_id]		
 		contact = Contact.find(c_id)
-
-		# if task.contact_id != contact_id
-		# change task.contact_id 
-
 		if !contact.tasks.include?(@task)
 			contact.tasks << @task
 			contact.save
@@ -60,7 +55,6 @@ class TasksController < ApplicationController
 
 
 	def add_job
-		# binding.pry
 		j_id = params[:task][:job_id]
 		job = Job.find(j_id)
 		if !job.tasks.include?(@task)
@@ -68,6 +62,57 @@ class TasksController < ApplicationController
 			job.save
 		end
 	end	
+
+
+
+
+
+	def unlink_contact
+		c = @task.contact 
+		c.tasks.delete(@task)
+		@task.contact_id = nil 
+		c.save
+		@task.save
+
+		flash[:notice] = "Contact removed"
+		respond_to do |format|
+	      format.html { render :show }
+	      format.json { render json: @task, status: 200 }
+	    end
+	end		
+
+	def unlink_document
+		d = @task.document 
+		d.tasks.delete(@task)
+		@task.document_id = nil 
+		d.save
+		@task.save
+		flash[:notice] = "Document removed"
+		respond_to do |format|
+	      format.html { render :show }
+	      format.json { render json: @task, status: 200 }
+	    end
+	end		
+
+	def unlink_job
+		j = @task.job 
+		j.tasks.delete(@task)
+		@task.job_id = nil 
+		j.save
+		@task.save
+		flash[:notice] = "Job removed"
+		respond_to do |format|
+	      format.html { render :show }
+	      format.json { render json: @task, status: 200 }
+	    end
+	end	
+
+
+
+
+
+
+
 
 
 	def new 

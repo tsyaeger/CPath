@@ -52,7 +52,7 @@ Task.prototype.formatSpan = function() {
     let spanItem = `<h3 class="w3-large">
         <i class="material-icons w3-large task" id=${this.id} data-id='${this.id}'>keyboard_arrow_down</i>
         <a href="/users/${this.user_id}/tasks/${this.id}">${this.title} - ${this.formatDate()}</a>
-        </h3><span id='${this.id}' class='task remove-task ${this.id}' data-id='${this.id}' style="display: none;" >Remove</span>`
+        </h3><span id='${this.id}' class='task remove-task ${this.id}' data-id='${this.id}' style="display: none;" >Remove</span><br>`
     return spanItem
 }
 
