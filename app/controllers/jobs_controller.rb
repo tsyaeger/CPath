@@ -1,6 +1,7 @@
 
 class JobsController < ApplicationController
 	before_action :set_job, except: [:index, :filter, :new, :create]
+	skip_before_action :authentication_required
 
 	def index 
 		@jobs = current_user.jobs
@@ -73,14 +74,25 @@ class JobsController < ApplicationController
 
 	def unlink_contact
 		# binding.pry
-		contact = Contact.find(params[contact_id])
+		c_id = params[:q]
+		contact = Contact.find(c_id)
 		@job.contacts.delete(contact)
+		respond_to do |format|
+	      format.html { render :show }
+	      format.json { render json: @job, status: 200 }
+	    end
+		# binding.pry
 	end	
 
 	def unlink_document
 		# binding.pry
-		document = Document.find(params[document_id])
+		d_id = params[:q]
+		document = Document.find(d_id)
 		@job.documents.delete(document)
+		respond_to do |format|
+	      format.html { render :show }
+	      format.json { render json: @job, status: 200 }
+	    end
 	end
 
 

@@ -93,6 +93,12 @@ $( document ).on('turbolinks:load', function() {
 
 		buttonFunc(job)
 
+		docClick()
+		contactClick()
+
+		unlinkContact()
+		unlinkDocument()
+
 
 	});
 })
@@ -161,8 +167,6 @@ const linkContact = function() {
 			data: c_id, 
 			type: "PATCH", 
             success: function (data) {
-                console.log('data')
-                console.log(data)
                 alert('success') },
             error: function (data) {
                 alert('no success') }
@@ -183,8 +187,6 @@ const linkDocument = function() {
 		data: d_id,
 		type: "PATCH", 
         success: function (data) {
-            console.log('data')
-            console.log(data)
             alert('success') },
         error: function (data) {
             alert('no success') }
@@ -195,22 +197,23 @@ const linkDocument = function() {
 
 
 
-// const unlinkContact = function() {
-// 	let contactId = $('#job-contact-ids')
-// 	$('#btn-add-contact').on('click', function(e) {
-// 		e.preventDefault()
-// 		var form = $('#add-contact')
-// 		var action = form.attr('action')
-// 		var c_id = form.serialize()
-
-// 		$.ajax({url: `/users/${user_id}/jobs/${job_id}/add_contact`, 
-// 			data: c_id, 
-// 			type: "PATCH"})
-// 	})
-// }
+const unlinkContact = function() {
+	$('span.remove-contact').on('click', function(e) {
+		let c_id = this.id
+	    $.get(`/users/${user_id}/jobs/${job_id}/unlink_contact?q=${c_id}`, function(data) {
+	    })
+	})
+}
 
 
 
+const unlinkDocument = function() {
+	$('span.remove-document').on('click', function(e) {
+		let d_id = this.id
+	    $.get(`/users/${user_id}/jobs/${job_id}/unlink_document?q=${d_id}`, function(data) {
+	    })
+	})
+}
 
 
 
@@ -245,69 +248,48 @@ $('#add-applied').on('click', function() {
 
 
 
+const docClick = function() {
+	var clicks = 0
 
-var clicks = 0
+	$("i.doc").on('click', function() {
+		var id = this.id
+		console.log('doc')
 
-$(function () {
-
-  $("i.doc").on('click', function() {
-    var id = this.id
-    console.log('doc')
-
-  	if (clicks % 2 == 0) {
-	    $('.document.'+id).css('display', 'block')
-    	clicks++
-	}
+	if (clicks % 2 == 0) {
+		$('.document.'+id).css('display', 'block')
+		clicks++
+		}
 	else {
 		$('.document.'+id).css('display', 'none')
 		clicks++
-	} 
-  });
-
-});
-
+		} 
+	});
+}
 
 
-var clicks = 0
 
-$(function () {
+const contactClick = function() {
+	var clicks = 0
 
-  $("i.contact").on('click', function() {
-    var id = this.id
-    console.log('contact')
+	$("i.contact").on('click', function() {
+		var id = this.id
+		console.log('contact')
 
-  	if (clicks % 2 == 0) {
-	    $('.contact.'+id).css('display', 'block')
-    	clicks++
-	}
+	if (clicks % 2 == 0) {
+		$('.contact.'+id).css('display', 'block')
+		clicks++
+		}
 	else {
 		$('.contact.'+id).css('display', 'none')
 		clicks++
-	} 
-  });
+		} 
+	});
+}
 
-});
 
 
-var clicks = 0
 
-$(function () {
 
-  $("i.task").on('click', function() {
-    var id = this.id
-    console.log('task')
-
-  	if (clicks % 2 == 0) {
-	    $('.task.'+id).css('display', 'block')
-    	clicks++
-	}
-	else {
-		$('.task.'+id).css('display', 'none')
-		clicks++
-	} 
-  });
-
-});
 
 
 

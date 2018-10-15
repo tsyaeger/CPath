@@ -4,8 +4,8 @@ Rails.application.routes.draw do
 	patch '/users/:id/jobs/:id/add_document', to: 'jobs#add_document', as: 'add_job_document'
 
 	
-	patch '/users/:id/jobs/:id/unlink_contact' => 'jobs#unlink_contact', as: 'unlink_job_contact'
-	patch '/users/:id/jobs/:id/unlink_document' => 'jobs#unlink_document', as: 'unlink_job_document'
+	get '/users/:id/jobs/:id/unlink_contact', to: 'jobs#unlink_contact', as: 'unlink_job_contact'
+	get '/users/:id/jobs/:id/unlink_document', to: 'jobs#unlink_document', as: 'unlink_job_document'
 
 
 
