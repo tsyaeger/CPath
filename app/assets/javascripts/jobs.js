@@ -20,8 +20,6 @@ Job.prototype.formatJobIndex = function() {
 
 
 
-
-
 //Used in job show page
 Job.prototype.appliedString = function() {
     let appString = this.applied.toString()
@@ -30,30 +28,9 @@ Job.prototype.appliedString = function() {
 
 Job.prototype.appliedButton = function() {
     let text = this.applied ? 'Mark Not Applied' : 'Mark Applied'
-    // return $('<button>', {id: 'add-applied', data: {bool: applied}, text: text, className: 'foo'})
     return `<button id='add-applied' data-bool="${this.applied}">${text}</button><br><br>`
 }
 
 
-
-
-Job.prototype.datePosted = function() {
-    let dateString = 'no date entered'
-    if (this.date_posted) {
-        let date = new Date(this.date_posted)
-        dateString = date.toLocaleDateString()
-    }
-    return `<h3>POSTED DATE: ${dateString}</h3>`
-}
-
-Job.prototype.jobLink = function() {
-    return `<h3 class='link'><a href="${this.url}">Link to Posting</a></h3>`
-}
-
-Job.prototype.jobTitle = function() {
-    return `<span class="headline pg-btn btn-previous"><button>Previous</button></span>
-    <h1 id='job-company-position' class='headline'>${this.company} - ${this.position}</h1>
-    <span class="headline pg-btn btn-next"><button>Next</button></span>`
-}
 
 

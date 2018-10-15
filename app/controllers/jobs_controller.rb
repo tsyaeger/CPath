@@ -1,7 +1,5 @@
-
 class JobsController < ApplicationController
 	before_action :set_job, except: [:index, :filter, :new, :create]
-	skip_before_action :authentication_required
 
 	def index 
 		@jobs = current_user.jobs
@@ -31,7 +29,6 @@ class JobsController < ApplicationController
 
 
 	def filter
-		# binding.pry
 		@filtered_jobs = current_user.jobs.filtered_job(params[:q])
 		respond_to do |format|
 			format.json { render json: { html: render_to_string("jobs/_filtered_jobs.html.erb", layout: false, locals: { filtered_jobs: @filtered_jobs })} }
@@ -40,7 +37,6 @@ class JobsController < ApplicationController
 
 
 	def applied
-		# binding.pry
 		appStr = (params[:q])
 		appBool = appStr.to_s == "true"
 		@job.applied = appBool
@@ -73,7 +69,6 @@ class JobsController < ApplicationController
 
 
 	def unlink_contact
-		# binding.pry
 		c_id = params[:q]
 		contact = Contact.find(c_id)
 		@job.contacts.delete(contact)
@@ -81,11 +76,9 @@ class JobsController < ApplicationController
 	      format.html { render :show }
 	      format.json { render json: @job, status: 200 }
 	    end
-		# binding.pry
 	end	
 
 	def unlink_document
-		# binding.pry
 		d_id = params[:q]
 		document = Document.find(d_id)
 		@job.documents.delete(document)
@@ -103,7 +96,6 @@ class JobsController < ApplicationController
 
 
 	def create
-		# must fix null posted_date issue
 		@job = Job.create(job_params)
 		@job.user = current_user
 		@job.save 

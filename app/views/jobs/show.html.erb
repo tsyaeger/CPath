@@ -4,15 +4,20 @@
 
 
 <div id='top'>
-	<div id='show-title'></div>
-	<div id='job-link'></div>
-	<div id='job-date-posted'></div>
+
+
+
+	<span class="headline pg-btn btn-previous"><button>Previous</button></span>
+    <h1 id='job-company-position' class='headline'><%= @job.company %> - <%= @job.position %></h1>
+    <span class="headline pg-btn btn-next"><button>Next</button></span>
+
+
+	<h3 class='link'><a href="<%= @job.url %>">Link to Posting</a></h3>
+	<h3>POSTED DATE: <%= format_date(@job.date_posted) %></h3>
 
 	
 	<div id='job-applied'></div>
 	<div id='applied-btn'></div>
-
-
 
 
 	<td><%= link_to "Edit", edit_user_job_path(@job.user, @job) %></td>
@@ -46,10 +51,7 @@
 
     </div>  
 
-
 </div>
-
-
 
 
 <div class='bottom'>
@@ -83,7 +85,7 @@ $( document ).on('turbolinks:load', function() {
 	$.get(`/users/${user_id}/jobs/${job_id}.json`, function(data) {
 		job = new Job(data, user_id)
 
-	    displayJobDetails(job)
+	    displayAppliedDetails(job)
 
 	    nextButton()
 	    previousButton()
@@ -91,7 +93,7 @@ $( document ).on('turbolinks:load', function() {
 		linkContact()
 		linkDocument()
 
-		buttonFunc(job)
+		buttonApplied(job)
 
 		docClick()
 		contactClick()
@@ -108,9 +110,8 @@ $( document ).on('turbolinks:load', function() {
 
 
 
-const buttonFunc = function (job) {
+const buttonApplied = function (job) {
 	$('#add-applied').on('click', function() {
-		console.log(!job.applied)
 
 	    $.get(`/users/${user_id}/jobs/${job_id}/applied?q=${!job.applied}`, function(data) {
 	    })
@@ -120,20 +121,10 @@ const buttonFunc = function (job) {
 
 
 
-const displayJobDetails = function (job) {
-	$('#show-title').append(job.jobTitle())
-	$('#job-date-posted').append(job.datePosted())
-	$('#job-link').append(job.jobLink())
+const displayAppliedDetails = function (job) {
 	$('#job-applied').append(job.appliedString())
-
 	$('#applied-btn').append(job.appliedButton())
 }
-
-
-
-
-
-
 
 
 
@@ -206,7 +197,6 @@ const unlinkContact = function() {
 }
 
 
-
 const unlinkDocument = function() {
 	$('span.remove-document').on('click', function(e) {
 		let d_id = this.id
@@ -230,19 +220,6 @@ const getDocument = function (data) {
         appendDocument(document)
     })
 }
-
-
-
-user_id = $(".user-id").data("id")
-job_id = $(".job-id").data("id")
-
-$('#add-applied').on('click', function() {
-
-    $.get(`/users/${user_id}/jobs/${job_id}/applied?q=${'true'}`, function(data) {
-
-    })
-})
-
 
 
 
