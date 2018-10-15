@@ -6,22 +6,24 @@
 <div id='top'>
 
 
-
 	<span class="headline pg-btn btn-previous"><button>Previous</button></span>
     <h1 id='job-company-position' class='headline'><%= @job.company %> - <%= @job.position %></h1>
     <span class="headline pg-btn btn-next"><button>Next</button></span>
 
+	<div class='details-container'>
 
-	<h3 class='link'><a href="<%= @job.url %>">Link to Posting</a></h3>
-	<h3>POSTED DATE: <%= format_date(@job.date_posted) %></h3>
+		<h3 class='link'><a href="<%= @job.url %>">Link to Posting</a></h3>
+		<h3>POSTED DATE: <%= format_date(@job.date_posted) %></h3>
 
-	
-	<div id='job-applied'></div>
-	<div id='applied-btn'></div>
+		
+		<div id='job-applied'></div>
+		<div id='applied-btn'></div>
 
 
-	<td><%= link_to "Edit", edit_user_job_path(@job.user, @job) %></td>
-    <td><%= link_to "Delete", user_job_path(@job.user, @job), :method => :delete %></td>
+		<td><%= link_to "Edit", edit_user_job_path(@job.user, @job) %></td>
+	    <td><%= link_to "Delete", user_job_path(@job.user, @job), :method => :delete %></td>
+
+	</div>
 
 </div>
 
@@ -31,14 +33,14 @@
     <div id='docs' class='links-col'>
     	<%= render 'documents/document_dropdown' %>
     	<h2>LINKED DOCUMENTS</h2>
-    	<%= render partial: "documents/document", collection: @job.documents || "No Linked Documents" %>
+    	<div id='job-documents'></div>
     </div>    
 
 
     <div id='contacts' class='links-col'>
 		 <%= render 'contacts/contact_dropdown' %>
     	<h2>LINKED CONTACTS</h2>
-    	<%= render partial: "contacts/contact", collection: @job.contacts || "No Linked Contacts" %>
+    	<div id='job-contacts'></div>
     </div>    
 
 
@@ -83,29 +85,46 @@ $( document ).on('turbolinks:load', function() {
 	job_id = $(".job-id").data("id")
 
 	$.get(`/users/${user_id}/jobs/${job_id}.json`, function(data) {
+
 		job = new Job(data, user_id)
 
 	    displayAppliedDetails(job)
+		buttonApplied(job)
+
+		getDocuments(data)
+		getContacts(data)
 
 	    nextButton()
 	    previousButton()
 
 		linkContact()
 		linkDocument()
-
-		buttonApplied(job)
-
-		docClick()
-		contactClick()
-
+		
 		unlinkContact()
 		unlinkDocument()
 
-
+		docClick()
+		contactClick()
 	});
 })
 
 
+const getDocuments = function (data) {
+    	console.log(data)
+    jQuery(data['documents']).each(function(i, document){
+        let d = new Document(document, user_id)
+        $("#job-documents").append(d.formatSpan())
+    })
+}
+
+
+const getContacts = function (data) {
+    	console.log(data)
+    jQuery(data['contacts']).each(function(i, contact){
+        let c = new Contact(contact, user_id)
+        $("#job-contacts").append(c.formatSpan())
+    })
+}
 
 
 
@@ -117,8 +136,6 @@ const buttonApplied = function (job) {
 	    })
 	})
 }
-
-
 
 
 const displayAppliedDetails = function (job) {
@@ -206,20 +223,6 @@ const unlinkDocument = function() {
 }
 
 
-
-
-
-const appendDocument = function (document) {
-	var descriptionText = "<p>" + document['title'] + "</p>"
-    $("#document-list").append(descriptionText);
-}
-
-
-const getDocument = function (data) {
-    jQuery(data['documents']).each(function(i, document){
-        appendDocument(document)
-    })
-}
 
 
 

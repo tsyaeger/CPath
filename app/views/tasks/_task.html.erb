@@ -1,14 +1,5 @@
 
 
 
-<h3 class="w3-large">
-	<i id='<%= task.id %>' class="material-icons w3-large task" >keyboard_arrow_down</i>	
-	<%= link_to "#{task.title} - #{format_date(task.due_date)}", user_task_path(task.user, task) %>
-</h3>
+<h3><%= link_to "<li>#{task.title} - #{format_date(task.due_date)}</li><br>".html_safe, user_task_path(task.user, task), :class => "bullet-item" %></h3>
 
-<% if task.completed %>
-	<span id='<%= task.id %>' class='task <%= task.id %>' style="display: none;" >Mark Not Completed</span>
-	
-<% else %>
-	<span id='<%= task.id %>' class='task <%= task.id %>' style="display: none;" >Mark Completed</span>
-<% end %>

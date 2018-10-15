@@ -28,3 +28,12 @@ Contact.prototype.referenceButton = function() {
     let text = this.reference ? 'Remove From References' : 'Mark As Reference'
     return `<button id='add-reference' data-bool="${this.reference}">${text}</button><br><br>`
 }
+
+
+Contact.prototype.formatSpan = function() {
+    let spanItem = `<h3 class="w3-large">
+        <i class="material-icons w3-large contact" id=${this.id} data-id='${this.id}'>keyboard_arrow_down</i>
+        <a href="/users/${this.user_id}/contacts/${this.id}">${this.concatName()}</a>
+        </h3><span id='${this.id}' class='contact remove-contact ${this.id}' data-id='${this.id}' style="display: none;" >Remove</span>`
+    return spanItem
+}

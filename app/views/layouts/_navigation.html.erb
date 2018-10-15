@@ -1,20 +1,23 @@
-    
-<% if logged_in? %>
-  <ul>
-    <li><a href="<%= user_path(current_user) %>"/>Home</a></li>
-    <li><a href="<%= new_user_task_path(current_user) %>"/>Tasks</a></li>
-    <li><a href="<%= user_jobs_path(current_user) %>"/>Positions</a></li>
-    <li><a href="<%= new_user_contact_path(current_user) %>"/>Network</a></li>
-    <li><a href="<%= new_user_document_path(current_user) %>"/>Docs</a></li>
-    <li><a class="navbar-brand" rel="nofollow" data-method="delete" href="/logout">Log Out</a><li>
-    <li style="float:right"><a href="<%= user_path(current_user) %>"/>hi, <%= current_user.username %></a></li>
-  </ul>
-<% else %> 
-  <ul>
-    <li><a class="navbar-brand" href="<%= new_user_url %>"/>Sign Up</a></li>
-    <li><a class="navbar-brand" href="/signin">Log in</a></li>
-</ul>
-<% end -%>
+ 
 
+<div id='nav-container'>
 
+  <% if logged_in? %>
+    <ul>
+      <li><a href="<%= user_path(current_user) %>"/>Home</a></li>
+      <li><a href="<%= new_user_task_path(current_user) %>"/>Tasks</a></li>
+      <li><a href="<%= user_jobs_path(current_user) %>"/>Positions</a></li>
+      <li><a href="<%= new_user_contact_path(current_user) %>"/>Network</a></li>
+      <li><a href="<%= new_user_document_path(current_user) %>"/>Docs</a></li>
+      <li><a class="navbar-brand" rel="nofollow" data-method="delete" href="/logout">Log Out</a><li>
+      <li style="float:right"><a href="<%= user_path(current_user) %>"/>hi, <%= current_user.username %></a></li>
+    </ul>
+  <% else %> 
+    <ul>
+      <li><a class="navbar-brand" href="<%= new_user_url %>"/>Sign Up</a></li>
+      <li><a class="navbar-brand" href="/signin">Log in</a></li>
+    </ul>
+  <% end -%>
+
+</div>
 

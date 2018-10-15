@@ -5,32 +5,56 @@
 
 
 <div id='top'>
+
+
 	<h1><%= @contact.first_name %> <%= @contact.last_name %></h1>
-	<h3>WORKPLACE: <%= @contact.workplace %></h3>
-	<h3>EMAIL: <%= @contact.email %></h3>
-	<h3>PHONE: <%= @contact.phone %></h3>
+
+	<div class='details-container'>
+		<h3>WORKPLACE: <%= @contact.workplace %></h3>
+		<h3>EMAIL: <%= @contact.email %></h3>
+		<h3>PHONE: <%= @contact.phone %></h3>
 
 
-	<div id='contact_reference'></div>
-	<div id='reference-btn'></div>
+		<div id='contact_reference'></div>
+		<div id='reference-btn'></div>
 
 
-   <td><%= link_to "Edit", edit_user_contact_path(@contact.user, @contact) %></td>
-    <td><%= link_to "Delete", user_contact_path(@contact.user, @contact), :method => :delete %></td>
+	   <td><%= link_to "Edit", edit_user_contact_path(@contact.user, @contact) %></td>
+	    <td><%= link_to "Delete", user_contact_path(@contact.user, @contact), :method => :delete %></td>
+
+	</div>
+
 </div>
 
 
 <div id='mid'>
-
+      
     <div id='jobs' class='col-2'>
         <h2>LINKED JOBS</h2>
-        <%= render partial: "jobs/job", collection: @contact.jobs || "No Linked Jobs" %>
+
+        <div class='linked-items'>
+            <% if @contact.jobs.length > 0 %>
+                <%= render partial: "jobs/job", collection: @contact.jobs || "No Linked Jobs" %>
+            <% else %>
+                <h3>No linked jobs</h3>
+            <% end %>
+        </div>
+
     </div>
 
-    <div id='tasks' class='col2'>
-		<h2>TASKS</h2>
-		<%= render partial: "tasks/task", collection: @contact.tasks || "No Linked Tasks" %>
-	</div>
+
+    <div id='tasks' class='col-2'>
+        <h2>TASKS</h2>
+
+        <div class='linked-items'>
+            <% if @contact.tasks.length > 0 %>
+                <%= render partial: "tasks/task", collection: @contact.tasks || "No Linked Tasks" %>
+            <% else %>
+                <h3>No linked tasks</h3>
+            <% end %>
+        </div>
+
+    </div>
 
 </div>
 

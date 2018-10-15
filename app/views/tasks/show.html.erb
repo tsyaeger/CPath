@@ -1,4 +1,15 @@
 
+<style>
+
+
+
+
+
+</style>
+
+
+
+
 
 <div class='user-id' data-id="<%= @task.user.id %>"></div>
 <div class='task-id' data-id="<%= @task.id %>"></div>
@@ -6,19 +17,22 @@
 
 <div id='top'>
 
-	<h1><%= @task.title %></h1>
-	<h3><%= @task.description %></h3>
+    <h1><%= @task.title %></h1>
 
-    <div id='task-due-date'></div>
-    <div id='task-completed-string'></div>
+    <div class='details-container'>
+    	<h3><%= @task.description %></h3>
 
-    <div id='add-completed'></div>
-    <div id='completed-btn'></div>
+        <div id='task-due-date'></div>
+        <div id='task-completed-string'></div>
+
+        <div id='add-completed'></div>
+        <div id='completed-btn'></div>
 
 
-    <td><%= link_to "Edit", edit_user_task_path(@task.user, @task) %></td>
-    <td><%= link_to "Delete", user_task_path(@task.user, @task), :method => :delete %></td>
+        <td><%= link_to "Edit", edit_user_task_path(@task.user, @task) %></td>
+        <td><%= link_to "Delete", user_task_path(@task.user, @task), :method => :delete %></td>
 
+    </div>
 
 </div>
 
