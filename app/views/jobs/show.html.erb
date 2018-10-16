@@ -58,17 +58,21 @@
 
 	<div class='col-5'>.</div>
 
-	<div class='col-4 left'>
+	<div class='col-4 left-col'>
 		<% if !!@job.job_desc %>
 			<h2> View Job Description </h2>
 			<h3><%= @job.job_desc %></h3>
+		<% else %>
+			<h2>This job has no job description<h2>
 		<% end %>
 	</div>
 
-	<div class='col-4 right'>	
+	<div class='col-4 right-col'>	
 		<% if !!@job.co_desc %>
 			<h2> View Company Description </h2>
 			<h3><%= @job.co_desc %></h3>
+		<% else %>
+			<h2>This job has no company description<h2>
 		<% end %>
 	</div>
 

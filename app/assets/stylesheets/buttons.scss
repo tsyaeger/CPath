@@ -32,3 +32,9 @@ button:hover {
     cursor: pointer;
     font-size: 20px;
 }
+
+
+.right-button {
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+}
