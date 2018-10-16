@@ -1,58 +1,58 @@
 
 
-    <div id='new-job-form'>
+<div id='new-job-form'>
 
 
-        <div id="small-fields">
+    <div id="small-fields">
 
-        <%= form_for [@job.user, @job] do |f| %>
+    <%= form_for [@job.user, @job] do |f| %>
 
-            <div class="field">
-                <%= f.label :company, "Company Name" %><br>
-                <%= f.text_field :company, id: "company" %>
-            </div>
-
-            <div class="field">
-                <%= f.label :position %><br>
-                <%= f.text_field :position, id: "position" %>
-            </div>
-
-            <div class="field">
-                <%= f.label :url, "Link to Posting" %><br>
-                <%= f.text_field :url, id: "url" %>
-            </div>            
-
-            <div class="field">
-                <%= f.label :date_posted %><br>
-                <%= f.date_field :date_posted, id: "date_posted" %>
-            </div> 
-
-
-
-
-            <div class="actions">
-                <%= f.submit "SAVE" %>
-            </div>
-
+        <div class="field">
+            <%= f.label :company, "Company Name" %><br>
+            <%= f.text_field :company, id: "company" %>
         </div>
 
-
-        <div id="large-fields">           
-
-            <div class="field">
-                <%= f.label :job_desc, "Job Description" %><br>
-                <%= f.text_area :job_desc, id: "job_desc", cols: 120, rows: 13 %>
-            </div>            
-
-            <div class="field">
-                <%= f.label :co_desc, "Company Notes" %><br>
-                <%= f.text_area :co_desc, id: "co_desc", cols: 120, rows: 10 %>
-            </div>
-
-            <br>
-
+        <div class="field">
+            <%= f.label :position %><br>
+            <%= f.text_field :position, id: "position" %>
         </div>
 
-        <% end %>
+        <div class="field">
+            <%= f.label :url, "Link to Posting" %><br>
+            <%= f.text_field :url, id: "url" %>
+        </div>            
+
+        <div class="field">
+            <%= f.label :date_posted %><br>
+            <%= f.date_field :date_posted, id: "date_posted" %>
+        </div> 
+
+
+
+
+        <div class="actions">
+            <%= f.submit "SAVE" %>
+        </div>
 
     </div>
+
+
+    <div id="large-fields">           
+
+        <div class="field job-desc">
+            <%= f.label :job_desc, "Job Description" %><br>
+            <%= f.text_area :job_desc, id: "job_desc"%>
+        </div>            
+
+        <div class="field co-desc">
+            <%= f.label :co_desc, "Company Notes" %><br>
+            <%= f.text_area :co_desc, id: "co_desc" %>
+        </div>
+
+        <br>
+
+    </div>
+
+    <% end %>
+
+</div>

@@ -22,9 +22,7 @@
 
 <div class="column-3">
     <h1>Contacts</h1>
-
 	    <%= render partial: "contact", collection: @contacts || "No Contacts"%>
-
     </div>
 </div>
 
@@ -44,6 +42,7 @@
 
 
 $("form").on('submit', function (e) {
+
 	e.preventDefault()
 	var $form = $(this)
 	var action = $form.attr('action')
@@ -56,15 +55,13 @@ $("form").on('submit', function (e) {
 		method: 'POST', 
 	    success: function (data) {
 			alert('success') 
-			$("#contact-list").append(data.html)},
+			$("#contact-list").append(data.html),
+			$("#new_contact")[0].reset();
+		},
 		error: function (data) {
 			alert('no success') }
 	})
 })
-
-
-
-
 
 
 

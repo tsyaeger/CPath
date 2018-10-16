@@ -5,9 +5,9 @@
   <% if logged_in? %>
     <ul>
       <li><a href="<%= user_path(current_user) %>"/>Home</a></li>
+      <li><a href="<%= new_user_contact_path(current_user) %>"/>Contacts</a></li>
+      <li><a href="<%= user_jobs_path(current_user) %>"/>Jobs</a></li>
       <li><a href="<%= new_user_task_path(current_user) %>"/>Tasks</a></li>
-      <li><a href="<%= user_jobs_path(current_user) %>"/>Positions</a></li>
-      <li><a href="<%= new_user_contact_path(current_user) %>"/>Network</a></li>
       <li><a href="<%= new_user_document_path(current_user) %>"/>Docs</a></li>
       <li><a class="navbar-brand" rel="nofollow" data-method="delete" href="/logout">Log Out</a><li>
       <li style="float:right"><a href="<%= user_path(current_user) %>"/>hi, <%= current_user.username %></a></li>

@@ -3,40 +3,51 @@
 
 <div id='job-index-wrapper'>
 
-  <h1>POSITIONS</h1>
-  <button><%= link_to "Add New Position", new_user_job_path %></button><br><br>
 
+  <% if @jobs.length > 0 %>
 
-  <table>
-    <tr>
-      <th>Company</th>
-      <th>Position</th>
-      <th>Date Posted</th>
-      <th>Date Saved</th>
-      <th>Applied</th>
-      <th>Upcoming Tasks</th>
-      <th>Linked Contacts</th>
-      <th></th>
-      <th></th>
-    </tr>
+    <h1>POSITIONS</h1>
+    <button><%= link_to "Add New Position", new_user_job_path %></button><br><br>
 
-    <% @jobs.each do |job| %>
-     
+      <table>
+        <tr>
+          <th>Company</th>
+          <th>Position</th>
+          <th>Date Posted</th>
+          <th>Date Saved</th>
+          <th>Applied</th>
+          <th>Upcoming Tasks</th>
+          <th>Linked Contacts</th>
+          <th></th>
+          <th></th>
+        </tr>
 
-  	  <tr>
-  	    <td><%= link_to job.company, user_job_path(job.user, job) %></td>
-  	    <td><%= link_to job.position, user_job_path(job.user, job) %></td>
-  	    <td><%= format_date(job.date_posted) %></td>
-        <td><%= format_date(job.created_at) %></td>
-        <td><%= job.applied.to_s == 'true' %></td>
-        <td><%= job.tasks.length %> upcoming</td>
-        <td><%= job.contacts.length %> contacts</td>
-  	    <td><%= link_to "Edit", edit_user_job_path(job.user, job) %></td>
-  	    <td><%= link_to "Delete", user_job_path(job.user, job), :method => :delete %></td>
-  	  </tr>
-    <% end %>
+        <% @jobs.each do |job| %>
+        
+      	  <tr>
+      	    <td><%= link_to job.company, user_job_path(job.user, job) %></td>
+      	    <td><%= link_to job.position, user_job_path(job.user, job) %></td>
+      	    <td><%= format_date(job.date_posted) %></td>
+            <td><%= format_date(job.created_at) %></td>
+            <td><%= job.applied.to_s == 'true' %></td>
+            <td><%= job.tasks.length %> upcoming</td>
+            <td><%= job.contacts.length %> contacts</td>
+      	    <td><%= link_to "Edit", edit_user_job_path(job.user, job) %></td>
+      	    <td><%= link_to "Delete", user_job_path(job.user, job), :method => :delete %></td>
+      	  </tr>
+        <% end %>
 
-  </table>
+      </table>
+
+  <% else %>
+
+    <div id='top'>
+      <h1>YOU HAVE NO SAVED POSITIONS</h1>
+      <button><%= link_to "Add New Position", new_user_job_path %></button><br><br>
+    </div>
+
+  <% end %>
+
 
 </div>
 

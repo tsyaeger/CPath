@@ -1,5 +1,4 @@
 
-
 <%= form_for [@task.user, @task], :url => user_task_path(@task.user, @task), :html => {:id => "add-document", :method => :post} do |f| %>
 
 	<p><%= f.collection_select :document_id, @task.user.documents, :id, :title, {:include_blank => 'choose document'} %></p>	
@@ -7,4 +6,3 @@
 	<%= f.submit "Link Document", {id: 'btn-add-document'} %>
 
 <% end %>
-

@@ -1,7 +1,5 @@
 
 
-
-
 <div class='user-id' data-id="<%= @task.user.id %>"></div>
 <div class='task-id' data-id="<%= @task.id %>"></div>
 
@@ -27,16 +25,14 @@
 
 </div>
 
+
+
 <div id='mid'>
 
-
-
-
-    
     <div id='docs' class='links-col'>
         <% if @task.document != nil %>   
             <h2>LINKED DOCUMENT</h2>
-            <h3><%= @task.document.title %></h3><br>
+            <h3><%= link_to @task.document.title, user_document_path(@task.user, @task.document) %></h3><br>
             <button class='unlink-button' id='unlink-document'>Unlink Document</button>
         <% else %>
             <h3>No linked Document</h3>
@@ -49,7 +45,7 @@
 
         <% if @task.contact != nil %>   
             <h2>LINKED CONTACT </h2>
-            <h3><%= formatted_name(@task.contact) %></h3><br>
+            <h3><%= link_to "#{formatted_name(@task.contact)}", user_contact_path(@task.user, @task.contact) %></h3><br>
             <button class='unlink-button' id='unlink-contact'>Unlink Contact</button>
         <% else %>
             <h3>No linked contact</h3>
@@ -62,14 +58,13 @@
     <div id='Jobs' class='links-col'>
         <% if @task.job != nil %>   
             <h2>LINKED JOB</h2>
-            <h3><%= @task.job.company %></h3><br>
+            <h3><%= link_to @task.job.company, user_job_path(@task.user, @task.job) %></h3><br>
             <button class='unlink-button' id='unlink-job'>Unlink Job</button>
         <% else %>
             <h3>No linked job</h3>
             <%= render 'jobs/job_task_dropdown' %>
         <% end %>
     </div>  
-
 
 </div>
 
@@ -129,6 +124,7 @@ const unlinkJob = function (task) {
 const buttonCompleted = function (task) {
     $('#completed-btn').on('click', function() {
         $.get(`/users/${user_id}/tasks/${task_id}/completed?q=${!task.completed}`, function(data) {
+            displayTaskDetails()
         })
     })
 }
@@ -168,7 +164,6 @@ const linkTaskContact = function() {
 
 
 const linkTaskDocument = function() {
-    let documentId = $('#task-document-ids') //NECESSARY?
     $('#btn-add-document').on('click', function(e) {
         e.preventDefault()
         var form = $('#add-document')
@@ -184,8 +179,6 @@ const linkTaskDocument = function() {
                 alert('success') },
             error: function (data) {
                 alert('no success') }
-
-
         })
     })
 }

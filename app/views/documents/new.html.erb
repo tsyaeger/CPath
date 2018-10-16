@@ -2,13 +2,16 @@
 
 <div class='column-3'>
 
+	<% if @documents.length > 0 %>
+		<% groupDoctype(@documents).each do |d| %>
+			<h1 class='doctype-grp'><%= d[0].pluralize(2) %></h1>
 
-	<% Document.groupDoctype.each do |d| %>
-		<h1 class='doctype-grp'><%= d[0].pluralize(2) %></h1>
-
-		<% d[1].each do |doc| %>
-			<h3><%= link_to "<li>#{doc.title}</li><br>".html_safe, user_document_path(doc.user, doc), :class => "bullet-item" %></h3>
-		<% end %> 
+			<% d[1].each do |doc| %>
+				<h3><%= link_to "<li>#{doc.title}</li><br>".html_safe, user_document_path(doc.user, doc), :class => "bullet-item" %></h3>
+			<% end %> 
+		<% end %>
+	<% else %>
+		<h1>DOCUMENTS BY TYPE</h1>
 	<% end %>
 
 </div>
@@ -18,12 +21,9 @@
 
 <div class='column-3'>
     <h1>All Documents</h1>
-
-    <div id='document-list'>
     <%= render partial: "document", collection: @documents || "No Documents"%>
-
-    	
     </div>
+
 </div>
 
 
@@ -51,11 +51,6 @@ $("form").on('submit', function (e) {
 	var action = $form.attr('action')
 	var params = $form.serialize()
 
-	console.log('action:')
-	console.log(action)
-	console.log('params:')
-	console.log(params)
-  // debugger
 
 	$.ajax({
 		url: action,
@@ -63,17 +58,14 @@ $("form").on('submit', function (e) {
 		datatype: 'json',
 		method: 'POST', 
 	    success: function (data) {
-	    	console.log('data')
-	    	console.log(data)
 			alert('success') 
-			$("#document-list").append(data.html)},
+			$("#document-list").append(data.html),
+			$("#new_document")[0].reset();
+		},
 		error: function (data) {
 			alert('no success') }
 	})
 })
-
-
-
 
 
 

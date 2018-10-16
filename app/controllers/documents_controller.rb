@@ -30,7 +30,7 @@ class DocumentsController < ApplicationController
 		@document.user = current_user
 		@document.save 
 		respond_to do |format|
-			format.json { render json: { html: render_to_string("document/_document.html.erb", layout: false, locals: { document: @document })} }
+			format.json { render json: { html: render_to_string("documents/_document.html.erb", layout: false, locals: { document: @document })} }
 		end
 	end
 

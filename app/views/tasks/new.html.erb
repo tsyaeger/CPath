@@ -53,34 +53,13 @@ $("form").on('submit', function (e) {
 	    	console.log('data')
 	    	console.log(data)
 			alert('success') 
-			$("#task-list").append(data.html)},
+			$("#task-list").append(data.html),
+			$("#new_task")[0].reset();
+		},
 		error: function (data) {
 			alert('no success') }
 	})
 })
-
-
-
-var clicks = 0
-
-$(function () {
-
-  $("i.task").on('click', function() {
-    var id = this.id
-    console.log(id)
-
-  	if (clicks % 2 == 0) {
-	    $('.task.'+id).css('display', 'block')
-    	clicks++
-	}
-	else {
-		$('.task.'+id).css('display', 'none')
-		clicks++
-	} 
-  });
-
-});
-
 
 
 
