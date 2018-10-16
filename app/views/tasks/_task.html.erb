@@ -5,6 +5,6 @@
 	<h3><%= link_to "<li>#{task.title} - #{format_date(task.due_date)}</li><br>".html_safe, user_task_path(task.user, task), :class => "bullet-item" %></h3>
 
 <% else %>
-	<h3><i class="material-icons">check</i><%= link_to "#{task.title} - #{format_date(task.due_date)}<br>".html_safe, user_task_path(task.user, task), :class => "check-item" %></h3>
+	<h3><i class="material-icons">check</i><%= link_to "#{task.title} - #{format_date(task.due_date)}<br>".html_safe, user_task_path(task.user, task), :class => "check-item" %></h3><br>
 
 <% end %>

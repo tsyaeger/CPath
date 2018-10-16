@@ -1,5 +1,4 @@
 class TasksController < ApplicationController
-	# before_action :set_task, only: [:show, :edit, :update, :destroy, :add_contact, :add_document, :add_job, :completed, :unlink_contact]
 	before_action :set_task, except: [:index, :filter, :new, :create]
 
 	def index 

@@ -1,6 +1,10 @@
 
 
 
+h1, h2 {
+	text-transform: uppercase;
+	text-shadow: 2px 2px #f4f2f2;
+}
 
 
 #user-show-page h3 {
@@ -26,44 +30,56 @@
 #mid{
 	text-align: center;
 	margin: 35px 5px 25px;
+	display: block;
+
 }
-
-
-.col-4 {
-	display: inline-block;
-	width: 25%;
-	margin: 0 auto 100px;
-	float: left;
-}
-
-
 
 
 .bottom{
 	display: inline-block;
-	text-align: center;
 	padding: 30px;
-	margin: 35px 5px 25px;
 	border-top: solid 1px;
 	width: 100%;
+	border: solid black 1px;
 }
 
-h1, h2 {
-	text-transform: uppercase;
-	text-shadow: 2px 2px #f4f2f2;
+
+
+
+
+.col-5 {
+	width: 5%;
+	margin: auto;
+	float: left;
+}
+
+.col-4 {
+	text-align: left;
+	width: 45%;
+	margin: auto;
+	float: left;
+    height: 100%;
+
+}
+
+.col-4.left {
+	padding-left: 20px;
+    border-right: solid black 1px;
+}
+
+.col-4.right {
+	padding-left: 30px;
 }
 
 .links-col {
 	width: 33.333%;
-	/*border: solid;*/
-	margin: 0 auto 100px;
+	margin: auto;
 	float: left;
 }
 
 
 .links-col-50 {
 	width: 50%;
-	/*border: solid;*/
 	margin: 0 auto 100px;
 	float: left;
 }
