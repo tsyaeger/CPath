@@ -9,8 +9,8 @@ class SessionsController < ApplicationController
 		@user = User.new
 		@user = User.find_by(:username => params[:username])
 		if @user #&& @user.authenticate(params[:password_digest])
-		session[:user_id] = @user.id 
-		redirect_to user_path(@user)
+			session[:user_id] = @user.id 
+			redirect_to user_path(@user)
 		else 
 			flash[:notice] = "I couldn't find that username/password combo"
 			render :new
@@ -22,11 +22,6 @@ class SessionsController < ApplicationController
 		reset_session
 		redirect_to root_path 
 	end
-
-
-
-
-  private
 
 
 

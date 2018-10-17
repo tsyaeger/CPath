@@ -32,7 +32,6 @@ class TasksController < ApplicationController
 	end
 
 
-
 	def add_contact
 		c_id = params[:task][:contact_id]		
 		contact = Contact.find(c_id)

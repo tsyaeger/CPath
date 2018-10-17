@@ -11,7 +11,7 @@
     <div class='details-container'>
     	<h3><%= @task.description %></h3>
 
-        <div id='task-due-date'></div>
+        <div id='task-due-date'><h3>DUE DATE: <%= format_date(@task.due_date) %></h3></div>
         <div id='task-completed-string'></div>
 
         <div id='add-completed'></div>
@@ -124,14 +124,16 @@ const unlinkJob = function (task) {
 const buttonCompleted = function (task) {
     $('#completed-btn').on('click', function() {
         $.get(`/users/${user_id}/tasks/${task_id}/completed?q=${!task.completed}`, function(data) {
-            displayTaskDetails()
+            $('#task-completed-string').empty()
+            $('#completed-btn').empty()
+            $('#task-completed-string').append(task.completedString(!task.completed))
+            $('#completed-btn').append(task.completedButton(!task.completed))
         })
     })
 }
 
 
 const displayTaskDetails = function(task) {
-    $('#task-due-date').append(task.dateDueString())
     $('#task-completed-string').append(task.completedString())
     $('#completed-btn').append(task.completedButton())
 }
@@ -140,7 +142,6 @@ const displayTaskDetails = function(task) {
 
 
 const linkTaskContact = function() {
-    let contactId = $('#task-contact-ids')
     $('#btn-add-contact').on('click', function(e) {
         e.preventDefault()
         var form = $('#add-contact')
@@ -151,8 +152,6 @@ const linkTaskContact = function() {
             data: c_id, 
             type: "PATCH", 
             success: function (data) {
-                console.log('data')
-                console.log(data)
                 alert('success') },
             error: function (data) {
                 alert('no success') }

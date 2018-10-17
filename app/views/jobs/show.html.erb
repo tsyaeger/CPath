@@ -87,7 +87,7 @@
 
 <script>
 
-
+//REQUEST JOB JSON
 $( document ).on('turbolinks:load', function() {
 	user_id = $(".user-id").data("id")
 	job_id = $(".job-id").data("id")
@@ -117,8 +117,8 @@ $( document ).on('turbolinks:load', function() {
 })
 
 
+//RETRIEVE JOB DOCUMENTS, CREATE CONSTANT INSTANCE, APPEND DOCUMENTS
 const getDocuments = function (data) {
-    	console.log(data)
     jQuery(data['documents']).each(function(i, document){
         let d = new Document(document, user_id)
         $("#job-documents").append(d.formatSpan())
@@ -126,8 +126,8 @@ const getDocuments = function (data) {
 }
 
 
+//RETRIEVE JOB CONTACTS, CREATE CONSTANT INSTANCE, APPEND CONTACTS
 const getContacts = function (data) {
-    	console.log(data)
     jQuery(data['contacts']).each(function(i, contact){
         let c = new Contact(contact, user_id)
         $("#job-contacts").append(c.formatSpan())
@@ -137,15 +137,19 @@ const getContacts = function (data) {
 
 
 
+//CHANGE APPLIED STATUS
 const buttonApplied = function (job) {
 	$('#add-applied').on('click', function() {
-
 	    $.get(`/users/${user_id}/jobs/${job_id}/applied?q=${!job.applied}`, function(data) {
+	    	$('#job-applied').empty()
+            $('#applied-btn').empty()
+	    	$('#job-applied').append(job.appliedString(!job.applied))
+			$('#applied-btn').append(job.appliedButton(!job.applied))
 	    })
 	})
 }
 
-
+//DISPLAY APPLIED STATUS BUTTON AND TEXT
 const displayAppliedDetails = function (job) {
 	$('#job-applied').append(job.appliedString())
 	$('#applied-btn').append(job.appliedButton())
@@ -153,6 +157,9 @@ const displayAppliedDetails = function (job) {
 
 
 
+
+
+//LISTENER FOR NEXT BUTTON - SENDS TO USER'S NEXT JOB
 const nextButton = function() {
 	$('.btn-next').on('click', function() {
 		let nextPg = `${job_id}/next`
@@ -160,6 +167,7 @@ const nextButton = function() {
 	})
 }
 
+//LISTENER FOR PREVIOUS BUTTON - SENDS TO USER'S PREVIOUS JOB
 const previousButton = function() {
 	$('.btn-previous').on('click', function() {		
 		let previousPg = `${job_id}/previous`
@@ -171,8 +179,8 @@ const previousButton = function() {
 
 
 
+//BUTTON LISTER, SEND PATCH W CONTACT TO CONTROLLER, 
 const linkContact = function() {
-	let contactId = $('#job-contact-ids')
 	$('#btn-add-contact').on('click', function(e) {
 		e.preventDefault()
 		var form = $('#add-contact')
@@ -191,6 +199,7 @@ const linkContact = function() {
 }
 
 
+//BUTTON LISTENER, SEND PATCH W DOCUMENT TO CONTROLLER, 
 const linkDocument = function() {
 	let documentId = $('#job-document-ids')
 	$('#btn-add-document').on('click', function(e) {
@@ -213,6 +222,8 @@ const linkDocument = function() {
 
 
 
+
+//BUTTON LISTENER, REMOVE JOB CONTACT 
 const unlinkContact = function() {
 	$('span.remove-contact').on('click', function(e) {
 		let c_id = this.id
@@ -222,6 +233,7 @@ const unlinkContact = function() {
 }
 
 
+//BUTTON LISTENER, REMOVE JOB DOCUMENT 
 const unlinkDocument = function() {
 	$('span.remove-document').on('click', function(e) {
 		let d_id = this.id

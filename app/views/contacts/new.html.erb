@@ -20,7 +20,7 @@
 
 
 
-<div class="column-3">
+<div class="column-3" id='contact-list'>
     <h1>Contacts</h1>
 	    <%= render partial: "contact", collection: @contacts || "No Contacts"%>
     </div>
@@ -55,6 +55,7 @@ $("form").on('submit', function (e) {
 		method: 'POST', 
 	    success: function (data) {
 			alert('success') 
+			console.log(data)
 			$("#contact-list").append(data.html),
 			$("#new_contact")[0].reset();
 		},

@@ -124,11 +124,7 @@ const getDocuments = function (data) {
 const filterJobs = function (data) {
     $('#filter-jobs').on('change', function () {
         let substring = $(this).val()
-        console.log(substring)
-
         $.get(`/jobs/filter?q=${substring}`, function(data) {
-            console.log(data.html)
-
             $("#job-list").empty().html(data.html)
         })
     })
@@ -138,11 +134,7 @@ const filterJobs = function (data) {
 const filterContacts = function (data) {
     $('#filter-contacts').on('change', function () {
         let substring = $(this).val()
-        console.log(substring)
-
         $.get(`/contacts/filter?q=${substring}`, function(data) {
-            console.log(data.html)
-
             $("#contact-list").empty().html(data.html)
         })
     })
@@ -152,11 +144,7 @@ const filterContacts = function (data) {
 const filterTasks = function (data) {
     $('#filter-tasks').on('change', function () {
         let substring = $(this).val()
-        console.log(substring)
-
         $.get(`/tasks/filter?q=${substring}`, function(data) {
-            console.log(data.html)
-
             $("#task-list").empty().html(data.html)
         })
     })
@@ -166,11 +154,7 @@ const filterTasks = function (data) {
 const filterDocuments = function (data) {
     $('#filter-documents').on('change', function () {
         let substring = $(this).val()
-        console.log(substring)
-
         $.get(`/documents/filter?q=${substring}`, function(data) {
-            console.log(data.html)
-
             $("#document-list").empty().html(data.html)
         })
     })

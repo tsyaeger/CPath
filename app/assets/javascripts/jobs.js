@@ -20,14 +20,14 @@ Job.prototype.formatJobIndex = function() {
 
 
 //Used in job show page
-Job.prototype.appliedString = function() {
-    let appString = this.applied.toString()
+Job.prototype.appliedString = function(applied_bool= this.applied) {
+    let appString = applied_bool.toString()
     return `<h3>APPLIED: ${appString}</h3>`
 }
 
-Job.prototype.appliedButton = function() {
-    let text = this.applied ? 'Mark Not Applied' : 'Mark Applied'
-    return `<button id='add-applied' data-bool="${this.applied}">${text}</button><br><br>`
+Job.prototype.appliedButton = function(applied_bool= this.applied) {
+    let text = applied_bool ? 'Mark Not Applied' : 'Mark Applied'
+    return `<button id='add-applied' data-bool="${applied_bool}">${text}</button><br><br>`
 }
 
 
@@ -37,7 +37,7 @@ Job.prototype.formatSpan = function() {
     let spanItem = `<h3 class="w3-large">
         <i class="material-icons w3-large job" id=${this.id} data-id='${this.id}'>keyboard_arrow_down</i>
         <a href="/users/${this.user_id}/jobs/${this.id}">${this.company} - ${this.position}</a>
-        </h3><span id='${this.id}' class='job remove-job ${this.id}' data-id='${this.id}' style="display: none;" >Remove</span><br>`
+        </h3><span id='${this.id}' class='job remove-job ${this.id}' data-id='${this.id}' style="display: none;" ><p class='remove'>Remove</p></span><br>`
     return spanItem
 }
 
