@@ -8,10 +8,4 @@ class Document < ApplicationRecord
 
 	scope :filtered_document, -> (substring) { where("title LIKE ? ", "%#{substring}%")}
 
-
-	# def self.groupDoctype 
-	# 	return self.all.group_by(&:doctype)
-	# end
-
-
 end

@@ -1,5 +1,7 @@
 {
   "name": "CPath",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "react": "^16.5.2"
+  }
 }

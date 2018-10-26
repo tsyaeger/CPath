@@ -2,7 +2,12 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
 
-
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
 
 
 a {
@@ -36,14 +41,10 @@ h3 {
 
 
 
-
-
-
-* {
-    box-sizing: border-box;
-    font-family: 'Open Sans', sans-serif;
-    max-width: 900;
+body {
+  font-family: 'Open Sans', sans-serif;
 }
+
 
 
 .wrapper {

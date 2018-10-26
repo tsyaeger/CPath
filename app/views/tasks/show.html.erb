@@ -25,6 +25,8 @@
 
 </div>
 
+<div id='results'></div>
+
 
 
 <div id='mid'>
@@ -45,7 +47,11 @@
 
         <% if @task.contact != nil %>   
             <h2>LINKED CONTACT </h2>
-            <h3><%= link_to "#{formatted_name(@task.contact)}", user_contact_path(@task.user, @task.contact) %></h3><br>
+
+            <div id='task-contacts'>
+                <h3><%= link_to "#{formatted_name(@task.contact)}", user_contact_path(@task.user, @task.contact) %></h3><br>
+            </div>
+
             <button class='unlink-button' id='unlink-contact'>Unlink Contact</button>
         <% else %>
             <h3>No linked contact</h3>
@@ -94,33 +100,6 @@ $(document).ready(function () {
 
 
 
-const unlinkContact = function (task) {
-    $('#unlink-contact').on('click', function() {
-        $.get(`/users/${user_id}/tasks/${task_id}/unlink_contact`, function(data) {
-            console.log(data)
-        })
-    })
-}
-
-
-const unlinkDocument = function (task) {
-    $('#unlink-document').on('click', function() {
-        $.get(`/users/${user_id}/tasks/${task_id}/unlink_document`, function(data) {
-            console.log(data)
-        })
-    })
-}
-
-const unlinkJob = function (task) {
-    $('#unlink-job').on('click', function() {
-        $.get(`/users/${user_id}/tasks/${task_id}/unlink_job`, function(data) {
-            console.log(data)
-        })
-    })
-}
-
-
-
 const buttonCompleted = function (task) {
     $('#completed-btn').on('click', function() {
         $.get(`/users/${user_id}/tasks/${task_id}/completed?q=${!task.completed}`, function(data) {
@@ -141,25 +120,29 @@ const displayTaskDetails = function(task) {
 
 
 
+
 const linkTaskContact = function() {
     $('#btn-add-contact').on('click', function(e) {
         e.preventDefault()
         var form = $('#add-contact')
+
         var action = form.attr('action')
         var c_id = form.serialize()
+
 
         $.ajax({url: `/users/${user_id}/tasks/${task_id}/add_contact`, 
             data: c_id, 
             type: "PATCH", 
             success: function (data) {
-                alert('success') },
+                alert('success') 
+                $('#task-contacts').append(`<a href="/users/2/contacts/11">Rachel  Maddow</a>`)
+            },
             error: function (data) {
                 alert('no success') }
 
         })
     })
 }
-
 
 
 const linkTaskDocument = function() {
@@ -181,7 +164,6 @@ const linkTaskDocument = function() {
         })
     })
 }
-
 
 
 const linkTaskJob = function() {
@@ -206,6 +188,35 @@ const linkTaskJob = function() {
 }
 
 
+
+
+
+
+
+const unlinkContact = function (task) {
+    $('#unlink-contact').on('click', function() {
+        $.get(`/users/${user_id}/tasks/${task_id}/unlink_contact`, function(data) {
+            console.log(data)
+        })
+    })
+}
+
+
+const unlinkDocument = function (task) {
+    $('#unlink-document').on('click', function() {
+        $.get(`/users/${user_id}/tasks/${task_id}/unlink_document`, function(data) {
+            console.log(data)
+        })
+    })
+}
+
+const unlinkJob = function (task) {
+    $('#unlink-job').on('click', function() {
+        $.get(`/users/${user_id}/tasks/${task_id}/unlink_job`, function(data) {
+            console.log(data)
+        })
+    })
+}
 
 
 

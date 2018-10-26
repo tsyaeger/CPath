@@ -1,5 +1,4 @@
 class Job < ApplicationRecord
-
 	belongs_to :user
 	has_many :job_contacts
 	has_many :contacts, through: :job_contacts
@@ -7,10 +6,7 @@ class Job < ApplicationRecord
 	has_many :documents, through: :job_documents
 	has_many :tasks
 
-
 	validates_associated :user
-
-
 
 	scope :filtered_job, -> (substring) { where("company LIKE ? OR position LIKE ?", "%#{substring}%", "%#{substring}%") }
 
