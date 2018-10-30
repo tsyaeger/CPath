@@ -237,7 +237,8 @@ const unlinkContact = function() {
 		let c_id = this.id
 	    $.get(`/users/${user_id}/jobs/${job_id}/unlink_contact?q=${c_id}`, function(data) {
 	    	let id = data['id']
-	    	$("#contactItem-" + id).remove()	    	
+	    	$("#contactItem-" + id).remove()
+	    	$("#" + id).remove()	    	
 
 	    })
 	})
@@ -251,6 +252,7 @@ const unlinkDocument = function() {
 	    $.get(`/users/${user_id}/jobs/${job_id}/unlink_document?q=${d_id}`, function(data) {
 	    	let id = data['id']
 	    	$("#documentItem-" + id).remove()
+	    	$("#" + id).remove()	    	
 	    })
 	})
 }
