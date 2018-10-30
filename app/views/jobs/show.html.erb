@@ -1,3 +1,39 @@
+<style>
+
+#applied-container {
+    margin: auto;
+    width: 450px;
+    height: 45px;
+    /*border: solid;      */
+	display: inline-block
+}
+.one {
+    float: left;
+    /*border: solid;*/
+    margin-left: 20px;
+	display: inline-block
+	/*padding-left: 15px;*/
+}
+.two {
+    float: left;
+    margin: auto;
+    /*border: solid;*/
+	display: inline-block
+}
+
+.link.two {
+	/*margin: 2px;*/
+}
+
+.posted-date.one {
+	vertical-align: top;
+}
+
+h3#applied-bool {
+	margin-top: 0px;
+}
+
+</style>
 
 
 
@@ -13,15 +49,21 @@
 
 	<div class='details-container'>
 
-		<h3 class='link'><a href="<%= @job.url %>">Link to Posting</a></h3>
-		<h3>POSTED DATE: <%= format_date(@job.date_posted) %></h3>
-	
+		<section id='applied-container'>
+			<div><h3 class='posted-date one'>Posted Date: <%= format_date(@job.date_posted) %></h3><div>
+			<div><h3 class='link two'><a href="<%= @job.url %>">Link to Posting</a></h3></div>
+		</section>
+
+
 		<div id='job-applied'></div>
 		<div id='applied-btn'></div>
 
-		<td><%= link_to "Edit", edit_user_job_path(@job.user, @job) %></td>
-	    <td><%= link_to "Delete", user_job_path(@job.user, @job), :method => :delete %></td>
+	
 
+		<div>
+			<td><%= link_to "Edit", edit_user_job_path(@job.user, @job) %></td>
+		    <td><%= link_to "Delete", user_job_path(@job.user, @job), :method => :delete %></td>
+		</div>
 	</div>
 
 </div>
@@ -29,21 +71,21 @@
 
 <div id='mid'>
     
-    <div id='docs' class='links-col'>
+    <div id='job-docs-col' class='links-col'>
     	<%= render 'documents/document_dropdown' %>
     	<h2>LINKED DOCUMENTS</h2>
     	<div id='job-documents'></div>
     </div>    
 
 
-    <div id='contacts' class='links-col'>
+    <div id='job-contacts-col' class='links-col'>
 		 <%= render 'contacts/contact_dropdown' %>
     	<h2>LINKED CONTACTS</h2>
     	<div id='job-contacts'></div>
     </div>    
 
 
-    <div id='Tasks' class='links-col'>
+    <div id='job-tasks-col' class='links-col'>
 		<% if @job.tasks.length > 0%>
 			<!-- <div id='task-list'></div> -->
 	    	<h2>TASKS</h2>
@@ -63,7 +105,7 @@
 	<div class='col-4 left-col'>
 		<% if !!@job.job_desc %>
 			<h2> View Job Description </h2>
-			<h3><%= @job.job_desc %></h3>
+			<h3 class='descriptions'><%= @job.job_desc %></h3>
 		<% else %>
 			<h2>This job has no job description<h2>
 		<% end %>
@@ -72,7 +114,7 @@
 	<div class='col-4 right-col'>	
 		<% if !!@job.co_desc %>
 			<h2> View Company Description </h2>
-			<h3><%= @job.co_desc %></h3>
+			<h3 class='descriptions'><%= @job.co_desc %></h3>
 		<% else %>
 			<h2>This job has no company description<h2>
 		<% end %>
@@ -94,7 +136,7 @@ $( document ).on('turbolinks:load', function() {
 	user_id = $(".user-id").data("id")
 	job_id = $(".job-id").data("id")
 
-	$.get(`/users/${user_id}/jobs/${job_id}.json`, function(data) {
+	$.get(`/users/${user_id}/jobs/${job_id}`, function(data) {
 
 		job = new Job(data, user_id)
 
@@ -115,7 +157,8 @@ $( document ).on('turbolinks:load', function() {
 
 		docClick()
 		contactClick()
-	});
+	},'json'
+	);
 })
 
 
@@ -251,8 +294,8 @@ const unlinkDocument = function() {
 		let d_id = this.id
 	    $.get(`/users/${user_id}/jobs/${job_id}/unlink_document?q=${d_id}`, function(data) {
 	    	let id = data['id']
-	    	$("#documentItem-" + id).remove()
 	    	$("#" + id).remove()	    	
+	    	$("#documentItem-" + id).remove()
 	    })
 	})
 }

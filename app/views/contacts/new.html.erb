@@ -22,6 +22,7 @@
 
 <div class="column-3">
     <h1>Contacts</h1>
+    <button id="contacts-sort">Sort</button>
 	<div  id='contact-list'>
 	    <%= render partial: "contact", collection: @contacts || "No Contacts"%>
     </div>
@@ -41,6 +42,9 @@
 <script type="text/javascript" charset="utf-8">
 
 
+$(document).ready(function () {
+	buttonRefFunc()
+})
 
 $("form").on('submit', function (e) {
 
@@ -65,6 +69,18 @@ $("form").on('submit', function (e) {
 })
 
 
+const buttonRefFunc = function(contact) {
+	$('#contacts-sort').on('click', function() {
+		debugger
+		let $cList = $('#contact-list')
+		console.log($cList)
+		const $cListSorted = $cList.sort()
+		console.log($cListSorted)
+		$cList.empty()
+		$cList.append($cListSorted)
+
+	})
+}
 
 
 </script>

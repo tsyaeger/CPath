@@ -6,31 +6,29 @@ function Job(job, user_id) {
     this.company = job.company
     this.position = job.position
     this.url = job.url
-    this.date_posted = job.date_posted
+    this.date_posted = job.date_posted  //SNAKE CASE THESE VARIABLES
     this.applied = job.applied
     this.job_desc = job.job_desc
     this.co_desc = job.co_desc
 }
+
+
 
 //Used in user show page
 Job.prototype.formatJobIndex = function() {
     return `<h3><a href='/users/${this.user_id}/jobs/${this.id}'>${this.company} - ${this.position}</a></h3>`
 }
 
-
-
 //Used in job show page
 Job.prototype.appliedString = function(applied_bool= this.applied) {
     let appString = applied_bool.toString()
-    return `<h3>APPLIED: ${appString}</h3>`
+    return `<h3 id='applied-bool'>Applied: ${appString}</h3>`
 }
 
 Job.prototype.appliedButton = function(applied_bool= this.applied) {
-    let text = applied_bool ? 'Mark Not Applied' : 'Mark Applied'
+    let text = applied_bool ? 'Mark As Not Applied' : 'Mark As Applied'
     return `<button id='add-applied' data-bool="${applied_bool}">${text}</button><br><br>`
 }
-
-
 
 //Used in other show pages
 Job.prototype.formatSpan = function() {

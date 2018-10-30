@@ -17,7 +17,7 @@ p.remove {
 }
 
 .remove-contact :hover {
-  font-size: 18px;
+  font-size: 17px;
 }
 
 
@@ -29,6 +29,11 @@ p.remove {
 
 .details-container h3 {
     margin: 10px;
+}
+
+
+.descriptions {
+	margin-right: 35px;
 }
 
 
@@ -90,6 +95,13 @@ p.remove {
 	margin: auto;
 	float: left;
 }
+
+
+#job-contacts-col {
+	border-left: solid 1px;
+	border-right: solid 1px;
+}
+
 
 
 .col-20 {

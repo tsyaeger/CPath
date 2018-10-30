@@ -75,7 +75,6 @@ class JobsController < ApplicationController
 		contact = Contact.find(c_id)
 		@job.contacts.delete(contact)
 		respond_to do |format|
-	      # format.html { render :show }
 	      format.json { render json: contact, status: 200 }
 	    end
 	end	
@@ -85,7 +84,6 @@ class JobsController < ApplicationController
 		document = Document.find(d_id)
 		@job.documents.delete(document)
 		respond_to do |format|
-	      # format.html { render :show }
 	      format.json { render json: document, status: 200 }
 	    end
 	end
