@@ -1,4 +1,6 @@
 
+
+
 <div class='user-id' data-id="<%= @job.user.id %>"></div>
 <div class='job-id' data-id="<%= @job.id %>"></div>
 
@@ -149,6 +151,8 @@ const buttonApplied = function (job) {
 	})
 }
 
+
+
 //DISPLAY APPLIED STATUS BUTTON AND TEXT
 const displayAppliedDetails = function (job) {
 	$('#job-applied').append(job.appliedString())
@@ -191,7 +195,10 @@ const linkContact = function() {
 			data: c_id, 
 			type: "PATCH", 
             success: function (data) {
-                alert('success') },
+            	contact = new Contact(data, user_id)
+				$("#job-contacts").append(contact.formatSpan())
+                alert('success') 
+            },
             error: function (data) {
                 alert('no success') }
         })
@@ -201,7 +208,6 @@ const linkContact = function() {
 
 //BUTTON LISTENER, SEND PATCH W DOCUMENT TO CONTROLLER, 
 const linkDocument = function() {
-	let documentId = $('#job-document-ids')
 	$('#btn-add-document').on('click', function(e) {
 		e.preventDefault()
 		var form = $('#add-document')
@@ -212,6 +218,8 @@ const linkDocument = function() {
 		data: d_id,
 		type: "PATCH", 
         success: function (data) {
+        	doc = new Document(data, user_id)
+			$("#job-documents").append(doc.formatSpan())
             alert('success') },
         error: function (data) {
             alert('no success') }
@@ -228,6 +236,9 @@ const unlinkContact = function() {
 	$('span.remove-contact').on('click', function(e) {
 		let c_id = this.id
 	    $.get(`/users/${user_id}/jobs/${job_id}/unlink_contact?q=${c_id}`, function(data) {
+	    	let id = data['id']
+	    	$("#contactItem-" + id).remove()	    	
+
 	    })
 	})
 }
@@ -238,6 +249,8 @@ const unlinkDocument = function() {
 	$('span.remove-document').on('click', function(e) {
 		let d_id = this.id
 	    $.get(`/users/${user_id}/jobs/${job_id}/unlink_document?q=${d_id}`, function(data) {
+	    	let id = data['id']
+	    	$("#documentItem-" + id).remove()
 	    })
 	})
 }

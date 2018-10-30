@@ -15,7 +15,6 @@ span.remove:hover {
 
 <div id='top'>
 
-
 	<h1><%= @contact.first_name %> <%= @contact.last_name %></h1>
 
 	<div class='details-container'>
@@ -85,7 +84,6 @@ $(document).ready(function () {
 
 	$.get(`/users/${user_id}/contacts/${contact_id}.json`, function(data) {
 		contact = new Contact(data, user_id)
-
 	    displayRefDetails(contact)
 		buttonRefFunc(contact)
 
@@ -111,51 +109,6 @@ const displayRefDetails = function (contact) {
 	$('#contact_reference').append(contact.referenceString())
 	$('#reference-btn').append(contact.referenceButton())
 }
-
-
-
-var clicks = 0
-
-$(function () {
-
-  $("i.task").on('click', function() {
-    var id = this.id
-    console.log('task')
-
-  	if (clicks % 2 == 0) {
-	    $('.task.'+id).css('display', 'block')
-    	clicks++
-	}
-	else {
-		$('.task.'+id).css('display', 'none')
-		clicks++
-	} 
-  });
-
-});
-
-
-
-var clicks = 0
-
-$(function () {
-
-  $("i.job").on('click', function() {
-    var id = this.id
-    console.log('job')
-
-  	if (clicks % 2 == 0) {
-	    $('.job.'+id).css('display', 'block')
-    	clicks++
-	}
-	else {
-		$('.job.'+id).css('display', 'none')
-		clicks++
-	} 
-  });
-
-});
-
 
 
 

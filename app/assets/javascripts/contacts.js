@@ -31,7 +31,7 @@ Contact.prototype.referenceButton = function(ref_bool= this.reference) {
 
 
 Contact.prototype.formatSpan = function() {
-    let spanItem = `<h3 class="w3-large">
+    let spanItem = `<h3 class="w3-large" id="contactItem-${this.id}">
         <i class="material-icons w3-large contact" id=${this.id} data-id='${this.id}'>keyboard_arrow_down</i>
         <a href="/users/${this.user_id}/contacts/${this.id}">${this.concatName()}</a>
         </h3><span id='${this.id}' class='contact remove-contact ${this.id}' data-id='${this.id}' style="display: none;" ><p class='remove'>Remove</p></span><br>`

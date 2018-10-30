@@ -1,79 +1,40 @@
-
-
-
-
-#job_desc, #co_desc {
-        width: 700px;
-        height: 183px;
+label {
+  font-size: 20px;
+  font-weight: bold;
+  padding: 12px 12px 12px 0;
+  display: inline-block;
 }
 
 
-
-#user-form {
-    margin-top: 50px;
-    display: block;
-    text-align: center;
-}
-
-
-
-input[type=date], select {
+input, select {
     width: 320px;
-    height: 35px;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 4px;
+    margin: 0 0 20px;
     padding: 12px 20px;
+    height: 35px;
+    border: 1px solid #5b4f4f;
+    
+}
+
+
+input[type=date]{
     margin: 0 0 15px;
-    display: inline-block;
-    border: 1px solid #5b4f4f;
-    border-radius: 4px;
-    box-sizing: border-box;
-    font-size: 16px;
-    /*resize: vertical;*/
-}
-
-input[type=email], select {
-    width: 320px;
-    height: 35px;
-    padding: 12px 20px;
-    margin: 0 0 20px;
-    display: inline-block;
-    border: 1px solid #5b4f4f;
-    border-radius: 4px;
-    box-sizing: border-box;
-    font-size: 16px;
 }
 
 
-input[type=password], select {
-    width: 320px;
-    height: 35px;
-    padding: 12px 20px;
-    margin: 0 0 20px;
-    display: inline-block;
-    border: 1px solid #5b4f4f;
-    border-radius: 4px;
-    box-sizing: border-box;
-    font-size: 16px;
+input[type=submit] {
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    font-size: 20px;
+    height: 49px;
 }
 
-
-
-
-input[type=text], select {
-    width: 320px;
-    height: 35px;
-    padding: 12px 20px;
-    margin: 0 0 20px;
-    display: inline-block;
-    border: 1px solid #5b4f4f;
-    border-radius: 4px;
-    box-sizing: border-box;
-    font-size: 16px;
+input[type=submit]:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
 }
-
-input[type=text]:focus {
-    background-color: #f9fcfc;
-}
-
 
 
 textarea, select {
@@ -84,35 +45,9 @@ textarea, select {
     font-size: 16px;
 }
 
-
-
-
-
-
-
-label {
-  font-size: 20px;
-  font-weight: bold;
-  padding: 12px 12px 12px 0;
-  display: inline-block;
-}
-
-input[type=submit] {
-    width: 320px;
-    background-color: black;
-    color: white;
-    padding: 12px 20px;
-    margin-top: 20px;
-    /*border: 2px solid;*/
-    /*border-color: darkgray;*/
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 20px;
-    /*font-weight: bold;*/
-}
-
-input[type=submit]:hover {
-
+#job_desc, #co_desc {
+        width: 700px;
+        height: 183px;
 }
 
 
@@ -127,6 +62,7 @@ input[type=submit]:hover {
     height: 1200px; /* Should be removed. Only for demonstration */
 }
 
+
 #large-fields {
     text-align: center;
     border: solid 1px;
@@ -134,4 +70,11 @@ input[type=submit]:hover {
     width: 60%;
     padding: 35px 30px 0 0;
     height: 1200px; /* Should be removed. Only for demonstration */
+}
+
+
+#user-form {
+    margin-top: 50px;
+    display: block;
+    text-align: center;
 }

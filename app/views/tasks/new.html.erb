@@ -50,14 +50,12 @@ $("form").on('submit', function (e) {
 		datatype: 'json',
 		method: 'POST', 
 	    success: function (data) {
-	    	console.log('data')
-	    	console.log(data)
 			alert('success') 
 			$("#task-list").append(data.html),
 			$("#new_task")[0].reset();
 		},
 		error: function (data) {
-			alert('no success') }
+			alert('something went wrong') }
 	})
 })
 

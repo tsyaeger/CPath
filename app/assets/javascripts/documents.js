@@ -18,7 +18,7 @@ Document.prototype.formatIndex = function() {
 
 
 Document.prototype.formatSpan = function() {
-    let spanItem = `<h3 class="w3-large">
+    let spanItem = `<h3 class="w3-large" id="documentItem-${this.id}">
         <i class="material-icons w3-large doc" id=${this.id} data-id='${this.id}'>keyboard_arrow_down</i>
         <a href="/users/${this.user_id}/documents/${this.id}">${this.title}</a>
         </h3><span id='${this.id}' class='document remove-document ${this.id}' data-id='${this.id}' style="display: none;" ><p class='remove'>Remove</p></span><br>`

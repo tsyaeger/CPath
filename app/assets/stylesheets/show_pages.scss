@@ -12,6 +12,20 @@ h1, h2 {
 }
 
 
+p.remove {
+	display: inline-block;
+}
+
+.remove-contact :hover {
+  font-size: 18px;
+}
+
+
+.remove-document :hover {
+  font-size: 18px;
+}
+
+
 
 .details-container h3 {
     margin: 10px;

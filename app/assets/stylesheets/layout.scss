@@ -10,19 +10,31 @@ html {
 }
 
 
+.wrapper {
+  width: 100%;
+  height: 100%;
+  margin: 0 auto 100px;
+  text-align: center;
+  max-width: 1500px;
+}
+
+
+body {
+  font-family: 'Open Sans', sans-serif;
+}
+
+
+
 a {
   text-decoration: none;
   color: black;
 }
 
-span:hover {
-  font-size: 18px;
-}
+
 
 span {
     text-transform: uppercase;
     color: darkred;
-    padding-left: 25px
 }
 
 
@@ -39,21 +51,6 @@ h3 {
     list-style-type: circle;
 }
 
-
-
-body {
-  font-family: 'Open Sans', sans-serif;
-}
-
-
-
-.wrapper {
-  width: 100%;
-  height: 100%;
-  margin: 0 auto 100px;
-  text-align: center;
-  max-width: 1500px;
-}
 
 
 
