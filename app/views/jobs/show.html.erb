@@ -51,7 +51,7 @@ h3#applied-bool {
 
 		<section id='applied-container'>
 			<div><h3 class='posted-date one'>Posted Date: <%= format_date(@job.date_posted) %></h3><div>
-			<div><h3 class='link two'><a href="<%= @job.url %>">Link to Posting</a></h3></div>
+			<div><h3 class='link two'><a href="<%= @job.url %>" target="_blank">Go to Posting</a></h3></div>
 		</section>
 
 
@@ -282,6 +282,7 @@ const unlinkContact = function() {
 	    	let id = data['id']
 	    	$("#contactItem-" + id).remove()
 	    	$("#" + id).remove()	    	
+	    	//AND REMOVE THE SPAN CHILD <BR>   	
 
 	    })
 	})
@@ -294,13 +295,12 @@ const unlinkDocument = function() {
 		let d_id = this.id
 	    $.get(`/users/${user_id}/jobs/${job_id}/unlink_document?q=${d_id}`, function(data) {
 	    	let id = data['id']
-	    	$("#" + id).remove()	    	
 	    	$("#documentItem-" + id).remove()
+	    	$("#" + id).remove()	 
+	    	//AND REMOVE THE SPAN CHILD <BR>   	
 	    })
 	})
 }
-
-
 
 
 

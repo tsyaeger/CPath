@@ -1,13 +1,3 @@
-<style>
-
-div#contacts {
-	border-right: solid 1px;
-	border-left: solid 1px;
-}
-
-</style>
-
-
 
 <div class='user-id' data-id="<%= @contact.user.id %>"></div>
 <div class='contact-id' data-id="<%= @contact.id %>"></div>
@@ -48,7 +38,7 @@ div#contacts {
             <% if @contact.jobs.length > 0 %>
                 <%= render partial: "jobs/job", collection: @contact.jobs || "No Linked Jobs" %>
             <% else %>
-                <h3>No linked jobs</h3>
+                <h3><%= link_to '* Link This Contact To A Job', user_jobs_path(@contact.user) %></h3>
             <% end %>
         </div>
 
@@ -62,7 +52,7 @@ div#contacts {
             <% if @contact.tasks.length > 0 %>
                 <%= render partial: "tasks/task", collection: @contact.tasks || "No Linked Tasks" %>
             <% else %>
-                <h3>No linked tasks</h3>
+                <h3><%= link_to '* Link This Contact To A Task', user_jobs_path(@contact.user) %></h3>
             <% end %>
         </div>
 

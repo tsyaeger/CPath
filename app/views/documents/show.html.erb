@@ -17,12 +17,12 @@
 <div id='top'>
 
 
-
     <h1><%= @document.title %></h1>
     
     <div class='details-container'>
         <h3><%= @document.description %></h3>
-    	<h3 class='link'><%= link_to 'Go to Document', @document.url %></a></h3>
+        <h3 class='link'><a href="<%= @document.url %>" target="_blank">Go to Document</a></h3>
+
     	<h3>Last update: <%= format_date(@document.updated_at) %></h3>
         <td><%= link_to "Edit", edit_user_document_path(@document.user, @document) %></td>
         <td><%= link_to "Delete", user_document_path(@document.user, @document), :method => :delete %></td>
@@ -44,7 +44,7 @@
             <% if @document.jobs.length > 0 %>
                 <%= render partial: "jobs/job", collection: @document.jobs || "No Linked Jobs" %>
             <% else %>
-                <h3>No linked jobs</h3>
+                <h3><%= link_to '* Link This Document To A Job', user_jobs_path(@document.user) %></h3>
             <% end %>
         </div>
 
@@ -52,13 +52,14 @@
 
 
     <div id='tasks' class='links-col-50 right-col-50'>
-        <h2>TASKS</h2>
+        <h2>LINKED TASKS</h2>
 
         <div class='linked-items'>
             <% if @document.tasks.length > 0 %>
                 <%= render partial: "tasks/task", collection: @document.tasks || "No Linked Tasks" %>
             <% else %>
-                <h3>No linked tasks</h3>
+                <h3><%= link_to '* Link This Document To A Task', user_tasks_path(@document.user) %></h3>
+
             <% end %>
         </div>
 

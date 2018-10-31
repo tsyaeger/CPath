@@ -43,7 +43,7 @@
 
 
 $(document).ready(function () {
-	buttonRefFunc()
+	buttonSort()
 })
 
 $("form").on('submit', function (e) {
@@ -69,18 +69,34 @@ $("form").on('submit', function (e) {
 })
 
 
-const buttonRefFunc = function(contact) {
-	$('#contacts-sort').on('click', function() {
-		debugger
-		let $cList = $('#contact-list')
-		console.log($cList)
-		const $cListSorted = $cList.sort()
-		console.log($cListSorted)
-		$cList.empty()
-		$cList.append($cListSorted)
 
+const buttonSort = function() {
+	$('#contacts-sort').on('click', function() {
+		let $cList = $( "#contact-list .list-items" ).toArray().map((li) => { 
+			return li.innerHTML.trim()
+		})
+		let $list = $($("#contact-list .list-items" ))
+		$list.empty()
+
+		let sorted = sortContacts($cList).join('')
+		$('#contact-list').append(sorted)
 	})
 }
+
+
+ const sortContacts = function (c_list) {
+    return c_list.sort(function (a, b) {
+    	let reg = /<li>(.*?)</
+        if ( a.match(reg)[0] < b.match(reg)[0] ) return -1;
+        if ( a.match(reg)[0] > b.match(reg)[0] ) return 1;
+        return 0;
+    })
+}
+
+
+
+
+
 
 
 </script>
