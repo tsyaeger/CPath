@@ -42,24 +42,26 @@ p.remove {
 	border-bottom: solid 1px;
 	text-align: center;
 	padding: 25px 5px 25px;
-	margin-bottom: 50px;
 	
 }
 
 #mid{
+	padding: 25px 5px 25px;
 	width: 100%;
 	text-align: center;
 	margin: 0px 5px 25px;
 	display: inline-block;
+	border-bottom: solid 1px;
 }
 
 
-.bottom{
+#bottom{
 	display: inline-block;
-	padding: 30px;
-	border-top: solid 1px;
-	width: 100%;
-	border: solid black 1px;
+	border-bottom: solid 1px;
+	text-align: center;
+	padding: 25px 5px 25px;
+	margin: auto;
+	width: 100%
 }
 
 
@@ -111,20 +113,22 @@ p.remove {
 }
 
 .links-col-50 {
-	width: 25%;
+	width: 50%;
 	margin: auto;
 	float: left;
     height: 100%;
-    padding-left: 5px;
-    padding-right: 5px;
 	text-align: center;
 }
 
 
 .left-col-50 {
 	border-right: solid 1px;
+	padding-left: 200px
 }
 
+.right-col-50 {
+	padding-right: 200px
+}
 
 
 #job-company-position{
