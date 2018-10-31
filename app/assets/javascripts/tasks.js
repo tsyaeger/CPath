@@ -29,12 +29,12 @@ Task.prototype.formatDate = function() {
 
 Task.prototype.completedString = function(completed_bool= this.completed) {
     let compString = completed_bool.toString()
-    return `<h3>COMPLETED: ${compString}</h3>`
+    return `<h3>COMPLETED: ${compString.toUpperCase()}</h3>`
 }
 
 
 Task.prototype.completedButton = function(completed_bool= this.completed) {
-    let text = completed_bool ? 'Mark as not completed' : 'Mark as completed'
+    let text = completed_bool ? 'Mark As Not completed' : 'Mark As Completed'
     return `<button id='add-completed' data-bool="${completed_bool}">${text}</button><br><br>`
 }
 

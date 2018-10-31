@@ -28,14 +28,16 @@ body {
 a {
   text-decoration: none;
   color: black;
-  font-weight: bigger;
 }
 
+a:hover {
+  color: #660101;
+}
 
 
 span {
     text-transform: uppercase;
-    color: darkred;
+    color: #660101;
 }
 
 

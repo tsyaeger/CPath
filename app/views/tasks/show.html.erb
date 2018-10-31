@@ -1,4 +1,22 @@
 
+<style>
+
+.linked-item, .unlinked-item {
+    margin-top: 0px;
+}
+
+.unlinked-item {
+    margin-bottom: 3px;
+}
+
+#task_contact_id, #task_document_id, #task_job_id {
+    margin-bottom: 1px;
+}
+
+</style>
+
+
+
 
 <div class='user-id' data-id="<%= @task.user.id %>"></div>
 <div class='task-id' data-id="<%= @task.id %>"></div>
@@ -33,20 +51,19 @@
 
     <div id='docs' class='links-col'>
         <% if @task.document != nil %>   
-            <h2>LINKED DOCUMENT</h2>
+            <h2 class='linked-item'>LINKED DOCUMENT</h2>
             <h3><%= link_to @task.document.title, user_document_path(@task.user, @task.document) %></h3><br>
             <button class='unlink-button' id='unlink-document'>Unlink Document</button>
         <% else %>
-            <h3>No linked Document</h3>
+            <h2 class='unlinked-item'>No linked Document</h2>
             <%= render 'documents/document_task_dropdown' %>
         <% end %>
     </div>    
 
 
     <div id='contacts' class='links-col'>
-
         <% if @task.contact != nil %>   
-            <h2>LINKED CONTACT </h2>
+            <h2 class='linked-item'>LINKED CONTACT </h2>
 
             <div id='task-contacts'>
                 <h3><%= link_to "#{formatted_name(@task.contact)}", user_contact_path(@task.user, @task.contact) %></h3><br>
@@ -54,7 +71,7 @@
 
             <button class='unlink-button' id='unlink-contact'>Unlink Contact</button>
         <% else %>
-            <h3>No linked contact</h3>
+            <h2 class='unlinked-item'>No linked contact</h2>
             <%= render 'contacts/contact_task_dropdown' %>
         <% end %>
         
@@ -63,11 +80,11 @@
 
     <div id='Jobs' class='links-col'>
         <% if @task.job != nil %>   
-            <h2>LINKED JOB</h2>
+            <h2 class='linked-item'>LINKED JOB</h2>
             <h3><%= link_to @task.job.company, user_job_path(@task.user, @task.job) %></h3><br>
             <button class='unlink-button' id='unlink-job'>Unlink Job</button>
         <% else %>
-            <h3>No linked job</h3>
+            <h2 class='unlinked-item'>No linked job</h2>
             <%= render 'jobs/job_task_dropdown' %>
         <% end %>
     </div>  

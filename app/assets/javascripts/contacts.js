@@ -37,3 +37,9 @@ Contact.prototype.formatSpan = function() {
         </h3><span id='${this.id}' class='contact remove-contact ${this.id}' data-id='${this.id}' style="display: none;" ><p class='remove'>Remove</p></span><br>`
     return spanItem
 }
+
+
+Contact.prototype.sortButton = function(sortBy= this.last) {
+    let text = ref_bool ? 'First Name' : 'Last Name'
+    return `<button id='sort-name' data-bool="${ref_bool}">${text}</button><br><br>`
+}
