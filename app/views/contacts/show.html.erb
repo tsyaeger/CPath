@@ -1,66 +1,45 @@
 
-<div class='user-id' data-id="<%= @contact.user.id %>"></div>
-<div class='contact-id' data-id="<%= @contact.id %>"></div>
+<div id='contact-show-container'>
+	<div class='user-id' data-id="<%= @contact.user.id %>"></div>
+	<div class='contact-id' data-id="<%= @contact.id %>"></div>
 
-
-<div id='top'>
-
-	<h1><%= @contact.first_name %> <%= @contact.last_name %> - <%= @contact.workplace %></h1>
-
-	<div class='details-container'>
-		<div>
-			<h3><%= @contact.email %></h3>
+	<div id='top'>
+		<h1><%= @contact.first_name %> <%= @contact.last_name %> - <%= @contact.workplace %></h1>
+		<div class='details-container'>
+			<div><h3><%= @contact.email %></h3></div>
+			<div><h3><%= @contact.phone %></h3></div>
+			<div id='contact_reference'></div>
+			<div id='reference-btn'></div>
+		    <td><%= link_to "Edit", edit_user_contact_path(@contact.user, @contact) %></td>
+		    <td><%= link_to "Delete", user_contact_path(@contact.user, @contact), :method => :delete %></td>
 		</div>
+	</div> <!-- close top -->
 
-		<div>
-			<h3><%= @contact.phone %></h3>
-		</div>
+	<div id='bottom'>  
+	    <div id='jobs' class='links-col-50 left-col-50'>
+	        <h2>LINKED JOBS</h2>
+	        <div class='linked-items'>
+	            <% if @contact.jobs.length > 0 %>
+	                <%= render partial: "jobs/job", collection: @contact.jobs || "No Linked Jobs" %>
+	            <% else %>
+	                <h3><%= link_to '* Link This Contact To A Job', user_jobs_path(@contact.user) %></h3>
+	            <% end %>
+	        </div>
+	    </div> <!-- close column -->
 
-		<div id='contact_reference'></div>
-		<div id='reference-btn'></div>
+	    <div id='tasks' class='links-col-50 right-col-50'>
+	        <h2>TASKS</h2>
+	        <div class='linked-items'>
+	            <% if @contact.tasks.length > 0 %>
+	                <%= render partial: "tasks/task", collection: @contact.tasks || "No Linked Tasks" %>
+	            <% else %>
+	                <h3><%= link_to '* Link This Contact To A Task', user_jobs_path(@contact.user) %></h3>
+	            <% end %>
+	        </div>
+	    </div> <!-- close column -->
+	</div> <!-- close bottom -->
 
-
-	   <td><%= link_to "Edit", edit_user_contact_path(@contact.user, @contact) %></td>
-	    <td><%= link_to "Delete", user_contact_path(@contact.user, @contact), :method => :delete %></td>
-
-	</div>
-
-</div>
-
-
-<div id='bottom'>
-      
-
-    <div id='jobs' class='links-col-50 left-col-50'>
-        <h2>LINKED JOBS</h2>
-
-        <div class='linked-items'>
-            <% if @contact.jobs.length > 0 %>
-                <%= render partial: "jobs/job", collection: @contact.jobs || "No Linked Jobs" %>
-            <% else %>
-                <h3><%= link_to '* Link This Contact To A Job', user_jobs_path(@contact.user) %></h3>
-            <% end %>
-        </div>
-
-    </div>
-
-
-    <div id='tasks' class='links-col-50 right-col-50'>
-        <h2>TASKS</h2>
-
-        <div class='linked-items'>
-            <% if @contact.tasks.length > 0 %>
-                <%= render partial: "tasks/task", collection: @contact.tasks || "No Linked Tasks" %>
-            <% else %>
-                <h3><%= link_to '* Link This Contact To A Task', user_jobs_path(@contact.user) %></h3>
-            <% end %>
-        </div>
-
-    </div>
-
-
-</div>
-
+</div> <!-- close wrapper -->
 
 
 

@@ -2,11 +2,11 @@ class TasksController < ApplicationController
 	before_action :set_task, except: [:index, :filter, :new, :create]
 
 	def index 
-		@tasks = current_user.tasks  #SHOULD PRE-SORT BY DATE
-		@tasksSorted = @tasks.sort_by &:date_due
+		@tasks = current_user.tasks 
+		@tasks_sorted = @tasks.sort_by &:date_due
 		respond_to do |format|
 	      format.html { render :index }
-	      format.json { render json: @tasksSorted, status: 200 }
+	      format.json { render json: @tasks_sorted, status: 200 }
 	    end
 	end
 

@@ -1,41 +1,32 @@
 
+<div id='new-task-wrapper'>
 
+	<div class='column-3'>
+		<h1>COMPLETED TASKS</h1>
+		<div id='completed-tasks-list'></div>
+	    	<%= render partial: "task", collection: @tasks.completed_true || "No Tasks"%>
+	    </div>
+	</div> <!-- close column -->
 
-<div class='column-3'>
-	<h1>COMPLETED TASKS</h1>
-	<div id='completed-tasks-list'></div>
-    	<%= render partial: "task", collection: @tasks.completed_true || "No Tasks"%>
-    </div>
+	<div class='column-3'>
+	    <h1>UPCOMING TASKS</h1>
+	    <div id='task-list'>
+	    	<%= render partial: "task", collection: @tasks.completed_false.order('due_date ASC') || "No Tasks"%>
+	    </div>
+	</div> <!-- close column -->
 
-</div>
+	<div class='column-3'>
+		<h1>Add Task</h1>
+		<%= render 'form' %>
+	</div> <!-- close column -->
 
-
-
-<div class='column-3'>
-    <h1>UPCOMING TASKS</h1>
-
-    <div id='task-list'>
-    	<%= render partial: "task", collection: @tasks.completed_false.order('due_date ASC') || "No Tasks"%>
-    </div>
-
-</div>
-
-
-
-<div class='column-3'>
-	<h1>Add Task</h1>
-
-	<%= render 'form' %>
-</div>
-
-
+</div>  <!-- close wrapper -->
 
 
 
 
 
 <script type="text/javascript" charset="utf-8">
-
 
 
 $("form").on('submit', function (e) {

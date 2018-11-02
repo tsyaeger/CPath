@@ -9,7 +9,6 @@ html {
   box-sizing: inherit;
 }
 
-
 .wrapper {
   width: 100%;
   height: 100%;
@@ -18,12 +17,9 @@ html {
   max-width: 1500px;
 }
 
-
 body {
   font-family: 'Open Sans', sans-serif;
 }
-
-
 
 a {
   text-decoration: none;
@@ -34,12 +30,15 @@ a:hover {
   color: #a81515;
 }
 
-
 span {
     text-transform: uppercase;
     color: #182da5;
 }
 
+h1, h2 {
+  text-transform: uppercase;
+  text-shadow: 2px 2px #f4f2f2;
+}
 
 h3 {
     display: block;
@@ -48,7 +47,6 @@ h3 {
     font-weight: bold;
 }
 
-
 .bullet-item{
     color: black;
     list-style-type: circle;
@@ -56,24 +54,7 @@ h3 {
 
 
 
-
-
-
-/* Create three equal columns that float beside each other */
-
-.column {
-    border-left: solid;
-    border-width: 1px;
-    border-color: #2d2c2c;
-    text-align: left;
-    float: left;
-    width: 25%;
-    padding: 35px;
-    height: 1200px; 
-}
-
-
-
+//NEW PAGES
 .column-3 {
     border-left: solid;
     border-width: 1px;
@@ -83,15 +64,6 @@ h3 {
     width: 33.333%;
     padding: 35px;
     height: 1200px; 
-}
-
-
-
-
-.left-column {
-  margin: auto;
-  text-align: left;
-  padding: 35px;
 }
 
 

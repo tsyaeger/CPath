@@ -1,3 +1,47 @@
 // Place all the styles related to the Jobs controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+#job-index-page {
+    margin: auto;
+    width: 90%;
+}
+
+.applied-true {
+  color: #a81515;
+}
+
+
+#applied-container {
+    margin: auto;
+    width: 450px;
+    height: 45px;
+    /*border: solid;      */
+	display: inline-block
+}
+.one {
+    float: left;
+    /*border: solid;*/
+    margin-left: 20px;
+	display: inline-block
+	/*padding-left: 15px;*/
+}
+.two {
+    float: left;
+    margin: auto;
+    /*border: solid;*/
+	display: inline-block
+}
+
+.link.two {
+	/*margin: 2px;*/
+}
+
+.posted-date.one {
+	vertical-align: top;
+}
+
+h3#applied-bool {
+	margin-top: 0px;
+}

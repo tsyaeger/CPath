@@ -1,10 +1,6 @@
 
-
-
 <div id='new-user-container'>
-
 	<%= render "shared/errors", :target => @user %>
-
 	<div id='user-form'>
 
 		<%= form_for @user do |f| %>
@@ -21,7 +17,5 @@
 			<%= f.submit "Create Account", class: "btn btn-primary" %>
 			
 		<% end %>
-
 	</div>
-
 </div>

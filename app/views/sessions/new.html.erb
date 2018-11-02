@@ -1,10 +1,7 @@
 
-
-
 <div id='new-user-container'>
 
 	<%= render "shared/errors", :target => @user %>
-
 	<div id='user-form'>
 
 		<%= form_tag ({controller: 'sessions', action: 'create', method: 'post'}) do %>
@@ -18,7 +15,5 @@
 		  <%= submit_tag "Sign In", class: "btn btn-primary" %>
 
 		<% end %>
-
 	</div>
-
 </div>

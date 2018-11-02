@@ -1,22 +1,7 @@
 
-<div id='user-show-page'>
-
+<div id='user-show-container'>
     <div class="row">
-        
         <div class='user-id' data-id="<%= @user.id %>"></div>
-
-        <div class="column">
-
-            <h1><%= link_to 'Contacts', new_user_contact_path(@user) %></h1>
-            <div id='contact-search'>
-                <div>
-                    <input type='text' id='filter-contacts' class='dash-field' placeholder='filter contacts'>
-                </div>
-                <div id='contact-list' data-id="<%= @user.id %>"></div>
-            </div>
-        </div> <!-- close left-column -->
-
-
 
         <div class="column">
             <h1><%= link_to 'Positions', new_user_job_path(@user) %></h1>
@@ -29,41 +14,45 @@
         </div><!-- close column -->
 
 
-
         <div class="column">
             <h1><%= link_to 'Tasks', new_user_task_path(@user) %></h1>
             <div id='task-search'>
                 <div>
-                    <input type='text' id='filter-tasks' class='dash-field' placeholder='filter tasks'>        
+                    <input type='text' id='filter-tasks' class='dash-field' placeholder='filter tasks'> 
                 </div>
                 <div id="task-list"></div>
             </div>
         </div> <!-- close column -->
 
 
+        <div class="column">
+            <h1><%= link_to 'Contacts', new_user_contact_path(@user) %></h1>
+            <div id='contact-search'>
+                <div>
+                    <input type='text' id='filter-contacts' class='dash-field' placeholder='filter contacts'>
+                </div>
+                <div id='contact-list' data-id="<%= @user.id %>"></div>
+            </div>
+        </div> <!-- close column -->
+
 
         <div class="column">
             <h1><%= link_to 'Documents', new_user_document_path(@user) %></h1>
             <div id='document-search'>
                 <div>
-                    <input type='text' id='filter-documents' class='dash-field' placeholder='filter documents'>        
+                    <input type='text' id='filter-documents' class='dash-field' placeholder='filter documents'>
                 </div>
                 <div id="document-list"></div>
             </div>
         </div> <!-- close column -->
 
-
-
     </div> <!-- close row -->
-
-
-</div>
+</div> <!-- close page -->
 
 
 
 
 <script type="text/javascript" charset="utf-8">
-
 
 
 $(function() {

@@ -1,105 +1,64 @@
 
-<style>
+<div id='task-show-wrapper'>
+    <div class='user-id' data-id="<%= @task.user.id %>"></div>
+    <div class='task-id' data-id="<%= @task.id %>"></div>
 
-.linked-item, .unlinked-item {
-    margin-top: 0px;
-}
+    <div id='top'>
+        <h1><%= @task.title %></h1>
+        <div class='details-container'>
+        	<h3><%= @task.description %></h3>
+            <div id='task-due-date'><h3>DUE DATE: <%= format_date(@task.due_date) %></h3></div>
+            <div id='task-completed-string'></div>
+            <div id='add-completed'></div>
+            <div id='completed-btn'></div>
+            <td><%= link_to "Edit", edit_user_task_path(@task.user, @task) %></td>
+            <td><%= link_to "Delete", user_task_path(@task.user, @task), :method => :delete %></td>
+        </div>
+    </div> <!-- close top -->
 
-.unlinked-item {
-    margin-bottom: 3px;
-}
+    <div id='results'></div>
 
-#task_contact_id, #task_document_id, #task_job_id {
-    margin-bottom: 1px;
-}
+    <div id='mid'>
+        <div id='docs' class='links-col'>
+            <% if @task.document != nil %>   
+                <h2 class='linked-item'>LINKED DOCUMENT</h2>
+                <h3><%= link_to @task.document.title, user_document_path(@task.user, @task.document) %></h3><br>
+                <button class='unlink-button' id='unlink-document'>Unlink Document</button>
+            <% else %>
+                <h2 class='unlinked-item'>No linked Document</h2>
+                <%= render 'documents/document_task_dropdown' %>
+            <% end %>
+        </div> <!-- close column -->
 
+        <div id='contacts' class='links-col'>
+            <% if @task.contact != nil %>   
+                <h2 class='linked-item'>LINKED CONTACT </h2>
 
-
-div#contacts {
-    border-right: solid 1px;
-    border-left: solid 1px;
-}
-
-
-
-
-</style>
-
-
-
-
-<div class='user-id' data-id="<%= @task.user.id %>"></div>
-<div class='task-id' data-id="<%= @task.id %>"></div>
-
-
-<div id='top'>
-
-    <h1><%= @task.title %></h1>
-
-    <div class='details-container'>
-    	<h3><%= @task.description %></h3>
-
-        <div id='task-due-date'><h3>DUE DATE: <%= format_date(@task.due_date) %></h3></div>
-        <div id='task-completed-string'></div>
-
-        <div id='add-completed'></div>
-        <div id='completed-btn'></div>
-
-
-        <td><%= link_to "Edit", edit_user_task_path(@task.user, @task) %></td>
-        <td><%= link_to "Delete", user_task_path(@task.user, @task), :method => :delete %></td>
-
-    </div>
-
-</div>
-
-<div id='results'></div>
+                <div id='task-contacts'>
+                    <h3><%= link_to "#{formatted_name(@task.contact)}", user_contact_path(@task.user, @task.contact) %></h3><br>
+                </div>
+                <button class='unlink-button' id='unlink-contact'>Unlink Contact</button>
+            <% else %>
+                <h2 class='unlinked-item'>No linked contact</h2>
+                <%= render 'contacts/contact_task_dropdown' %>
+            <% end %>
+        </div> <!-- close column -->
 
 
+        <div id='Jobs' class='links-col'>
+            <% if @task.job != nil %>   
+                <h2 class='linked-item'>LINKED JOB</h2>
+                <h3><%= link_to @task.job.company, user_job_path(@task.user, @task.job) %></h3><br>
+                <button class='unlink-button' id='unlink-job'>Unlink Job</button>
+            <% else %>
+                <h2 class='unlinked-item'>No linked job</h2>
+                <%= render 'jobs/job_task_dropdown' %>
+            <% end %>
+        </div> <!-- close column -->
+    </div> <!-- close mid -->
 
-<div id='mid'>
+</div> <!-- close wrapper -->
 
-    <div id='docs' class='links-col'>
-        <% if @task.document != nil %>   
-            <h2 class='linked-item'>LINKED DOCUMENT</h2>
-            <h3><%= link_to @task.document.title, user_document_path(@task.user, @task.document) %></h3><br>
-            <button class='unlink-button' id='unlink-document'>Unlink Document</button>
-        <% else %>
-            <h2 class='unlinked-item'>No linked Document</h2>
-            <%= render 'documents/document_task_dropdown' %>
-        <% end %>
-    </div>    
-
-
-    <div id='contacts' class='links-col'>
-        <% if @task.contact != nil %>   
-            <h2 class='linked-item'>LINKED CONTACT </h2>
-
-            <div id='task-contacts'>
-                <h3><%= link_to "#{formatted_name(@task.contact)}", user_contact_path(@task.user, @task.contact) %></h3><br>
-            </div>
-
-            <button class='unlink-button' id='unlink-contact'>Unlink Contact</button>
-        <% else %>
-            <h2 class='unlinked-item'>No linked contact</h2>
-            <%= render 'contacts/contact_task_dropdown' %>
-        <% end %>
-        
-    </div>    
-
-
-    <div id='Jobs' class='links-col'>
-        <% if @task.job != nil %>   
-            <h2 class='linked-item'>LINKED JOB</h2>
-            <h3><%= link_to @task.job.company, user_job_path(@task.user, @task.job) %></h3><br>
-            <button class='unlink-button' id='unlink-job'>Unlink Job</button>
-        <% else %>
-            <h2 class='unlinked-item'>No linked job</h2>
-            <%= render 'jobs/job_task_dropdown' %>
-        <% end %>
-    </div>  
-
-</div>
 
 
 

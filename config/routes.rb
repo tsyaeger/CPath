@@ -28,6 +28,8 @@ Rails.application.routes.draw do
 	get '/users/:id/jobs/:id/previous', to: 'jobs#previous', as: 'user_job_previous'
 
 
+	get '/users/:id/contacts/sort', to: 'contacts#sort', as: 'contacts_sort'
+
 
 	get '/jobs/filter', to: 'jobs#filter', as: 'jobs_filter'
 	get '/contacts/filter', to: 'contacts#filter', as: 'contacts_filter'	

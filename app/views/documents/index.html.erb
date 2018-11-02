@@ -1,6 +1,5 @@
 <h1>Documents</h1>
 
-
 <table>
   <tr>
     <th>Type</th>
@@ -11,7 +10,6 @@
 
   <% @documents.each do |document| %>
 	  <tr>
-	  	
 	    <td><%= link_to document.description, user_document_path(document.user, document) %></td>
 	    <td>document</td>
 

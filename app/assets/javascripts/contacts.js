@@ -19,6 +19,19 @@ Contact.prototype.formatIndex = function() {
 }
 
 
+
+
+Contact.prototype.formatBulletItem = function() {
+    // return `<h3><a href='/users/${this.user_id}/contacts/${this.id}'>${this.first} ${this.last}</a></h3>`
+    return `<h3 class="list-items"><a class="bullet-item" href="/users/${this.user_id}/contacts/${this.id}"><li>${this.first} ${this.last}</li><br></a></h3>`
+}
+
+
+
+
+
+
+
 Contact.prototype.referenceString = function(ref_bool= this.reference) {
     let refString = ref_bool.toString()
     return `<h3>REFERENCE: ${refString}</h3>`

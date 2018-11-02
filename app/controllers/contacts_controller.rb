@@ -10,6 +10,21 @@ class ContactsController < ApplicationController
 	end
 
 
+	def sort  #THIS IS BEING READ AS A SHOW PAGE
+		@contacts = current_user.contacts
+		@contacts_sorted = @contacts.sort_by &:last_name
+		respond_to do |format|
+	      # format.html { render :index }
+	    	format.json { render json: @contacts_sorted, status: 200 }
+			# format.json { render json: { html: render_to_string("contacts/_contact.html.erb", layout: false, locals: { contacts_sorted: @contacts_sorted })} }
+
+	    end
+	end
+
+
+	
+
+
 	def filter
 		@filtered_contacts = current_user.contacts.filtered_contact(params[:q])
 		respond_to do |format|

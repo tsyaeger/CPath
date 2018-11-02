@@ -1,5 +1,4 @@
 
-
 <% filtered_documents.each do |document| %>
 	<h3><%= link_to document.title, user_document_path(document.user, document)%></h3>
 <% end %>

@@ -1,7 +1,5 @@
 
-
 <h1>tasks</h1>
-
 
 <table>
   <tr>
@@ -14,8 +12,6 @@
   </tr>
 
   <% @tasks.each do |task| %>
-   
-
 	  <tr>
 	    <td><%= link_to task.title, user_task_path(task.user, task) %></td>
 	    <td><%= task.description %></td>
@@ -25,7 +21,6 @@
 	    <td><%= link_to "Delete", user_task_path(task.user, task), :method => :delete %></td>
 	  </tr>
   <% end %>
-
 </table>
 
 

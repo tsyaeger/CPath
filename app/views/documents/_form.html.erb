@@ -1,11 +1,9 @@
 
-
-
 <%= form_for [@document.user, @document] do |f| %>
 
 	<div class='field'>
 		<%= f.label :title, "Title" %><br>
-		<%= f.text_field :title, id: 'title' %>
+		<%= f.text_field :title, id: 'title', :required => true  %>
 	</div>
 
 	<div class='field'>
@@ -13,24 +11,31 @@
 		<%= f.text_field :description, id: 'description' %>
 	</div>
 
-
 	<div class='field'>
 		<%= f.label :doctype, "Doctype" %><br>
-		<%= f.text_field :doctype, id: 'doctype' %>
+		<%= f.select :doctype, [ 'Resume','Cover Letter','Correspondence', 'Examples', 'Other' ], :prompt => 'Select One', :required => true %>
 	</div>
-
 
 	<div class='field'>
 		<%= f.label :url, "Link" %><br>
 		<%= f.text_field :url, id: 'url' %>
 	</div>
 
-
 	<div class='actions'>
 		<%= f.submit "SAVE" %>
 	</div>
 
 <% end %>
+
+
+
+
+
+
+
+
+
+
 
 
 

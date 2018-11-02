@@ -1,3 +1,20 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.column {
+    border-left: solid;
+    border-width: 1px;
+    border-color: #2d2c2c;
+    text-align: left;
+    float: left;
+    width: 25%;
+    padding: 35px;
+    height: 1200px; 
+}
+
+
+#user-show-container h3 {
+    margin-top: 17px;
+}

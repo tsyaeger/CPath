@@ -1,39 +1,28 @@
 
-<style>
+<div id='contact-new-page'>
+	<div class='user-id' data-id="<%= current_user.id %>"></div>
 
-#contact-bullet {
-	list-style-type: circle;
-}
+	<div class="column-3">
+		<h1>References</h1>
+		<%= render partial: "contact", collection: @contacts.is_reference || "No Contacts"%>
+	</div> <!--close column -->
 
-.contact-item{
-	color: black;
-	list-style-type: circle;
-}
+	<div class="column-3">
+	    <h1>Contacts</h1>
+	    <button id="contacts-sort">First Name</button>
+	    <button id="contacts-sort-2">Last Name</button>
+		<div id='contact-list'>
+		    <%= render partial: "contact", collection: @contacts || "No Contacts"%>
+	    </div> <!--close column -->
+	</div>
 
-</style>
+	<div class="column-3">
+		<h1>Add Contact</h1>
+		<%= render 'form' %>
+	</div> <!--close column -->
 
+</div> <!--close page -->
 
-<div class="column-3">
-	<h1>References</h1>
-	<%= render partial: "contact", collection: @contacts.is_reference || "No Contacts"%>
-</div>
-
-
-
-<div class="column-3">
-    <h1>Contacts</h1>
-    <button id="contacts-sort">Sort</button>
-	<div  id='contact-list'>
-	    <%= render partial: "contact", collection: @contacts || "No Contacts"%>
-    </div>
-</div>
-
-
-
-<div class="column-3">
-	<h1>Add Contact</h1>
-	<%= render 'form' %>
-</div>
 
 
 
@@ -43,11 +32,14 @@
 
 
 $(document).ready(function () {
-	buttonSort()
+	user_id = $(".user-id").data("id")
+	buttonSort1()
+	buttonSort2()
 })
 
-$("form").on('submit', function (e) {
 
+
+$("form").on('submit', function (e) {
 	e.preventDefault()
 	var $form = $(this)
 	var action = $form.attr('action')
@@ -70,31 +62,40 @@ $("form").on('submit', function (e) {
 
 
 
-const buttonSort = function() {
+// SORT CONTACTS W/O REQUEST
+const buttonSort1 = function() {
 	$('#contacts-sort').on('click', function() {
 		let $cList = $( "#contact-list .list-items" ).toArray().map((li) => { 
-			return li.innerHTML.trim()
+			return `<h3 class="list-items">${li.innerHTML}</h3>`
 		})
-		let $list = $($("#contact-list .list-items" ))
-		$list.empty()
+		$($("#contact-list .list-items" )).remove()
+		let $sorted = sortContacts($cList).join('')
+		$('#contact-list').append($sorted)
+	})
+}
 
-		let sorted = sortContacts($cList).join('')
-		$('#contact-list').append(sorted)
+const sortContacts = function (c_list) {
+	return c_list.sort(function (a, b) {
+		let reg = /<li>(.*?)</
+		if ( a.match(reg)[0] < b.match(reg)[0] ) return -1;
+		if ( a.match(reg)[0] > b.match(reg)[0] ) return 1;
+		return 0;
 	})
 }
 
 
- const sortContacts = function (c_list) {
-    return c_list.sort(function (a, b) {
-    	let reg = /<li>(.*?)</
-        if ( a.match(reg)[0] < b.match(reg)[0] ) return -1;
-        if ( a.match(reg)[0] > b.match(reg)[0] ) return 1;
-        return 0;
-    })
+// SORT CONTACTS W/ GET REQUEST
+const buttonSort2 = function() {
+	$('#contacts-sort-2').on('click', function() {
+		$.get(`/users/${user_id}/contacts/sort`, function(data) {
+			$($("#contact-list .list-items" )).remove()
+		    jQuery(data).each(function(i, contact){
+		        let c = new Contact(contact, user_id)
+		        $("#contact-list").append(c.formatBulletItem())
+		    })
+        })
+	})
 }
-
-
-
 
 
 

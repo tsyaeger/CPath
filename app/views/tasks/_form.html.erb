@@ -1,11 +1,9 @@
-
-
 	
 <%= form_for [@task.user, @task] do |f| %>
 
     <div class="field">
         <%= f.label :title, "Title" %><br>
-        <%= f.text_field :title, id: "title" %>
+        <%= f.text_field :title, id: "title", :required => true  %>
     </div>
 
     <div class="field">

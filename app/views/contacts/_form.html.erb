@@ -3,13 +3,13 @@
 <%= form_for [@contact.user, @contact] do |f| %>
 
     <div class="field">
-        <%= f.label :first_name, "First Name" %><br>
+        <%= f.label :first_name, "First Name", :required => true  %><br>
         <%= f.text_field :first_name, id: "first-name" %>
     </div>
 
     <div class="field">
         <%= f.label :last_name, "Last Name" %><br>
-        <%= f.text_field :last_name, id: "last-name" %>
+        <%= f.text_field :last_name, id: "last-name", :required => true %>
     </div>
 
     <div class="field">

@@ -1,129 +1,78 @@
-<style>
 
-#applied-container {
-    margin: auto;
-    width: 450px;
-    height: 45px;
-    /*border: solid;      */
-	display: inline-block
-}
-.one {
-    float: left;
-    /*border: solid;*/
-    margin-left: 20px;
-	display: inline-block
-	/*padding-left: 15px;*/
-}
-.two {
-    float: left;
-    margin: auto;
-    /*border: solid;*/
-	display: inline-block
-}
+<div id='job-show-wrapper'>
+	<div class='user-id' data-id="<%= @job.user.id %>"></div>
+	<div class='job-id' data-id="<%= @job.id %>"></div>
 
-.link.two {
-	/*margin: 2px;*/
-}
-
-.posted-date.one {
-	vertical-align: top;
-}
-
-h3#applied-bool {
-	margin-top: 0px;
-}
-
-</style>
-
-
-
-<div class='user-id' data-id="<%= @job.user.id %>"></div>
-<div class='job-id' data-id="<%= @job.id %>"></div>
-
-
-<div id='top'>
-
-	<span class="headline pg-btn btn-previous"><button>Previous</button></span>
-    <h1 id='job-company-position' class='headline'><%= @job.company %> - <%= @job.position %></h1>
-    <span class="headline pg-btn btn-next"><button>Next</button></span>
-
-	<div class='details-container'>
-
-		<section id='applied-container'>
-			<div><h3 class='posted-date one'>Posted Date: <%= format_date(@job.date_posted) %></h3><div>
-			<div><h3 class='link two'><a href="<%= @job.url %>" target="_blank">Go to Posting</a></h3></div>
-		</section>
-
-
-		<div id='job-applied'></div>
-		<div id='applied-btn'></div>
-
+	<div id='top'>
+		<span class="headline pg-btn btn-previous"><button>Previous</button></span>
+	    <h1 id='job-company-position' class='headline'><%= @job.company %> - <%= @job.position %></h1>
+	    <span class="headline pg-btn btn-next"><button>Next</button></span>
+		<div class='details-container'>
+			<section id='applied-container'>
+				<div><h3 class='posted-date one'>Posted Date: <%= format_date(@job.date_posted) %></h3><div>
+				<div><h3 class='link two'><a href="<%= @job.url %>" target="_blank">Go to Posting</a></h3></div>
+			</section>
+			<div id='job-applied'></div>
+			<div id='applied-btn'></div>
+			<div>
+				<td><%= link_to "Edit", edit_user_job_path(@job.user, @job) %></td>
+			    <td><%= link_to "Delete", user_job_path(@job.user, @job), :method => :delete %></td>
+			</div>
+		</div>
+	</div> <!-- close top -->
 	
 
-		<div>
-			<td><%= link_to "Edit", edit_user_job_path(@job.user, @job) %></td>
-		    <td><%= link_to "Delete", user_job_path(@job.user, @job), :method => :delete %></td>
+	<div id='mid'>
+	    <div id='job-docs-col' class='links-col'>
+	    	<%= render 'documents/document_dropdown' %>
+	    	<h2>LINKED DOCUMENTS</h2>
+	    	<div id='job-documents'></div>
+	    </div> <!-- close column -->
+
+	    <div id='job-contacts-col' class='links-col'>
+			 <%= render 'contacts/contact_dropdown' %>
+	    	<h2>LINKED CONTACTS</h2>
+	    	<div id='job-contacts'></div>
+	    </div> <!-- close column -->
+
+	    <div id='job-tasks-col' class='links-col'>
+			<% if @job.tasks.length > 0%>
+				<!-- <div id='task-list'></div> -->
+		    	<h2>TASKS</h2>
+		    	<%= render partial: "tasks/task", collection: @job.tasks || "No Linked Tasks" %>
+		    <% else %>
+		    	<h2>NO LINKED TASKS</h2>
+			<% end %>
+	    </div> <!-- close column -->
+
+	</div> <!-- close mid -->
+
+
+	<div id='bottom'>
+		<div class='col-5'>.</div>
+
+		<div class='col-4 left-col'>
+			<% if !!@job.job_desc %>
+				<h2> View Job Description </h2>
+				<h3 class='descriptions'><%= @job.job_desc %></h3>
+			<% else %>
+				<h2>This job has no job description<h2>
+			<% end %>
 		</div>
-	</div>
 
-</div>
+		<div class='col-4 right-col'>	
+			<% if !!@job.co_desc %>
+				<h2> View Company Description </h2>
+				<h3 class='descriptions'><%= @job.co_desc %></h3>
+			<% else %>
+				<h2>This job has no company description</h2>
+			<% end %>
+		</div>
 
+		<div class='col-5'>.</div>
+	</div> <!-- close bottom -->
 
-<div id='mid'>
-    
-    <div id='job-docs-col' class='links-col'>
-    	<%= render 'documents/document_dropdown' %>
-    	<h2>LINKED DOCUMENTS</h2>
-    	<div id='job-documents'></div>
-    </div>    
-
-
-    <div id='job-contacts-col' class='links-col'>
-		 <%= render 'contacts/contact_dropdown' %>
-    	<h2>LINKED CONTACTS</h2>
-    	<div id='job-contacts'></div>
-    </div>    
-
-
-    <div id='job-tasks-col' class='links-col'>
-		<% if @job.tasks.length > 0%>
-			<!-- <div id='task-list'></div> -->
-	    	<h2>TASKS</h2>
-	    	<%= render partial: "tasks/task", collection: @job.tasks || "No Linked Tasks" %>
-	    <% else %>
-	    	<h2>NO LINKED TASKS</h2>
-		<% end %>
-    </div>  
-
-</div>
-
-
-<div id='bottom'>
-
-	<div class='col-5'>.</div>
-
-	<div class='col-4 left-col'>
-		<% if !!@job.job_desc %>
-			<h2> View Job Description </h2>
-			<h3 class='descriptions'><%= @job.job_desc %></h3>
-		<% else %>
-			<h2>This job has no job description<h2>
-		<% end %>
-	</div>
-
-	<div class='col-4 right-col'>	
-		<% if !!@job.co_desc %>
-			<h2> View Company Description </h2>
-			<h3 class='descriptions'><%= @job.co_desc %></h3>
-		<% else %>
-			<h2>This job has no company description<h2>
-		<% end %>
-	</div>
-
-	<div class='col-5'>.</div>
-</div>
-
-
+</div> <!-- close wrapper -->
 
 
 
